@@ -1,5 +1,7 @@
 package com.lubin.rpc.server;
 
+import java.lang.reflect.Method;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.concurrent.EventExecutorGroup;
@@ -20,20 +22,34 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 
 	@Override
 	protected void channelRead0(final ChannelHandlerContext ctx, final RPCContext rpcContext) throws Exception {
-		Request req = rpcContext.req;
+		Request req = rpcContext.getReq();
 		
 		Response res= new Response();
 		//copy properties
-		res.seq = req.seq;
-		res.version = req.version;
-		res.type = req.type;
-		res.objName = req.objName;
-		res.funcName = req.funcName;
+		res.setSeqNum(req.getSeqNum());
+		res.setVersion(req.getVersion());
+		res.setType(req.getType());
+		res.setObjName(req.getObjName());
+		res.setFuncName(req.getFuncName());
 		
-		rpcContext.res = res;
+		Class[] parameterTypes = new Class[req.getArgs().length];
+		int i=0;
+		for(Object arg : req.getArgs()){
+			parameterTypes[i++] = arg.getClass();
+		}
 		
+
+		Object obj= RPCServer.getObject(req.getObjName());
+		Class clazz= obj.getClass();
+		Method func = clazz.getMethod(req.getFuncName(), parameterTypes);
+		Object result= func.invoke(obj, req.getArgs());
+		
+		res.setResult(result);
+		res.setStatus(Constants.RPCStatus.ok);
+		res.setMsg("ok");
+
+		rpcContext.setRes(res);
 		ctx.write(rpcContext);
-		//todo...
 	}	
 
 	@Override

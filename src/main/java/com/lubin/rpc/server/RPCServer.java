@@ -1,6 +1,11 @@
 package com.lubin.rpc.server;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.lubin.rpc.server.ServerConfig;
+import com.lubin.rpc.server.example.HelloWorld;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -12,12 +17,23 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class RPCServer {
 
 	private final ServerConfig conf;
+	
+	private static HashMap<String,Object> objects =new HashMap<String,Object>();
+	
+	public static Object getObject(String objName){
+		return objects.get(objName);
+	}
 
 	public RPCServer(ServerConfig conf) {
 		this.conf = conf;
+		
+		for(Object obj : conf.getObjList()){
+			objects.put(obj.getClass().getSimpleName(), obj);
+		}
 	}
 
 	public void run() throws Exception {
+
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		try {
@@ -26,7 +42,8 @@ public class RPCServer {
 					.channel(NioServerSocketChannel.class)
 					.childHandler(new DefaultServerInitializer(conf))
 					.option(ChannelOption.SO_BACKLOG, conf.getBacklog())
-					.option(ChannelOption.SO_REUSEADDR, true);
+					.option(ChannelOption.SO_REUSEADDR, true)
+					.option(ChannelOption.SO_KEEPALIVE, true);
 
 			Channel ch = b.bind(conf.getPort()).sync().channel();
 			ch.closeFuture().sync();
@@ -37,6 +54,8 @@ public class RPCServer {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new RPCServer(new ServerConfig()).run();
+		List<Object> objList = new ArrayList<Object>();
+		objList.add(new HelloWorld());
+		new RPCServer(new ServerConfig(objList)).run();
 	}
 }

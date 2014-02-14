@@ -3,14 +3,14 @@ package com.lubin.rpc.server;
 public class Constants {
 	
 	public interface RPCStatus {
-		int ok = 0;
-		int exception = 1;
-		int unknownError = 2;
+		char ok = 0;
+		char exception = 1;
+		char unknownError = 2;
 	}
 	
 	public interface RPCType {
-		int normal = 0;
-		int oneway = 1;
-		int async = 2;
+		char normal = 0;
+		char oneway = 1;
+		char async = 2;
 	}
 }

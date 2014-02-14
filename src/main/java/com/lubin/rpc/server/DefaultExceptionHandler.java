@@ -23,18 +23,18 @@ public class DefaultExceptionHandler extends ChannelInboundHandlerAdapter {
 
 		if(cause instanceof BadRequestException){	//application layer exception.
 			BadRequestException exc = (BadRequestException)cause;
-			Request req = exc.context.req;
+			Request req = exc.context.getReq();
 			Response res= new Response();
 			//copy properties
-			res.seq = req.seq;
-			res.version = req.version;
-			res.type = req.type;
-			res.objName = req.objName;
-			res.funcName = req.funcName;
+			res.setSeqNum(req.getSeqNum());
+			res.setVersion(req.getVersion());
+			res.setType(req.getType());
+			res.setObjName(req.getObjName());
+			res.setFuncName(req.getFuncName());
 			
 			//pass exception message to client
-			res.status = Constants.RPCStatus.exception;
-			res.msg = exc.getMessage();
+			res.setStatus(Constants.RPCStatus.exception);
+			res.setMsg(exc.getMessage());
 			
 			ctx.writeAndFlush(res);
 		}else{	// unknow error
