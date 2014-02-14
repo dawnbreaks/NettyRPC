@@ -3,18 +3,13 @@ package com.lubin.rpc.server;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.concurrent.EventExecutorGroup;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
 
-import java.util.concurrent.Callable;
-
-import com.lubin.rpc.server.AsyncTask;
-import com.lubin.rpc.server.http.message.FullDecodedRequest;
-import com.lubin.rpc.server.http.message.Response;
+import com.lubin.rpc.server.kryoProtocol.RPCContext;
+import com.lubin.rpc.server.kryoProtocol.Request;
+import com.lubin.rpc.server.kryoProtocol.Response;
 
 
-public class DefaultHandler extends
-		SimpleChannelInboundHandler<FullDecodedRequest> {
+public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 
 	private final EventExecutorGroup executor;
 
@@ -24,26 +19,22 @@ public class DefaultHandler extends
 	}
 
 	@Override
-	protected void channelRead0(final ChannelHandlerContext ctx,
-			final FullDecodedRequest decodedRequest) throws Exception {
-		Callable<? extends Object> callable = new AsyncTask(
-				decodedRequest.getPath(), decodedRequest.getValues());
-
-		final Future<? extends Object> future = executor.submit(callable);
-
-		future.addListener(new GenericFutureListener<Future<Object>>() {
-			@Override
-			public void operationComplete(Future<Object> future)
-					throws Exception {
-				if (future.isSuccess()) {
-					ctx.writeAndFlush(new Response(decodedRequest.getRequest(),
-							future.get()));
-				} else {
-					ctx.fireExceptionCaught(future.cause());
-				}
-			}
-		});
-	}
+	protected void channelRead0(final ChannelHandlerContext ctx, final RPCContext rpcContext) throws Exception {
+		Request req = rpcContext.req;
+		
+		Response res= new Response();
+		//copy properties
+		res.seq = req.seq;
+		res.version = req.version;
+		res.type = req.type;
+		res.objName = req.objName;
+		res.funcName = req.funcName;
+		
+		rpcContext.res = res;
+		
+		ctx.write(rpcContext);
+		//todo...
+	}	
 
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {

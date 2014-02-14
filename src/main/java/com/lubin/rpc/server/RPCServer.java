@@ -9,11 +9,11 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class HttpServer {
+public class RPCServer {
 
 	private final ServerConfig conf;
 
-	public HttpServer(ServerConfig conf) {
+	public RPCServer(ServerConfig conf) {
 		this.conf = conf;
 	}
 
@@ -37,6 +37,6 @@ public class HttpServer {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new HttpServer(new ServerConfig()).run();
+		new RPCServer(new ServerConfig()).run();
 	}
 }

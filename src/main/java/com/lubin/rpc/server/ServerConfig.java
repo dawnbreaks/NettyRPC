@@ -15,6 +15,6 @@ public class ServerConfig {
 	}
 
 	public Integer getTaskThreadPoolSize() {
-		return 32;
+		return 8;
 	}
 }

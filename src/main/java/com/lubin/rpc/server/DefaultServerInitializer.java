@@ -1,16 +1,13 @@
 package com.lubin.rpc.server;
 
-import com.lubin.rpc.server.ServerConfig;
-
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.codec.http.HttpContentCompressor;
-import io.netty.handler.codec.http.HttpObjectAggregator;
-import io.netty.handler.codec.http.HttpRequestDecoder;
-import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
+
+import com.lubin.rpc.server.kryoProtocol.RequestDecoder;
+import com.lubin.rpc.server.kryoProtocol.ResponseEncoder;
 
 public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -29,17 +26,12 @@ public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> 
 		// Create a default pipeline implementation
 		final ChannelPipeline p = ch.pipeline();
 
+		p.addLast("decoder", new RequestDecoder());
 
-		p.addLast("httpDecoder", new HttpRequestDecoder());
-
-		p.addLast("httpAggregator",
-				new HttpObjectAggregator(conf.getClientMaxBodySize()));
-		p.addLast("httpDecoderAux", new RequestDecoder());
-		p.addLast("httpEncoder", new HttpResponseEncoder());
-
-		p.addLast("httpEncoderAux", new ResponseEncoder());
+		p.addLast("encoder", new ResponseEncoder());
 
 		p.addLast("handler", new DefaultHandler(executor));
+		
 		p.addLast("httpExceptionHandler", new DefaultExceptionHandler());
 	}
 }

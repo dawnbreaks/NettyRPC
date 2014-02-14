@@ -8,7 +8,6 @@ import io.netty.util.concurrent.GenericFutureListener;
 
 import java.util.concurrent.Callable;
 
-import com.lubin.rpc.server.AsyncTask;
 import com.lubin.rpc.server.http.message.FullDecodedRequest;
 import com.lubin.rpc.server.http.message.Response;
 

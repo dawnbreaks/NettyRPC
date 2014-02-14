@@ -1,21 +1,14 @@
 package com.lubin.rpc.server;
 
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.handler.codec.http.DefaultFullHttpResponse;
-import io.netty.handler.codec.http.FullHttpResponse;
-import static io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_LENGTH;
-import static io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
-import io.netty.handler.codec.http.HttpResponseStatus;
-import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
-import static io.netty.handler.codec.http.HttpResponseStatus.INTERNAL_SERVER_ERROR;
-import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
-import io.netty.util.CharsetUtil;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.lubin.rpc.server.exception.BadRequestException;
+import com.lubin.rpc.server.kryoProtocol.Request;
+import com.lubin.rpc.server.kryoProtocol.Response;
 
 public class DefaultExceptionHandler extends ChannelInboundHandlerAdapter {
 
@@ -25,24 +18,27 @@ public class DefaultExceptionHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
+		
 		logger.error("Exception caught", cause);
 
-		HttpResponseStatus status = (cause instanceof BadRequestException) ? BAD_REQUEST
-				: INTERNAL_SERVER_ERROR;
-
-		StringWriter stringWriter = new StringWriter();
-		PrintWriter printWriter = new PrintWriter(stringWriter);
-		cause.printStackTrace(printWriter);
-		String content = stringWriter.toString();
-
-		FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1,
-				status, Unpooled.copiedBuffer(content, CharsetUtil.UTF_8));
-
-		response.headers().set(CONTENT_TYPE, "text/plain; charset=UTF-8");
-		response.headers().set(CONTENT_LENGTH,
-				response.content().readableBytes());
-
-		ctx.writeAndFlush(response);
-		ctx.close();
+		if(cause instanceof BadRequestException){	//application layer exception.
+			BadRequestException exc = (BadRequestException)cause;
+			Request req = exc.context.req;
+			Response res= new Response();
+			//copy properties
+			res.seq = req.seq;
+			res.version = req.version;
+			res.type = req.type;
+			res.objName = req.objName;
+			res.funcName = req.funcName;
+			
+			//pass exception message to client
+			res.status = Constants.RPCStatus.exception;
+			res.msg = exc.getMessage();
+			
+			ctx.writeAndFlush(res);
+		}else{	// unknow error
+			ctx.close();
+		}
 	}
 }
