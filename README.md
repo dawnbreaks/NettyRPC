@@ -4,7 +4,7 @@ NettyRPC
 Yet another RPC framework based on Netty(https://github.com/netty/netty) and Kryo(https://github.com/EsotericSoftware/kryo)
 
 
-features
+Features
 ========
 
   * simple, small code base
@@ -15,7 +15,7 @@ features
   * support asynchronous RPC call(unimplemented)
 
 
-Example:
+Simple tutorial
 ========
 ####1.Define an obj interface
 ```java
@@ -23,7 +23,6 @@ public interface IHelloWordObj {
 	String hello(String msg);
 	String test(int i, String s, long l);
 }
-
 ```
   
 ####2.Implemente the previous defined interface
@@ -38,7 +37,6 @@ public class HelloWorldObj implements IHelloWordObj {
 		return i+s+l;
 	}
 }
-
 ```
 
 ####3.Start up the following server
@@ -50,13 +48,11 @@ public class HelloServer {
 		new RPCServer(new ServerConfig(objList)).run();
 	}
 }
-
 ```
 
 
 ####4.Make an Obj proxy and call the remote Obj.
 ```java
-
     final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
     final int port = 9090;
     IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
@@ -64,8 +60,8 @@ public class HelloServer {
     String result = client.hello("hello world!");
     if(!result.equals("hello world!"))
            System.out.print("error="+result);
- 				
 ```
 
 Concluson
-Oh, that's all! Simple to understand, right? Please feel free to contact me(2005dawnbreaks@gmail.com) if you have any questions.
+========
+Oh, that's all! Easy to understand, right? Please feel free to contact me(2005dawnbreaks@gmail.com) if you have any questions.
