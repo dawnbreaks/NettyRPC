@@ -14,7 +14,7 @@ public class HelloClient {
 
          final AtomicLong totalTimeCosted = new AtomicLong(0);
          int threadNum = 1;
-         final int requestNum = 100000;
+         final int requestNum = 1000000;
          Thread[] threads = new Thread[threadNum];
          
          for(int i =0;i< threadNum;i++){
@@ -22,10 +22,10 @@ public class HelloClient {
         	 threads[i] = new Thread(new Runnable(){
 			 @Override
 			 public void run() {
+				 
 					
-		         // Make a new connection.
+		         	// Make a new connection.
 					try {
-
 							 IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
 							 long start = System.currentTimeMillis();
 					         for(int i=0;i<requestNum;i++){
