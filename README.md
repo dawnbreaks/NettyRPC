@@ -17,7 +17,7 @@ features
 
 Example:
 ========
-###1.Define an obj interface
+####1.Define an obj interface
 ```java
 public interface IHelloWordObj {
 	String hello(String msg);
@@ -26,7 +26,7 @@ public interface IHelloWordObj {
 
 ```
   
-###2.Implemente the previous defined interface
+####2.Implemente the previous defined interface
 ```java
 public class HelloWorldObj implements IHelloWordObj {
 	@Override
@@ -41,7 +41,7 @@ public class HelloWorldObj implements IHelloWordObj {
 
 ```
 
-###3.Start up the following server
+####3.Start up the following server
 ```java
 public class HelloServer {
 	public static void main(String[] args) throws Exception {
@@ -54,7 +54,7 @@ public class HelloServer {
 ```
 
 
-###4.Make an Obj proxy and call the remote Obj.
+####4.Make an Obj proxy and call the remote Obj.
 ```java
 
     final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
@@ -66,3 +66,6 @@ public class HelloServer {
            System.out.print("error="+result);
  				
 ```
+
+Concluson
+Oh, that's all! Simple to understand, right? Please feel free to contact me(2005dawnbreaks@gmail.com) if you have any questions.
