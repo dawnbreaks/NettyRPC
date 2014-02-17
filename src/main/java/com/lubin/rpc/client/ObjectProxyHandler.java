@@ -42,10 +42,10 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 		
 		Condition condition = pendingRPCThread.get(rpcCtx.getResponse().getSeqNum());
 		RPCContext oriRpcCtx = pendingRPCCtx.get(rpcCtx.getResponse().getSeqNum());
-		oriRpcCtx.setResponse(rpcCtx.getResponse());
-		
+
 		if(condition!=null && oriRpcCtx !=null){
 			try{
+				oriRpcCtx.setResponse(rpcCtx.getResponse());
 				lock.lock();
 				condition.signal();
 			}finally{

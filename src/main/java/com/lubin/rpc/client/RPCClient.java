@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class RPCClient {
 
-	private static EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
+	private static EventLoopGroup eventLoopGroup = new NioEventLoopGroup(2);
 	
 	public static EventLoopGroup getEventLoopGroup(){
 		return eventLoopGroup;

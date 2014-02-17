@@ -13,8 +13,8 @@ public class HelloClient {
     	 final int port = 9090;
 
          final AtomicLong totalTimeCosted = new AtomicLong(0);
-         int threadNum = 1;
-         final int requestNum = 1000000;
+         int threadNum = 2;
+         final int requestNum = 100000;
          Thread[] threads = new Thread[threadNum];
          
          for(int i =0;i< threadNum;i++){
