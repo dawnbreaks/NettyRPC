@@ -28,9 +28,9 @@ public class RPCClientInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline p = ch.pipeline();
-        p.addLast("decoder", new CliRequestDecoder());
+        p.addLast("decoder", new CliResponseDecoder());
 
-        p.addLast("encoder", new CliResponseEncoder());
+        p.addLast("encoder", new CliRequestEncoder());
  
         p.addLast("handler", new ObjectProxyHandler());
     }

@@ -33,13 +33,13 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 	protected void channelRead0(ChannelHandlerContext arg0, RPCContext rpcCtx)
 			throws Exception {
 		
-		Condition condition = pendingRPCThread.get(rpcCtx.getReq().getSeqNum());
-		RPCContext oriRpcCtx = pendingRPCCtx.get(rpcCtx.getReq().getSeqNum());
+		Condition condition = pendingRPCThread.get(rpcCtx.getRes().getSeqNum());
+		RPCContext oriRpcCtx = pendingRPCCtx.get(rpcCtx.getRes().getSeqNum());
 		oriRpcCtx.setRes(rpcCtx.getRes());
 		if(condition!=null && oriRpcCtx !=null){
 			try{
 				lock.lock();
-				condition.notify();
+				condition.signal();
 			}finally{
 				lock.unlock();
 			}
@@ -72,13 +72,16 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 			e.printStackTrace();
 		}
 		
-		channel.writeAndFlush(rpcCtx);
+		
 		try{
 			lock.lock();
 			Condition con = lock.newCondition();
 			pendingRPCThread.put(rpcCtx.getReq().getSeqNum(), con);
 			pendingRPCCtx.put(rpcCtx.getReq().getSeqNum(), rpcCtx);
-			con.await(300, TimeUnit.MILLISECONDS);
+			channel.writeAndFlush(rpcCtx);
+			boolean notTimeout = con.await(3000, TimeUnit.MILLISECONDS);
+			if(!notTimeout)
+				throw new RuntimeException("time outexception");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}finally{

@@ -28,7 +28,11 @@ public class RPCServer {
 		this.conf = conf;
 		
 		for(Object obj : conf.getObjList()){
-			objects.put(obj.getClass().getSimpleName(), obj);
+			Class[] interfaces= obj.getClass().getInterfaces();
+			for(int i =0;i<interfaces.length;i++){
+				objects.put(interfaces[i].getSimpleName(), obj);
+			}
+			
 		}
 	}
 

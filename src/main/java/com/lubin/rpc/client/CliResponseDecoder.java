@@ -9,9 +9,10 @@ import java.util.List;
 
 import com.lubin.rpc.server.kryoProtocol.KryoSerializer;
 import com.lubin.rpc.server.kryoProtocol.RPCContext;
+import com.lubin.rpc.server.kryoProtocol.Request;
 import com.lubin.rpc.server.kryoProtocol.Response;
 
-public class CliRequestDecoder extends ByteToMessageDecoder  {
+public class CliResponseDecoder extends ByteToMessageDecoder  {
 	
 
 	/*
@@ -37,10 +38,12 @@ public class CliRequestDecoder extends ByteToMessageDecoder  {
                 return;
             } else {
 
-		        ByteBuffer buffer = in.nioBuffer(readerIndex+4, bodyLength);	//nioBuffer()  not copy memory
-		        Response req = (Response) KryoSerializer.read(buffer.array());  //buffer.array()  not copy memory
+		        byte[] body = new byte[bodyLength];								
+		        ByteBuf buffer = in.getBytes(readerIndex+4, body);			 //todo  : avoid memory copy
+		        Response res = (Response) KryoSerializer.read(body);  //buffer.array()  not copy memory
+
 		        RPCContext context = new RPCContext();
-		        context.setRes(req);
+		        context.setRes(res);
 		        out.add(context);
 		        in.skipBytes(packetLength);
 		        return;

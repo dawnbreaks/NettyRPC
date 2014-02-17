@@ -26,7 +26,7 @@ public class RPCClient {
 	
     public static void main(String[] args) throws Exception {
 
-    	String host ="127.0.0.1";
+    	String host ="192.168.0.51";//192.168.0.51
     	int port = 9090;
     	 Bootstrap b = new Bootstrap();
          b.group(eventLoopGroup)

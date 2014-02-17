@@ -33,8 +33,9 @@ public class RequestDecoder extends ByteToMessageDecoder  {
                 return;
             } else {
 
-		        ByteBuffer buffer = in.nioBuffer(readerIndex+4, bodyLength);	//nioBuffer()  not copy memory
-		        Request req = (Request) KryoSerializer.read(buffer.array());  //buffer.array()  not copy memory
+		        byte[] body = new byte[bodyLength];								
+		        ByteBuf buffer = in.getBytes(readerIndex+4, body);			 //todo  : avoid memory copy
+		        Request req = (Request) KryoSerializer.read(body);  //buffer.array()  not copy memory
 		        RPCContext context = new RPCContext();
 		        context.setReq(req);
 		        out.add(context);

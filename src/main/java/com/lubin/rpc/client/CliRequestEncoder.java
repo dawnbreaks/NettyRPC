@@ -8,7 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 
-public class CliResponseEncoder extends MessageToByteEncoder<RPCContext> {
+public class CliRequestEncoder extends MessageToByteEncoder<RPCContext> {
 
 	@Override
 	protected void encode(ChannelHandlerContext ctx, RPCContext rpcContext, ByteBuf out) throws Exception {
