@@ -13,18 +13,17 @@ public class HelloClient {
     	 final int port = 9090;
 
          final AtomicLong totalTimeCosted = new AtomicLong(0);
-         
          int threadNum = 1;
          final int requestNum = 100000;
          Thread[] threads = new Thread[threadNum];
+         
          for(int i =0;i< threadNum;i++){
         	 
         	 threads[i] = new Thread(new Runnable(){
-        		 
-				@Override
-				public void run() {
+			 @Override
+			 public void run() {
 					
-			         // Make a new connection.
+		         // Make a new connection.
 					try {
 
 							 IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
