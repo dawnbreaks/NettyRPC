@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.lubin.rpc.example.HelloWorld;
 import com.lubin.rpc.server.ServerConfig;
-import com.lubin.rpc.server.example.HelloWorld;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;

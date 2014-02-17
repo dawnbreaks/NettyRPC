@@ -1,4 +1,4 @@
-package com.lubin.rpc.server.kryoProtocol;
+package com.lubin.rpc.protocol;
 
 import java.util.HashMap;
 

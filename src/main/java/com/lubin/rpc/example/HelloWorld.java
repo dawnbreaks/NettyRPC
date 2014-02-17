@@ -1,10 +1,10 @@
-package com.lubin.rpc.server.example;
+package com.lubin.rpc.example;
 
 public class HelloWorld implements IHelloWord {
 
 	@Override
 	public String hello(String msg) {
-		System.out.print("msg"+msg);
+//		System.out.print("msg"+msg);
 		return msg;
 	}
 

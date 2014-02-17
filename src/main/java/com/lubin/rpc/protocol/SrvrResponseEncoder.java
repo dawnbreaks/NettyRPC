@@ -1,4 +1,4 @@
-package com.lubin.rpc.server.kryoProtocol;
+package com.lubin.rpc.protocol;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -7,7 +7,7 @@ import io.netty.channel.ChannelPromise;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 
-public class ResponseEncoder extends ChannelOutboundHandlerAdapter {
+public class SrvrResponseEncoder extends ChannelOutboundHandlerAdapter {
 
 //	protected void encode(ChannelHandlerContext ctx, RPCContext rpcContext, ByteBuf out) throws Exception {
 //		byte[] bytes = KryoSerializer.write(rpcContext.getRes());
@@ -24,7 +24,7 @@ public class ResponseEncoder extends ChannelOutboundHandlerAdapter {
     		ByteBuf byteBuf = ctx.alloc().buffer(4+bytes.length);
     		byteBuf.writeInt(bytes.length);
     		byteBuf.writeBytes(bytes);
-    		ctx.writeAndFlush(byteBuf, promise); // (1)
+    		ctx.writeAndFlush(byteBuf, promise); 
     	}
     }
 }

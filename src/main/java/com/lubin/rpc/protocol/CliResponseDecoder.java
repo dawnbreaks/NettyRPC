@@ -1,4 +1,4 @@
-package com.lubin.rpc.server.kryoProtocol;
+package com.lubin.rpc.protocol;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -7,7 +7,8 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class RequestDecoder extends ByteToMessageDecoder  {
+
+public class CliResponseDecoder extends ByteToMessageDecoder  {
 	
 
 	/*
@@ -35,9 +36,10 @@ public class RequestDecoder extends ByteToMessageDecoder  {
 
 		        byte[] body = new byte[bodyLength];								
 		        ByteBuf buffer = in.getBytes(readerIndex+4, body);			 //todo  : avoid memory copy
-		        Request req = (Request) KryoSerializer.read(body);  //buffer.array()  not copy memory
+		        Response res = (Response) KryoSerializer.read(body);  //buffer.array()  not copy memory
+
 		        RPCContext context = new RPCContext();
-		        context.setReq(req);
+		        context.setRes(res);
 		        out.add(context);
 		        in.skipBytes(packetLength);
 		        return;

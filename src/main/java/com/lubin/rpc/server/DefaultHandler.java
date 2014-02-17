@@ -6,9 +6,9 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.concurrent.EventExecutorGroup;
 
-import com.lubin.rpc.server.kryoProtocol.RPCContext;
-import com.lubin.rpc.server.kryoProtocol.Request;
-import com.lubin.rpc.server.kryoProtocol.Response;
+import com.lubin.rpc.protocol.RPCContext;
+import com.lubin.rpc.protocol.Request;
+import com.lubin.rpc.protocol.Response;
 
 
 public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {

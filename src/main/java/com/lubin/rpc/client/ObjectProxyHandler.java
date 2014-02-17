@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.lubin.rpc.server.kryoProtocol.RPCContext;
+import com.lubin.rpc.protocol.RPCContext;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -19,10 +19,10 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 	
     private static final Logger logger = Logger.getLogger(ObjectProxyHandler.class.getName());
     
-    static  Lock lock = new ReentrantLock();
+    Lock lock = new ReentrantLock();
     
-    static ConcurrentHashMap<Long, Condition> pendingRPCThread = new ConcurrentHashMap<Long, Condition>();
-    static ConcurrentHashMap<Long, RPCContext> pendingRPCCtx = new ConcurrentHashMap<Long, RPCContext>();
+    private ConcurrentHashMap<Long, Condition> pendingRPCThread = new ConcurrentHashMap<Long, Condition>();
+    private ConcurrentHashMap<Long, RPCContext> pendingRPCCtx = new ConcurrentHashMap<Long, RPCContext>();
     
     private volatile Channel channel;
     
@@ -66,7 +66,7 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 		
 		//ugly,  todo ......
 		try {
-			if(channel!=null)
+			if(channel==null)
 				Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();

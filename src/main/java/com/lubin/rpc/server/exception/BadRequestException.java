@@ -1,6 +1,6 @@
 package com.lubin.rpc.server.exception;
 
-import com.lubin.rpc.server.kryoProtocol.RPCContext;
+import com.lubin.rpc.protocol.RPCContext;
 
 public class BadRequestException extends Exception {
 

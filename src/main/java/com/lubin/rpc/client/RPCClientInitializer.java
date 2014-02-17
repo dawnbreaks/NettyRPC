@@ -15,6 +15,9 @@
  */
 package com.lubin.rpc.client;
 
+import com.lubin.rpc.protocol.CliRequestEncoder;
+import com.lubin.rpc.protocol.CliResponseDecoder;
+
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

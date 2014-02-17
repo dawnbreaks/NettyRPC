@@ -1,4 +1,4 @@
-package com.lubin.rpc.server.example;
+package com.lubin.rpc.example;
 
 public interface IHelloWord {
 	

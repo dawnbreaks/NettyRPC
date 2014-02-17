@@ -1,4 +1,4 @@
-package com.lubin.rpc.server.kryoProtocol;
+package com.lubin.rpc.protocol;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;

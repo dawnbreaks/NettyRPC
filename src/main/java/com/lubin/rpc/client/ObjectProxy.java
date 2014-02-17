@@ -6,8 +6,8 @@ import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lubin.rpc.server.kryoProtocol.RPCContext;
-import com.lubin.rpc.server.kryoProtocol.Request;
+import com.lubin.rpc.protocol.RPCContext;
+import com.lubin.rpc.protocol.Request;
 
 public class ObjectProxy<T> implements InvocationHandler {
 	
