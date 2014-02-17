@@ -9,5 +9,8 @@ features
 
   * simple, small code base
   * very fast, high performance
+  * multi thread server and multi thread client
   * easy to learn API
   * load balance and fail over (unimplemented)
+  * support asynchronous RPC call(unimplemented)
+  * 
