@@ -13,12 +13,11 @@ features
   * easy to learn API
   * load balance and fail over (unimplemented)
   * support asynchronous RPC call(unimplemented)
-  * 
-  
+
 
 Example:
-
-##Define an obj interface
+========
+###Define an obj interface
 ```java
 package com.lubin.rpc.example;
 
@@ -31,7 +30,7 @@ public interface IHelloWordObj {
 
 ```
   
-##Implemente the previous defined interface
+###Implemente the previous defined interface
 ```java
 package com.lubin.rpc.example;
 
@@ -50,7 +49,7 @@ public class HelloWorldObj implements IHelloWordObj {
 
 ```
 
-##Start up the following server
+###Start up the following server
 ```java
 public class HelloServer {
 	public static void main(String[] args) throws Exception {
@@ -63,17 +62,17 @@ public class HelloServer {
 ```
 
 
-##Make an obj proxy and call it.
+###Make an obj proxy and call it.
 ```java
         final int requestNum = 100000;
         final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
-    	   final int port = 9090;
-							 IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
+    	final int port = 9090;
+	IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
 				
-					   for(int i=0;i<requestNum;i++){
-					   String result = client.hello("hello world!");
-					   if(!result.equals("hello world!"))
-					       System.out.print("error="+result);
-					   }
+	for(int i=0;i<requestNum;i++){
+	    String result = client.hello("hello world!");
+	    if(!result.equals("hello world!"))
+		System.out.print("error="+result);
+	}
 
 ```
