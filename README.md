@@ -64,15 +64,15 @@ public class HelloServer {
 
 ###Make an obj proxy and call it.
 ```java
-        final int requestNum = 100000;
-        final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
-    	final int port = 9090;
-	IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
+    final int requestNum = 100000;
+    final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
+    final int port = 9090;
+    IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
 				
-	for(int i=0;i<requestNum;i++){
-	    String result = client.hello("hello world!");
-	    if(!result.equals("hello world!"))
-		System.out.print("error="+result);
-	}
+    for(int i=0;i<requestNum;i++){
+        String result = client.hello("hello world!");
+            if(!result.equals("hello world!"))
+                System.out.print("error="+result);
+    }
 
 ```
