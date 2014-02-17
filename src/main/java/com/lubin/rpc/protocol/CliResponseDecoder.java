@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
-import java.nio.ByteBuffer;
 import java.util.List;
 
 
@@ -35,11 +34,11 @@ public class CliResponseDecoder extends ByteToMessageDecoder  {
             } else {
 
 		        byte[] body = new byte[bodyLength];								
-		        ByteBuf buffer = in.getBytes(readerIndex+4, body);			 //todo  : avoid memory copy
+		        in.getBytes(readerIndex+4, body);			 //todo  : avoid memory copy
 		        Response res = (Response) KryoSerializer.read(body);  //buffer.array()  not copy memory
 
 		        RPCContext context = new RPCContext();
-		        context.setRes(res);
+		        context.setResponse(res);
 		        out.add(context);
 		        in.skipBytes(packetLength);
 		        return;

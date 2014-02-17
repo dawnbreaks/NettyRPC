@@ -5,7 +5,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelOutboundHandlerAdapter;
 import io.netty.channel.ChannelPromise;
-import io.netty.handler.codec.MessageToByteEncoder;
 
 
 public class CliRequestEncoder  extends ChannelOutboundHandlerAdapter {
@@ -15,7 +14,7 @@ public class CliRequestEncoder  extends ChannelOutboundHandlerAdapter {
     	
     	if(msg instanceof RPCContext){
     		RPCContext rpcContext = (RPCContext)msg;
-    		byte[] bytes = KryoSerializer.write(rpcContext.getReq());
+    		byte[] bytes = KryoSerializer.write(rpcContext.getRequest());
     		
     		ByteBuf byteBuf = ctx.alloc().buffer(4+bytes.length);
     		byteBuf.writeInt(bytes.length);

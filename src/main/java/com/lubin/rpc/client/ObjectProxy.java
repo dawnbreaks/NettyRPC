@@ -3,21 +3,14 @@ package com.lubin.rpc.client;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 
 public class ObjectProxy<T> implements InvocationHandler {
-	
 
 	private Class<T> clazz;
 	private ObjectProxyHandler handler;
-
-	
-	
-
 
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
@@ -51,18 +44,16 @@ public class ObjectProxy<T> implements InvocationHandler {
 		   }
 
 		   Request req = new Request();
-		   req.setSeqNum(RPCClient.getNextSequentNumber());
+		   req.setSeqNum(handler.getNextSequentNumber());
 		   req.setObjName(clazz.getSimpleName());
 		   req.setFuncName(method.getName());
-		  
 		   req.setArgs(args);
-		   //todo..
-		   
+
 		   RPCContext rpcCtx = new RPCContext();
-		   rpcCtx.setReq(req);
+		   rpcCtx.setRequest(req);
 		   
 		   handler.doRPC(rpcCtx);
-		   return rpcCtx.getRes().getResult();
+		   return rpcCtx.getResponse().getResult();
 	}
 	
 	

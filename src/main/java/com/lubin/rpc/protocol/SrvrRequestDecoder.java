@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
-import java.nio.ByteBuffer;
 import java.util.List;
 
 public class SrvrRequestDecoder extends ByteToMessageDecoder  {
@@ -34,10 +33,10 @@ public class SrvrRequestDecoder extends ByteToMessageDecoder  {
             } else {
 
 		        byte[] body = new byte[bodyLength];								
-		        ByteBuf buffer = in.getBytes(readerIndex+4, body);			 //todo  : avoid memory copy
+		        in.getBytes(readerIndex+4, body);			 //todo  : avoid memory copy
 		        Request req = (Request) KryoSerializer.read(body);  //buffer.array()  not copy memory
 		        RPCContext context = new RPCContext();
-		        context.setReq(req);
+		        context.setRequest(req);
 		        out.add(context);
 		        in.skipBytes(packetLength);
 		        return;

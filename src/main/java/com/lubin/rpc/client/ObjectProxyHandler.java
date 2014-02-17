@@ -2,6 +2,7 @@ package com.lubin.rpc.client;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -24,6 +25,12 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
     private ConcurrentHashMap<Long, Condition> pendingRPCThread = new ConcurrentHashMap<Long, Condition>();
     private ConcurrentHashMap<Long, RPCContext> pendingRPCCtx = new ConcurrentHashMap<Long, RPCContext>();
     
+    private AtomicLong seqNumGenerator = new AtomicLong(0);
+		
+	public long getNextSequentNumber(){
+		return seqNumGenerator.getAndAdd(1);
+	}
+	
     private volatile Channel channel;
     
     public ObjectProxyHandler(){
@@ -33,9 +40,10 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 	protected void channelRead0(ChannelHandlerContext arg0, RPCContext rpcCtx)
 			throws Exception {
 		
-		Condition condition = pendingRPCThread.get(rpcCtx.getRes().getSeqNum());
-		RPCContext oriRpcCtx = pendingRPCCtx.get(rpcCtx.getRes().getSeqNum());
-		oriRpcCtx.setRes(rpcCtx.getRes());
+		Condition condition = pendingRPCThread.get(rpcCtx.getResponse().getSeqNum());
+		RPCContext oriRpcCtx = pendingRPCCtx.get(rpcCtx.getResponse().getSeqNum());
+		oriRpcCtx.setResponse(rpcCtx.getResponse());
+		
 		if(condition!=null && oriRpcCtx !=null){
 			try{
 				lock.lock();
@@ -66,8 +74,9 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 		
 		//ugly,  todo ......
 		try {
-			if(channel==null)
+			if(channel==null){
 				Thread.sleep(1000);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -76,12 +85,15 @@ public class ObjectProxyHandler extends SimpleChannelInboundHandler<RPCContext>{
 		try{
 			lock.lock();
 			Condition con = lock.newCondition();
-			pendingRPCThread.put(rpcCtx.getReq().getSeqNum(), con);
-			pendingRPCCtx.put(rpcCtx.getReq().getSeqNum(), rpcCtx);
+			pendingRPCThread.put(rpcCtx.getRequest().getSeqNum(), con);
+			pendingRPCCtx.put(rpcCtx.getRequest().getSeqNum(), rpcCtx);
 			channel.writeAndFlush(rpcCtx);
-			boolean notTimeout = con.await(3000, TimeUnit.MILLISECONDS);
-			if(!notTimeout)
-				throw new RuntimeException("time outexception");
+			boolean success = con.await(3000, TimeUnit.MILLISECONDS);
+			if(!success){
+				pendingRPCThread.remove(rpcCtx.getRequest().getSeqNum());
+				pendingRPCCtx.remove(rpcCtx.getRequest().getSeqNum());
+				throw new RuntimeException("Timeout exception|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName());
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}finally{

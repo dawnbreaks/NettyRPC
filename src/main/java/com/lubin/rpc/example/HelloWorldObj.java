@@ -1,6 +1,6 @@
 package com.lubin.rpc.example;
 
-public class HelloWorld implements IHelloWord {
+public class HelloWorldObj implements IHelloWordObj {
 
 	@Override
 	public String hello(String msg) {

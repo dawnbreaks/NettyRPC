@@ -22,7 +22,7 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 
 	@Override
 	protected void channelRead0(final ChannelHandlerContext ctx, final RPCContext rpcContext) throws Exception {
-		Request req = rpcContext.getReq();
+		Request req = rpcContext.getRequest();
 		
 		Response res= new Response();
 		//copy properties
@@ -48,7 +48,7 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 		res.setStatus(Constants.RPCStatus.ok);
 		res.setMsg("ok");
 
-		rpcContext.setRes(res);
+		rpcContext.setResponse(res);
 		ctx.write(rpcContext);
 	}	
 

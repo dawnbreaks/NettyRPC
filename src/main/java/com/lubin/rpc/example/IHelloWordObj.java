@@ -1,6 +1,6 @@
 package com.lubin.rpc.example;
 
-public interface IHelloWord {
+public interface IHelloWordObj {
 	
 	
 	String hello(String msg);

@@ -1,6 +1,5 @@
 package com.lubin.rpc.protocol;
 
-import java.util.List;
 
 public class Request {
 	private long seqNum;

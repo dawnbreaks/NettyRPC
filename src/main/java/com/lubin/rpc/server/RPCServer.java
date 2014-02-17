@@ -1,18 +1,13 @@
 package com.lubin.rpc.server;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.lubin.rpc.example.HelloWorld;
-import com.lubin.rpc.server.ServerConfig;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+
+import java.util.HashMap;
 
 public class RPCServer {
 
@@ -57,9 +52,5 @@ public class RPCServer {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		List<Object> objList = new ArrayList<Object>();
-		objList.add(new HelloWorld());
-		new RPCServer(new ServerConfig(objList)).run();
-	}
+
 }

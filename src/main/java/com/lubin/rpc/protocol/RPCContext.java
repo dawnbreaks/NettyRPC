@@ -3,22 +3,21 @@ package com.lubin.rpc.protocol;
 import java.util.HashMap;
 
 public class RPCContext {
-	private Request req;
-	private Response res;
+	private Request request;
+	private Response response;
 	private HashMap<String,Object> attributes = new HashMap<String,Object>();
 	
-	
-	public Request getReq() {
-		return req;
+	public Request getRequest() {
+		return request;
 	}
-	public void setReq(Request req) {
-		this.req = req;
+	public void setRequest(Request request) {
+		this.request = request;
 	}
-	public Response getRes() {
-		return res;
+	public Response getResponse() {
+		return response;
 	}
-	public void setRes(Response res) {
-		this.res = res;
+	public void setResponse(Response response) {
+		this.response = response;
 	}
 	
 	
