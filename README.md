@@ -12,7 +12,8 @@ Features
   * multi thread server and multi thread client
   * easy to learn API
   * support asynchronous call, totally non-blocking call.
-  * load balance and fail over (unimplemented)  
+  * load balance and fail over (unimplemented yet)  
+  * php client (unimplemented yet)  
  
 
 Simple tutorial
