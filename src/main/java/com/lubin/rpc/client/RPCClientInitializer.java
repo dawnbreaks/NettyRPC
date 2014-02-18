@@ -31,6 +31,6 @@ public class RPCClientInitializer extends ChannelInitializer<SocketChannel> {
 
         p.addLast("encoder", new CliRequestEncoder());
  
-        p.addLast("handler", new ObjectProxyHandler());
+        p.addLast("handler", new DefaultClientHandler());
     }
 }

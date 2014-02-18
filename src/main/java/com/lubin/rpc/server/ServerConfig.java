@@ -6,10 +6,22 @@ import java.util.List;
 public class ServerConfig {
 
 	int backlog = 128;
-	int port = 9090;
-	int clientMaxBodySize = 1048576 ;
-	int taskThreadPoolSize=8;
 	
+	int port = 9090;
+	
+	int clientMaxBodySize = 1048576 ;
+
+	boolean async =false;//process request in a thread pool other than in event loop thread.
+	
+	int asyncThreadPoolSize=2;//
+	
+	public boolean isAsync() {
+		return async;
+	}
+	public void setAsync(boolean async) {
+		this.async = async;
+	}
+
 	public ServerConfig(){
 	}
 	
@@ -43,11 +55,11 @@ public class ServerConfig {
 	public void setClientMaxBodySize(int clientMaxBodySize) {
 		this.clientMaxBodySize = clientMaxBodySize;
 	}
-	public int getTaskThreadPoolSize() {
-		return taskThreadPoolSize;
+	public int getAsyncThreadPoolSize() {
+		return asyncThreadPoolSize;
 	}
-	public void setTaskThreadPoolSize(int taskThreadPoolSize) {
-		this.taskThreadPoolSize = taskThreadPoolSize;
+	public void setAsyncThreadPoolSize(int asyncThreadPoolSize) {
+		this.asyncThreadPoolSize = asyncThreadPoolSize;
 	}
 
 }

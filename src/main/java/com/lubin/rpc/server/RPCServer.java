@@ -11,10 +11,13 @@ import java.util.HashMap;
 
 public class RPCServer {
 
-	private final ServerConfig conf;
+	private static ServerConfig conf;
 	
 	private static HashMap<String,Object> objects =new HashMap<String,Object>();
 	
+	public static ServerConfig getServerConf(){
+		return conf;
+	}
 	public static Object getObject(String objName){
 		return objects.get(objName);
 	}

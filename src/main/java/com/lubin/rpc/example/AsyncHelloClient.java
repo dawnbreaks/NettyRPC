@@ -2,9 +2,11 @@ package com.lubin.rpc.example;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.lubin.rpc.client.AsyncObjectProxy;
 import com.lubin.rpc.client.RPCClient;
+import com.lubin.rpc.client.RPCFuture;
 
-public class HelloClient {
+public class AsyncHelloClient {
 	
 
     public static void main(String[] args) throws Exception {
@@ -13,7 +15,7 @@ public class HelloClient {
     	 final int port = 9090;
 
          final AtomicLong totalTimeCosted = new AtomicLong(0);
-         int threadNum = 2;
+         int threadNum = 1;
          final int requestNum = 100000;
          Thread[] threads = new Thread[threadNum];
          
@@ -21,16 +23,13 @@ public class HelloClient {
         	 threads[i] = new Thread(new Runnable(){
 			 @Override
 			 public void run() {
-				 
-					
+
 		         	// Make a new connection.
 					try {
-							 IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
+							 AsyncObjectProxy<IHelloWordObj> client = RPCClient.createAsyncObjProxyInstance(host, port, IHelloWordObj.class);
 							 long start = System.currentTimeMillis();
 					         for(int i=0;i<requestNum;i++){
-					         	String result = client.hello("hello world!");
-					         	if(!result.equals("hello world!"))
-					         		System.out.print("error="+result);
+					         	RPCFuture result = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
 					          }
 					         long time=System.currentTimeMillis()- start;
 					         long old = totalTimeCosted.get();
@@ -51,6 +50,6 @@ public class HelloClient {
 
          System.out.println("total time costed:"+totalTimeCosted.get()+"|req/s="+requestNum*threadNum/(double)(totalTimeCosted.get()/1000));
          
-         RPCClient.getEventLoopGroup().shutdownGracefully();
+//         RPCClient.getEventLoopGroup().shutdownGracefully();
     }
 }

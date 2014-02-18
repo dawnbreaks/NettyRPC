@@ -1,57 +1,91 @@
 package com.lubin.rpc.server;
 
-import java.lang.reflect.Method;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.util.concurrent.EventExecutorGroup;
+
+import java.lang.reflect.Method;
 
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.protocol.Response;
+import com.lubin.rpc.thread.AsyncHandler;
+
 
 
 public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 
-	private final EventExecutorGroup executor;
+	private ServerConfig conf;
 
-	public DefaultHandler(EventExecutorGroup executor) {
+	public DefaultHandler(ServerConfig conf) {
 		super(false);
-		this.executor = executor;
+		this.conf = conf;
 	}
 
 	@Override
 	protected void channelRead0(final ChannelHandlerContext ctx, final RPCContext rpcContext) throws Exception {
-		Request req = rpcContext.getRequest();
-		
-		Response res= new Response();
-		//copy properties
-		res.setSeqNum(req.getSeqNum());
-		res.setVersion(req.getVersion());
-		res.setType(req.getType());
-		res.setObjName(req.getObjName());
-		res.setFuncName(req.getFuncName());
-		
-		Class[] parameterTypes = new Class[req.getArgs().length];
-		int i=0;
-		for(Object arg : req.getArgs()){
-			parameterTypes[i++] = arg.getClass();
+		if(RPCServer.getServerConf().isAsync()){
+			AsyncHandler.getInstance().submit(new Runnable(){
+				@Override
+				public void run() {
+					processRequest(ctx,rpcContext);
+				}
+				
+			});
+		}else{
+			processRequest(ctx,rpcContext);
 		}
-		
-
-		Object obj= RPCServer.getObject(req.getObjName());
-		Class clazz= obj.getClass();
-		Method func = clazz.getMethod(req.getFuncName(), parameterTypes);
-		Object result= func.invoke(obj, req.getArgs());
-		
-		res.setResult(result);
-		res.setStatus(Constants.RPCStatus.ok);
-		res.setMsg("ok");
-
-		rpcContext.setResponse(res);
-		ctx.write(rpcContext);
 	}	
 
+	public void processRequest(ChannelHandlerContext ctx, RPCContext rpcContext){
+		
+		try{
+			
+			Request req = rpcContext.getRequest();
+			Response res= new Response();
+			
+			//copy properties
+			res.setSeqNum(req.getSeqNum());
+			res.setVersion(req.getVersion());
+			res.setType(req.getType());
+			res.setObjName(req.getObjName());
+			res.setFuncName(req.getFuncName());
+			
+			Class[] parameterTypes = new Class[req.getArgs().length];
+			int i=0;
+			for(Object arg : req.getArgs()){
+				parameterTypes[i++] = arg.getClass();
+			}
+			
+
+			Object obj= RPCServer.getObject(req.getObjName());
+			Class clazz= obj.getClass();
+			Method func = clazz.getMethod(req.getFuncName(), parameterTypes);
+			Object result= func.invoke(obj, req.getArgs());
+			
+			res.setResult(result);
+			res.setStatus(Constants.RPCStatus.ok);
+			res.setMsg("ok");
+
+			rpcContext.setResponse(res);
+			ctx.write(rpcContext);
+		} catch (Exception e) {
+
+			Request req = rpcContext.getRequest();
+			Response res= new Response();
+			//copy properties
+			res.setSeqNum(req.getSeqNum());
+			res.setVersion(req.getVersion());
+			res.setType(req.getType());
+			res.setObjName(req.getObjName());
+			res.setFuncName(req.getFuncName());
+			
+			//pass exception message to client
+			res.setStatus(Constants.RPCStatus.exception);
+			res.setMsg("excepton="+e.getClass().getSimpleName()+"|msg="+e.getMessage());
+			ctx.writeAndFlush(res);
+		}
+		
+	}
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		super.channelInactive(ctx);

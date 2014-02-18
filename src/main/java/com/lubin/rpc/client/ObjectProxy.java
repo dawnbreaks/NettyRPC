@@ -3,14 +3,17 @@ package com.lubin.rpc.client;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.concurrent.TimeUnit;
 
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
+import com.lubin.rpc.protocol.Response;
+import com.lubin.rpc.server.Constants;
 
 public class ObjectProxy<T> implements InvocationHandler {
 
 	private Class<T> clazz;
-	private ObjectProxyHandler handler;
+	private DefaultClientHandler handler;
 
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
@@ -20,7 +23,7 @@ public class ObjectProxy<T> implements InvocationHandler {
 		return clazz;
 	}
 	
-	public ObjectProxy(ObjectProxyHandler handler, Class<T> clazz){
+	public ObjectProxy(DefaultClientHandler handler, Class<T> clazz){
 		this.handler = handler;
 		this.clazz = clazz;
 	}
@@ -48,21 +51,23 @@ public class ObjectProxy<T> implements InvocationHandler {
 		   req.setObjName(clazz.getSimpleName());
 		   req.setFuncName(method.getName());
 		   req.setArgs(args);
+		   
+		   req.setType(Constants.RPCType.normal);
 
 		   RPCContext rpcCtx = new RPCContext();
 		   rpcCtx.setRequest(req);
 		   
-		   handler.doRPC(rpcCtx);
-		   return rpcCtx.getResponse().getResult();
+		   RPCFuture rpcFuture = handler.doRPC(rpcCtx);
+		   return rpcFuture.get(3000, TimeUnit.MILLISECONDS);
+
 	}
 	
 	
 	@SuppressWarnings("unchecked")
-	public static <T> T createObjectProxy(Class<T> clazz, ObjectProxyHandler handler){
+	public static <T> T createObjectProxy(Class<T> clazz, DefaultClientHandler handler){
 		
 		T t = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[] {clazz},new ObjectProxy<T>(handler,clazz));
 		return t;
-		
 	}
 
 

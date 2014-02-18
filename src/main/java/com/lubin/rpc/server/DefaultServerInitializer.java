@@ -11,14 +11,10 @@ import com.lubin.rpc.protocol.SrvrResponseEncoder;
 
 public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> {
 
-	private final ServerConfig conf;
-
-	private final EventExecutorGroup executor;
+	private ServerConfig conf;
 
 	public DefaultServerInitializer(ServerConfig conf) {
 		this.conf = conf;
-		this.executor = new DefaultEventExecutorGroup(
-				conf.getTaskThreadPoolSize());
 	}
 
 	@Override
@@ -30,7 +26,7 @@ public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> 
 
 		p.addLast("encoder", new SrvrResponseEncoder());
 
-		p.addLast("handler", new DefaultHandler(executor));
+		p.addLast("handler", new DefaultHandler(conf));
 		
 		p.addLast("httpExceptionHandler", new DefaultExceptionHandler());
 	}
