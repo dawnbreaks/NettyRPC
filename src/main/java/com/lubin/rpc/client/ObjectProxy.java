@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
-import com.lubin.rpc.protocol.Response;
 import com.lubin.rpc.server.Constants;
 
 public class ObjectProxy<T> implements InvocationHandler {
