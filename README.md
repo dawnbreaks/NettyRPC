@@ -11,9 +11,9 @@ Features
   * very fast, high performance
   * multi thread server and multi thread client
   * easy to learn API
-  * load balance and fail over (unimplemented)
-  * support asynchronous RPC call(unimplemented)
-
+  * support asynchronous RPC call
+  * load balance and fail over (unimplemented)  
+ 
 
 Simple tutorial
 ========
@@ -62,6 +62,28 @@ public class HelloServer {
            System.out.print("error="+result);
 ```
 
+####4. Synchronous call suck? You could do asynchronous call
+#####1. Firstly implements the AsyncRPCCallback interface
+```java
+public class AsyncHelloWorldCallback implements AsyncRPCCallback {
+	@Override
+	public void fail(Exception e) {
+		System.out.print(e.getMessage());
+	}
+	@Override
+	public void success(Object result) {
+		System.out.print(result);
+	}
+}
+```
+#####2. And make an asynchronous Obj proxy and call the remote Obj.
+```java
+    final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
+    final int port = 9090;
+    AsyncObjectProxy<IHelloWordObj> asyncClient = RPCClient.createAsyncObjProxyInstance(host, port, IHelloWordObj.class);
+    
+    RPCFuture result = asyncClient.Call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback());
+```
 Concluson
 ========
 Oh, that's all! Easy to understand, right? Please feel free to contact me(2005dawnbreaks@gmail.com) if you have any questions.
