@@ -13,6 +13,7 @@ Features
   * easy to learn API
   * support asynchronous call, totally non-blocking call.
   * load balance and fail over (unimplemented yet)  
+  * provide php clinet (unimplemented yet)  
  
 
 Simple tutorial
