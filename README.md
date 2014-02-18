@@ -62,8 +62,8 @@ public class HelloServer {
            System.out.print("error="+result);
 ```
 
-####4. Synchronous call suck? You could do asynchronous call
-#####1. Firstly implements the AsyncRPCCallback interface
+####5. Asynchronous call: Synchronous call suck? You can do asynchronous call to achieve high performance.
+#####5.1. Firstly implements the AsyncRPCCallback interface
 ```java
 public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 	@Override
@@ -76,7 +76,7 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 	}
 }
 ```
-#####2. And make an asynchronous Obj proxy and call the remote Obj.
+#####5.2. And make an asynchronous Obj proxy and call the remote Obj.
 ```java
     final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
     final int port = 9090;
