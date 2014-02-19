@@ -1,5 +1,6 @@
 package com.lubin.rpc.example;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.lubin.rpc.client.AsyncObjectProxy;
@@ -50,6 +51,18 @@ public class AsyncHelloClient {
 
          System.out.println("total time costed:"+totalTimeCosted.get()+"|req/s="+requestNum*threadNum/(double)(totalTimeCosted.get()/1000));
          
+         
+         
+		 AsyncObjectProxy<IHelloWordObj> client = RPCClient.createAsyncObjProxyInstance(host, port, IHelloWordObj.class);
+		 long start = System.currentTimeMillis();
+		 
+		 RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
+		 RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
+		 
+		 System.out.print(helloFuture.get(3000, TimeUnit.MILLISECONDS));
+		 System.out.print(testFuture.get(3000, TimeUnit.MILLISECONDS));
+		 
+		 
 //         RPCClient.getEventLoopGroup().shutdownGracefully();
     }
 }
