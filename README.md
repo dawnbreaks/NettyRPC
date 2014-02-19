@@ -26,7 +26,7 @@ public interface IHelloWordObj {
 }
 ```
   
-####2.Implemente the previous defined interface
+####2.Implements the previous defined interface
 ```java
 public class HelloWorldObj implements IHelloWordObj {
 	@Override
@@ -40,7 +40,7 @@ public class HelloWorldObj implements IHelloWordObj {
 }
 ```
 
-####3.Start up the following server
+####3.Start the following server
 ```java
 public class HelloServer {
 	public static void main(String[] args) throws Exception {
