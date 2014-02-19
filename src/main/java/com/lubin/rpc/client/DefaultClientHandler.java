@@ -1,10 +1,14 @@
 package com.lubin.rpc.client;
 
+import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.net.SocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,17 +21,24 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
     private static final Logger logger = Logger.getLogger(DefaultClientHandler.class.getName());
     
     private ConcurrentHashMap<Long, RPCFuture> pendingRPC = new ConcurrentHashMap<Long, RPCFuture>();
-    
+
     private AtomicLong seqNumGenerator = new AtomicLong(0);
 		
 	public long getNextSequentNumber(){
 		return seqNumGenerator.getAndAdd(1);
 	}
 	
-	public void removePendingPRC(Long seqNum){
-		pendingRPC.remove(seqNum);
-	}
+//	public void removePendingPRC(Long seqNum){
+//		pendingRPC.remove(seqNum);
+//	}
+	
     private volatile Channel channel;
+    
+    private Reconnectable  objProxy;
+
+	private SocketAddress remotePeer;
+    
+    
     
     public DefaultClientHandler(){
     	
@@ -38,18 +49,24 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 
 		RPCFuture rpcFuture = pendingRPC.get(rpcCtx.getResponse().getSeqNum());
 		
-		if(rpcFuture!=null ){
+		if(rpcFuture != null){
+			pendingRPC.remove(rpcCtx.getResponse().getSeqNum());
 			rpcFuture.done(rpcCtx.getResponse());
 		}
-
 	}
 
 	@Override
 	public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
 		super.channelRegistered(ctx);
 		channel = ctx.channel();
+		
 	}
 
+	@Override
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		super.channelActive(ctx);
+		this.remotePeer = channel.remoteAddress();
+	}
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
@@ -58,6 +75,32 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
         ctx.close();
 	}
 	
+	
+	@Override
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+		super.channelInactive(ctx);
+		doReconnect(ctx);
+	}
+	
+	private void doReconnect(final ChannelHandlerContext ctx) {
+
+		ctx.channel().eventLoop().schedule(new Runnable(){
+			@Override
+			public void run() {
+				try {
+				 	 Bootstrap b = new Bootstrap();
+				 	 b.group(RPCClient.getEventLoopGroup()).channel(NioSocketChannel.class).handler(new RPCClientInitializer());
+					 Channel ch = b.connect(remotePeer).sync().channel();
+					 DefaultClientHandler handler = ch.pipeline().get(DefaultClientHandler.class);
+					 handler.setObjProxy(objProxy);
+					 objProxy.reconnect(handler);
+				} catch (Exception e) {
+					System.out.println("doReconnect got exception"+e.getMessage());
+					doReconnect(ctx);
+				}
+			}
+		}, 100, TimeUnit.MILLISECONDS);
+	}
 	
 	public RPCFuture doRPC(RPCContext rpcCtx){
 		return doRPC(rpcCtx,null);
@@ -70,5 +113,15 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 		channel.writeAndFlush(rpcCtx);
 		return rpcFuture;
 	}
+	
+	
+	public void setObjProxy(Reconnectable objProxy) {
+		this.objProxy = objProxy;
+	}
+	public Reconnectable getObjProxy() {
+		return objProxy;
+	}
+	
+
 
 }

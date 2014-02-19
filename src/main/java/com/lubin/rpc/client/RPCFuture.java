@@ -16,7 +16,6 @@ import com.lubin.rpc.thread.AsyncHandler;
 public class RPCFuture implements Future<Object>{
 
     private Sync sync;
-    
 	private RPCContext rpcCtx;
 
 	private AsyncRPCCallback callback;
@@ -136,22 +135,18 @@ public class RPCFuture implements Future<Object>{
     //call by caller thread to get result
 	private Object processResponse() {
 
-		try{
-			char type = rpcCtx.getRequest().getType();
+		char type = rpcCtx.getRequest().getType();
+		
+		if(type== Constants.RPCType.normal){//process response to return result or throw error/exception.
 			
-			if(type== Constants.RPCType.normal){//process response return result or throw error/exception.
-				
-				Response response = rpcCtx.getResponse();
-				char status = response.getStatus();
-				
-				if(status == Constants.RPCStatus.exception){
-					throw new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
-				}else if(status == Constants.RPCStatus.unknownError){
-					throw new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
-				}
+			Response response = rpcCtx.getResponse();
+			char status = response.getStatus();
+			
+			if(status == Constants.RPCStatus.exception){
+				throw new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
+			}else if(status == Constants.RPCStatus.unknownError){
+				throw new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
 			}
-		}finally{
-			handler.removePendingPRC(rpcCtx.getRequest().getSeqNum());
 		}
 		
 		return rpcCtx.getResponse().getResult();

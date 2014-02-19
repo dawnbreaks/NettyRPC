@@ -9,10 +9,18 @@ import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.server.Constants;
 
-public class ObjectProxy<T> implements InvocationHandler {
+public class ObjectProxy<T> implements InvocationHandler,Reconnectable {
 
 	private Class<T> clazz;
 	private DefaultClientHandler handler;
+
+	public DefaultClientHandler getHandler() {
+		return handler;
+	}
+
+	public void setHandler(DefaultClientHandler handler) {
+		this.handler = handler;
+	}
 
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
@@ -25,6 +33,7 @@ public class ObjectProxy<T> implements InvocationHandler {
 	public ObjectProxy(DefaultClientHandler handler, Class<T> clazz){
 		this.handler = handler;
 		this.clazz = clazz;
+		handler.setObjProxy(this);
 	}
 
 	@Override
@@ -69,6 +78,7 @@ public class ObjectProxy<T> implements InvocationHandler {
 		return t;
 	}
 
-
-	
+	public void reconnect(DefaultClientHandler newHandler) {
+		this.handler = newHandler;
+	}
 }

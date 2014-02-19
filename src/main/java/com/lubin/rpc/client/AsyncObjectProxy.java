@@ -4,7 +4,7 @@ import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.server.Constants;
 
-public class AsyncObjectProxy<T> {
+public class AsyncObjectProxy<T> implements Reconnectable{
 	
 	private Class<T> clazz;
 	private DefaultClientHandler handler;
@@ -20,6 +20,7 @@ public class AsyncObjectProxy<T> {
 	public AsyncObjectProxy(DefaultClientHandler handler, Class<T> clazz){
 		this.handler = handler;
 		this.clazz = clazz;
+		handler.setObjProxy(this);
 	}
 	
 	public RPCFuture call(String funcName, Object[] args, AsyncRPCCallback callback){
@@ -38,6 +39,11 @@ public class AsyncObjectProxy<T> {
 		   
 		   RPCFuture rpcFuture = handler.doRPC(rpcCtx,callback);
 		   return rpcFuture;
+	}
+	
+	
+	public void reconnect(DefaultClientHandler newHandler) {
+		this.handler = newHandler;
 	}
 
 }
