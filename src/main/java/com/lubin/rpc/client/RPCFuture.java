@@ -137,7 +137,7 @@ public class RPCFuture implements Future<Object>{
 
 		char type = rpcCtx.getRequest().getType();
 		
-		if(type== Constants.RPCType.normal){//process response to return result or throw error/exception.
+		if(type == Constants.RPCType.normal||type == Constants.RPCType.async){//process response to return result or throw error/exception.
 			
 			Response response = rpcCtx.getResponse();
 			char status = response.getStatus();
@@ -148,7 +148,6 @@ public class RPCFuture implements Future<Object>{
 				throw new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
 			}
 		}
-		
 		return rpcCtx.getResponse().getResult();
 	}
 }
