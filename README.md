@@ -24,7 +24,7 @@ Simple tutorial
 ```java
 public interface IHelloWordObj {
 	String hello(String msg);
-	String test(int i, String s, long l);
+	String test(Integer i, String s, Long l);
 }
 ```
   
@@ -36,7 +36,7 @@ public class HelloWorldObj implements IHelloWordObj {
 		return msg;
 	}
 	@Override
-	public String test(int i, String s, long l) {
+	public String test(Integer i, String s, Long l) {
 		return i+s+l;
 	}
 }
@@ -85,7 +85,10 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
     final int port = 9090;
     AsyncObjectProxy<IHelloWordObj> asyncClient = RPCClient.createAsyncObjProxyInstance(host, port, IHelloWordObj.class);
     
-    RPCFuture result = asyncClient.Call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback());
+    RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
+    RPCFuture testFuture = client.call("test2", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
+    Object res1= helloFuture.get(3000, TimeUnit.MILLISECONDS);
+    Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
 ```
 Conclusion
 ========
