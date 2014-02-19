@@ -63,7 +63,7 @@ public class HelloServer {
            System.out.print("error="+result);
 ```
 
-####5. Asynchronous call: Synchronous call suck? You can do asynchronous call to achieve high performance.
+####5. Asynchronous call, Synchronous call suck? You can do asynchronous call to achieve high performance.
 #####5.1. Firstly implements the AsyncRPCCallback interface
 ```java
 public class AsyncHelloWorldCallback implements AsyncRPCCallback {
