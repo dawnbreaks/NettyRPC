@@ -12,7 +12,7 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 
 	@Override
 	public void fail(Exception e) {
-		System.out.print(e.getMessage());
+		System.out.print("fail"+e.getMessage());
 	}
 
 	@Override

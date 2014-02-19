@@ -82,7 +82,9 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 			//pass exception message to client
 			res.setStatus(Constants.RPCStatus.exception);
 			res.setMsg("excepton="+e.getClass().getSimpleName()+"|msg="+e.getMessage());
-			ctx.writeAndFlush(res);
+			
+			rpcContext.setResponse(res);
+			ctx.writeAndFlush(rpcContext);
 		}
 		
 	}

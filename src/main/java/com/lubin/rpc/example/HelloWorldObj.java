@@ -9,7 +9,7 @@ public class HelloWorldObj implements IHelloWordObj {
 	}
 
 	@Override
-	public String test(int i, String s, long l) {
+	public String test(Integer i, String s, Long l) {
 		System.out.print("test:"+i+s+l);
 		return i+s+l;
 	}
