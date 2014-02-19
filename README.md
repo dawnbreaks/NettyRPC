@@ -12,6 +12,8 @@ Features
   * multi thread server and multi thread client
   * easy to learn API
   * support asynchronous call, totally non-blocking call.
+  * persistent connection, reconnect to server automatically
+  * thread safe client, for an remote Object you only need to create a singleton client. 
   * load balance and fail over (unimplemented yet)  
   * php client (unimplemented yet)  
  
