@@ -11,10 +11,11 @@ Features
   * very fast, high performance
   * support asynchronous call, totally non-blocking call.
   * long lived persistent connection, reconnect to server automatically
-  * load balance and failover 
+  * High availability, load balance and failover 
   * multi thread server and multi thread client
   * thread safe client, for an remote Object you only need to create a singleton client. 
   * php client (unimplemented yet)  
+  
 Simple tutorial
 ========
 ####1.Define an obj interface
@@ -88,7 +89,7 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
 ```
 
-####6 Single point of failure? You could deploy more than one servers to achieve HA,  And NettyRpc support load balance and failover.  
+####6 High availability, You hate Single point of failure? You could deploy more than one servers to achieve HA, NettyRPC  handle load balance and failover automatically.  
 ```java
          InetSocketAddress server1 = new InetSocketAddress("127.0.0.1",9090);
          InetSocketAddress server2 = new InetSocketAddress("127.0.0.1",9091);
