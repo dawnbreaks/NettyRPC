@@ -7,17 +7,14 @@ Yet another RPC framework based on Netty(https://github.com/netty/netty) and kry
 Features
 ========
 
-  * simple, small code base
+  * simple, small code base, easy to learn API
   * very fast, high performance
-  * multi thread server and multi thread client
-  * easy to learn API
   * support asynchronous call, totally non-blocking call.
-  * persistent connection, reconnect to server automatically
+  * long lived persistent connection, reconnect to server automatically
+  * load balance and failover 
+  * multi thread server and multi thread client
   * thread safe client, for an remote Object you only need to create a singleton client. 
-  * load balance and failover (unimplemented yet)  
   * php client (unimplemented yet)  
- 
-
 Simple tutorial
 ========
 ####1.Define an obj interface
