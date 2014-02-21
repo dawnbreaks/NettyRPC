@@ -14,7 +14,7 @@ Features
   * support asynchronous call, totally non-blocking call.
   * persistent connection, reconnect to server automatically
   * thread safe client, for an remote Object you only need to create a singleton client. 
-  * load balance and fail over (unimplemented yet)  
+  * load balance and failover (unimplemented yet)  
   * php client (unimplemented yet)  
  
 
@@ -58,11 +58,11 @@ public class HelloServer {
 ```java
     final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
     final int port = 9090;
-    IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
+    IHelloWordObj client = ObjectProxy.createObjectProxy(host, port, IHelloWordObj.class);
     
     String result = client.hello("hello world!");
     if(!result.equals("hello world!"))
-           System.out.print("error="+result);
+           System.out.println("error="+result);
 ```
 
 ####5. Synchronous call suck? You can do asynchronous call to achieve high performance.
@@ -71,11 +71,11 @@ public class HelloServer {
 public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 	@Override
 	public void fail(Exception e) {
-		System.out.print(e.getMessage());
+		System.out.println(e.getMessage());
 	}
 	@Override
 	public void success(Object result) {
-		System.out.print(result);
+		System.out.println(result);
 	}
 }
 ```
@@ -83,12 +83,24 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 ```java
     final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
     final int port = 9090;
-    AsyncObjectProxy<IHelloWordObj> asyncClient = RPCClient.createAsyncObjProxyInstance(host, port, IHelloWordObj.class);
+    AsyncObjectProxy<IHelloWordObj> asyncClient = new AsyncObjectProxy<IHelloWordObj>(host, port, IHelloWordObj.class);
     
     RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
-    RPCFuture testFuture = client.call("test2", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
+    RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
     Object res1= helloFuture.get(3000, TimeUnit.MILLISECONDS);
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
+```
+
+####6 Single point of failure? You could deploy more than one servers to achieve HA,  And NettyRpc support load balance and failover.  
+```java
+         InetSocketAddress server1 = new InetSocketAddress("127.0.0.1",9090);
+         InetSocketAddress server2 = new InetSocketAddress("127.0.0.1",9091);
+         ArrayList<InetSocketAddress> serverList = new ArrayList<InetSocketAddress>();
+         serverList.add(server1);
+         serverList.add(server2);
+         
+         IHelloWordObj client = ObjectProxy.createObjectProxy(serverList, IHelloWordObj.class);
+         System.out.println("test server list:"+client.hello("test server list11"));
 ```
 Conclusion
 ========

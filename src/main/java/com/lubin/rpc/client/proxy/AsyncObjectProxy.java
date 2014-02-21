@@ -1,31 +1,28 @@
-package com.lubin.rpc.client;
+package com.lubin.rpc.client.proxy;
 
+import java.net.InetSocketAddress;
+import java.util.ArrayList;
+
+import com.lubin.rpc.client.DefaultClientHandler;
+import com.lubin.rpc.client.RPCFuture;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.server.Constants;
 
-public class AsyncObjectProxy<T> implements Reconnectable{
-	
-	private Class<T> clazz;
-	private DefaultClientHandler handler;
+public class AsyncObjectProxy<T> extends BaseObjectProxy<T>{
 
-	public void setClazz(Class<T> clazz) {
-		this.clazz = clazz;
+	public AsyncObjectProxy(String host, int port, Class<T> clazz) {
+		super(host, port, clazz);
+	}
+	
+	public AsyncObjectProxy(ArrayList<InetSocketAddress> servers, Class<T> clazz){
+		super(servers, clazz);
 	}
 
-	public Class<T> getClazz() {
-		return clazz;
-	}
-	
-	public AsyncObjectProxy(DefaultClientHandler handler, Class<T> clazz){
-		this.handler = handler;
-		this.clazz = clazz;
-		handler.setObjProxy(this);
-	}
-	
 	public RPCFuture call(String funcName, Object[] args, AsyncRPCCallback callback){
 		
 		   Request req = new Request();
+		   DefaultClientHandler handler = chooseHandler();
 		   req.setSeqNum(handler.getNextSequentNumber());
 		   req.setObjName(clazz.getSimpleName());
 		   req.setFuncName(funcName);
@@ -40,10 +37,4 @@ public class AsyncObjectProxy<T> implements Reconnectable{
 		   RPCFuture rpcFuture = handler.doRPC(rpcCtx,callback);
 		   return rpcFuture;
 	}
-	
-	
-	public void reconnect(DefaultClientHandler newHandler) {
-		this.handler = newHandler;
-	}
-
 }

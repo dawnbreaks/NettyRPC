@@ -1,6 +1,6 @@
 package com.lubin.rpc.example;
 
-import com.lubin.rpc.client.AsyncRPCCallback;
+import com.lubin.rpc.client.proxy.AsyncRPCCallback;
 
 public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 
@@ -12,14 +12,14 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 
 	@Override
 	public void fail(Exception e) {
-		System.out.print("fail"+e.getMessage());
+		System.out.println("fail"+e.getMessage());
 	}
 
 	@Override
 	public void success(Object result) {
 //		System.out.print(result);
 		if(!this.expect.equals(result))
-			System.out.print("AsyncCallback got error|expect="+expect+"|got="+result);
+			System.out.println("AsyncCallback got error|expect="+expect+"|got="+result);
 	}
 
 }

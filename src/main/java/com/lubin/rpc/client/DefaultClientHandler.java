@@ -6,6 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +14,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.lubin.rpc.client.proxy.AsyncRPCCallback;
+import com.lubin.rpc.client.proxy.BaseObjectProxy;
 import com.lubin.rpc.protocol.RPCContext;
 
 
@@ -28,21 +31,22 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 		return seqNumGenerator.getAndAdd(1);
 	}
 	
-//	public void removePendingPRC(Long seqNum){
-//		pendingRPC.remove(seqNum);
-//	}
-	
     private volatile Channel channel;
     
-    private Reconnectable  objProxy;
+    private BaseObjectProxy  objProxy;
 
 	private SocketAddress remotePeer;
+	
+	public SocketAddress getRemotePeer(){
+		return remotePeer;
+	}
     
     
-    
-    public DefaultClientHandler(){
-    	
-    }
+ 
+	public DefaultClientHandler(BaseObjectProxy objProxy) {
+		this.objProxy = objProxy;
+	}
+	
 	@Override
 	protected void channelRead0(ChannelHandlerContext arg0, RPCContext rpcCtx)
 			throws Exception {
@@ -73,34 +77,17 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 		super.exceptionCaught(ctx, cause);
         logger.log( Level.WARNING, "Unexpected exception from downstream.", cause);
         ctx.close();
+        objProxy.doReconnect(ctx.channel(), remotePeer);
 	}
 	
 	
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		super.channelInactive(ctx);
-		doReconnect(ctx);
+		objProxy.doReconnect(ctx.channel(), remotePeer);
 	}
 	
-	private void doReconnect(final ChannelHandlerContext ctx) {
 
-		ctx.channel().eventLoop().schedule(new Runnable(){
-			@Override
-			public void run() {
-				try {
-				 	 Bootstrap b = new Bootstrap();
-				 	 b.group(RPCClient.getEventLoopGroup()).channel(NioSocketChannel.class).handler(new RPCClientInitializer());
-					 Channel ch = b.connect(remotePeer).sync().channel();
-					 DefaultClientHandler handler = ch.pipeline().get(DefaultClientHandler.class);
-					 handler.setObjProxy(objProxy);
-					 objProxy.reconnect(handler);
-				} catch (Exception e) {
-					System.out.println("doReconnect got exception"+e.getMessage());
-					doReconnect(ctx);
-				}
-			}
-		}, 100, TimeUnit.MILLISECONDS);
-	}
 	
 	public RPCFuture doRPC(RPCContext rpcCtx){
 		return doRPC(rpcCtx,null);
@@ -113,15 +100,4 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 		channel.writeAndFlush(rpcCtx);
 		return rpcFuture;
 	}
-	
-	
-	public void setObjProxy(Reconnectable objProxy) {
-		this.objProxy = objProxy;
-	}
-	public Reconnectable getObjProxy() {
-		return objProxy;
-	}
-	
-
-
 }

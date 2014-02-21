@@ -1,4 +1,4 @@
-package com.lubin.rpc.example;
+package com.lubin.rpc.example.obj;
 
 public class HelloWorldObj implements IHelloWordObj {
 

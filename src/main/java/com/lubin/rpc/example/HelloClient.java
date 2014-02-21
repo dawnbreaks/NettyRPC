@@ -1,8 +1,12 @@
 package com.lubin.rpc.example;
 
+import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.lubin.rpc.client.RPCClient;
+import com.lubin.rpc.client.proxy.BaseObjectProxy;
+import com.lubin.rpc.client.proxy.ObjectProxy;
+import com.lubin.rpc.example.obj.IHelloWordObj;
 
 public class HelloClient {
 	
@@ -14,33 +18,26 @@ public class HelloClient {
 
          final AtomicLong totalTimeCosted = new AtomicLong(0);
          int threadNum = 1;
-         final int requestNum = 200000;
+         final int requestNum = 100000;
          Thread[] threads = new Thread[threadNum];
          
          for(int i =0;i< threadNum;i++){	
         	 threads[i] = new Thread(new Runnable(){
 			 @Override
 			 public void run() {
-				 
-					
-		         	// Make a new connection.
-					try {
-							 IHelloWordObj client = RPCClient.createObjProxyInstance(host, port, IHelloWordObj.class);
-							 long start = System.currentTimeMillis();
-					         for(int i=0;i<requestNum;i++){
-					         	String result = client.hello("hello world!");
-					         	if(!result.equals("hello world!"))
-					         		System.out.print("error="+result);
-					          }
-					         long time=System.currentTimeMillis()- start;
-					         long old = totalTimeCosted.get();
-					         while(!totalTimeCosted.compareAndSet(old, old + time )){
-					        	 old = totalTimeCosted.get();
-					         }
-			         
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+
+		         	IHelloWordObj client = ObjectProxy.createObjectProxy(host, port, IHelloWordObj.class);
+					 long start = System.currentTimeMillis();
+					 for(int i=0;i<requestNum;i++){
+					 	String result = client.hello("hello world!");
+					 	if(!result.equals("hello world!"))
+					 		System.out.print("error="+result);
+					  }
+					 long time=System.currentTimeMillis()- start;
+					 long old = totalTimeCosted.get();
+					 while(!totalTimeCosted.compareAndSet(old, old + time )){
+						 old = totalTimeCosted.get();
+					 }
 				}
         	 });
         	 threads[i].start();
@@ -51,6 +48,17 @@ public class HelloClient {
 
          System.out.println("total time costed:"+totalTimeCosted.get()+"|req/s="+requestNum*threadNum/(double)(totalTimeCosted.get()/1000));
          
-         RPCClient.getEventLoopGroup().shutdownGracefully();
+         InetSocketAddress server1 = new InetSocketAddress("127.0.0.1",9090);
+         InetSocketAddress server2 = new InetSocketAddress("127.0.0.1",9091);
+
+         ArrayList<InetSocketAddress> serverList = new ArrayList<InetSocketAddress>();
+         serverList.add(server1);
+         serverList.add(server2);
+         
+         IHelloWordObj client = ObjectProxy.createObjectProxy(serverList, IHelloWordObj.class);
+         
+         System.out.println("test server list:"+client.hello("test server list11"));
+
+         BaseObjectProxy.getEventLoopGroup().shutdownGracefully();
     }
 }

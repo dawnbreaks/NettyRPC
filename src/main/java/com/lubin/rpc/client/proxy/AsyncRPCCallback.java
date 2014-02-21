@@ -1,4 +1,4 @@
-package com.lubin.rpc.client;
+package com.lubin.rpc.client.proxy;
 
 public interface AsyncRPCCallback {
 	

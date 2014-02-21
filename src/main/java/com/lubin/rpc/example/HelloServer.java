@@ -3,6 +3,7 @@ package com.lubin.rpc.example;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lubin.rpc.example.obj.HelloWorldObj;
 import com.lubin.rpc.server.RPCServer;
 import com.lubin.rpc.server.ServerConfig;
 

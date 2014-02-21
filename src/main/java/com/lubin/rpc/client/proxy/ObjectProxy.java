@@ -1,41 +1,28 @@
-package com.lubin.rpc.client;
+package com.lubin.rpc.client.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import com.lubin.rpc.client.DefaultClientHandler;
+import com.lubin.rpc.client.RPCFuture;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.server.Constants;
 
-public class ObjectProxy<T> implements InvocationHandler,Reconnectable {
+public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHandler {
 
-	private Class<T> clazz;
-	private DefaultClientHandler handler;
-
-	public DefaultClientHandler getHandler() {
-		return handler;
+	public ObjectProxy(String host, int port, Class<T> clazz) {
+		super(host, port, clazz);
 	}
 
-	public void setHandler(DefaultClientHandler handler) {
-		this.handler = handler;
-	}
-
-	public void setClazz(Class<T> clazz) {
-		this.clazz = clazz;
-	}
-
-	public Class<T> getClazz() {
-		return clazz;
+	public ObjectProxy(ArrayList<InetSocketAddress> servers, Class<T> clazz){
+		super(servers, clazz);
 	}
 	
-	public ObjectProxy(DefaultClientHandler handler, Class<T> clazz){
-		this.handler = handler;
-		this.clazz = clazz;
-		handler.setObjProxy(this);
-	}
-
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
@@ -54,6 +41,8 @@ public class ObjectProxy<T> implements InvocationHandler,Reconnectable {
 		       }
 		   }
 
+		   DefaultClientHandler handler = chooseHandler();
+		   
 		   Request req = new Request();
 		   req.setSeqNum(handler.getNextSequentNumber());
 		   req.setObjName(clazz.getSimpleName());
@@ -67,18 +56,16 @@ public class ObjectProxy<T> implements InvocationHandler,Reconnectable {
 		   
 		   RPCFuture rpcFuture = handler.doRPC(rpcCtx);
 		   return rpcFuture.get(3000, TimeUnit.MILLISECONDS);
-
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	public static <T> T createObjectProxy(Class<T> clazz, DefaultClientHandler handler){
-		
-		T t = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[] {clazz},new ObjectProxy<T>(handler,clazz));
+	public static <T> T createObjectProxy(String host, int port, Class<T> clazz){
+		T t = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[] {clazz},new ObjectProxy<T>(host, port, clazz));
 		return t;
 	}
 
-	public void reconnect(DefaultClientHandler newHandler) {
-		this.handler = newHandler;
+	public static  <T> T  createObjectProxy(ArrayList<InetSocketAddress> serverList, Class<T> clazz) {
+		T t = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[] {clazz},new ObjectProxy<T>(serverList, clazz));
+		return t;
 	}
 }

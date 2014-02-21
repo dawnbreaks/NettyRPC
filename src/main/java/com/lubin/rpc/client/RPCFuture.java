@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
+import com.lubin.rpc.client.proxy.AsyncRPCCallback;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Response;
 import com.lubin.rpc.server.Constants;

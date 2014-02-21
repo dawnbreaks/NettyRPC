@@ -3,9 +3,9 @@ package com.lubin.rpc.example;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.lubin.rpc.client.AsyncObjectProxy;
-import com.lubin.rpc.client.RPCClient;
 import com.lubin.rpc.client.RPCFuture;
+import com.lubin.rpc.client.proxy.AsyncObjectProxy;
+import com.lubin.rpc.example.obj.IHelloWordObj;
 
 public class AsyncHelloClient {
 	
@@ -25,22 +25,16 @@ public class AsyncHelloClient {
 			 @Override
 			 public void run() {
 
-		         	// Make a new connection.
-					try {
-							 AsyncObjectProxy<IHelloWordObj> client = RPCClient.createAsyncObjProxyInstance(host, port, IHelloWordObj.class);
-							 long start = System.currentTimeMillis();
-					         for(int i=0;i<requestNum;i++){
-					         	RPCFuture result = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
-					          }
-					         long time=System.currentTimeMillis()- start;
-					         long old = totalTimeCosted.get();
-					         while(!totalTimeCosted.compareAndSet(old, old + time )){
-					        	 old = totalTimeCosted.get();
-					         }
-			         
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+		         	AsyncObjectProxy<IHelloWordObj> client = new AsyncObjectProxy<IHelloWordObj>(host, port, IHelloWordObj.class);
+					 long start = System.currentTimeMillis();
+					 for(int i=0;i<requestNum;i++){
+					 	RPCFuture result = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
+					  }
+					 long time=System.currentTimeMillis()- start;
+					 long old = totalTimeCosted.get();
+					 while(!totalTimeCosted.compareAndSet(old, old + time )){
+						 old = totalTimeCosted.get();
+					 }
 				}
         	 });
         	 threads[i].start();
@@ -53,14 +47,14 @@ public class AsyncHelloClient {
          
          
          
-		 AsyncObjectProxy<IHelloWordObj> client = RPCClient.createAsyncObjProxyInstance(host, port, IHelloWordObj.class);
+		 AsyncObjectProxy<IHelloWordObj> client = new AsyncObjectProxy<IHelloWordObj>(host, port, IHelloWordObj.class);
 		 long start = System.currentTimeMillis();
 		 
 		 RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
 		 RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
 		 
-		 System.out.print(helloFuture.get(3000, TimeUnit.MILLISECONDS));
-		 System.out.print(testFuture.get(3000, TimeUnit.MILLISECONDS));
+		 System.out.println(helloFuture.get(3000, TimeUnit.MILLISECONDS));
+		 System.out.println(testFuture.get(3000, TimeUnit.MILLISECONDS));
 		 
 		 
 //         RPCClient.getEventLoopGroup().shutdownGracefully();
