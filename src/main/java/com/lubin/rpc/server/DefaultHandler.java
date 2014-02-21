@@ -4,39 +4,15 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.lang.reflect.Method;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
-import com.lubin.rpc.client.proxy.BaseObjectProxy;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.protocol.Response;
-import com.lubin.rpc.thread.BetterExecutorService;
 
 
 
 public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 
-
-	public static void submit(Runnable task){
-		if(threadPool != null){
-			synchronized (BaseObjectProxy.class) {
-				if(threadPool!=null){
-					LinkedBlockingDeque<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<Runnable>();
-					ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 600L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
-					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",BaseObjectProxy.getConfig().getInt("server.asyncThreadPoolSize"));
-				}
-			}
-		}
-		
-		threadPool.submit(task);
-	}
-	
-	private static BetterExecutorService threadPool;
-	
-	
 	public DefaultHandler() {
 		super(false);
 	}
@@ -44,7 +20,7 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 	@Override
 	protected void channelRead0(final ChannelHandlerContext ctx, final RPCContext rpcContext) throws Exception {
 		if(RPCServer.getConfig().getBoolean("server.async")){
-			DefaultHandler.submit(new Runnable(){
+			RPCServer.submit(new Runnable(){
 				@Override
 				public void run() {
 					processRequest(ctx,rpcContext);

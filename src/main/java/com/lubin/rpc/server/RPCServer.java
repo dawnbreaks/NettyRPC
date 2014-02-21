@@ -9,7 +9,13 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
+import com.lubin.rpc.client.proxy.BaseObjectProxy;
+import com.lubin.rpc.thread.BetterExecutorService;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
@@ -27,6 +33,25 @@ public class RPCServer {
 		return objects.get(objName);
 	}
 
+	
+	
+	private static BetterExecutorService threadPool;
+
+	public static void submit(Runnable task){
+		if(threadPool != null){
+			synchronized (BaseObjectProxy.class) {
+				if(threadPool!=null){
+					LinkedBlockingDeque<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<Runnable>();
+					ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 600L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
+					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",BaseObjectProxy.getConfig().getInt("server.asyncThreadPoolSize"));
+				}
+			}
+		}
+		
+		threadPool.submit(task);
+	}
+
+	
 	public RPCServer() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
 		List<String> objClassList = RPCServer.getConfig().getStringList("server.objects");

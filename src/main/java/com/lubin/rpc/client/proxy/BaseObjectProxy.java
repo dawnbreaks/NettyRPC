@@ -167,9 +167,9 @@ public class BaseObjectProxy<T> {
 	
 
 	public static void submit(Runnable task){
-		if(threadPool != null){
+		if(threadPool == null){
 			synchronized (BaseObjectProxy.class) {
-				if(threadPool!=null){
+				if(threadPool== null){
 					LinkedBlockingDeque<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<Runnable>();
 					ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 600L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
 					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",BaseObjectProxy.getConfig().getInt("client.asyncThreadPoolSize"));
