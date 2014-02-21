@@ -12,12 +12,18 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 import com.lubin.rpc.client.DefaultClientHandler;
 import com.lubin.rpc.client.RPCClientInitializer;
+import com.lubin.rpc.thread.BetterExecutorService;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 
 public class BaseObjectProxy<T> {
 
@@ -28,11 +34,17 @@ public class BaseObjectProxy<T> {
 	
 	protected CopyOnWriteArrayList<DefaultClientHandler> handlers = new CopyOnWriteArrayList<DefaultClientHandler>();
 	
-	private int reconnInterval = 1000;  //1 second
-	
 	private AtomicInteger roundRobin = new AtomicInteger(0);
 
 	static EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
+	
+	private static Config conf = ConfigFactory.load();
+	
+	private int reconnInterval = ConfigFactory.load().getInt("client.reconnInterval");  //1 second
+	
+	public static Config getConfig(){
+		return conf;
+	}
 
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
@@ -152,4 +164,21 @@ public class BaseObjectProxy<T> {
 	public static EventLoopGroup getEventLoopGroup(){
 		return eventLoopGroup;
 	}
+	
+
+	public static void submit(Runnable task){
+		if(threadPool != null){
+			synchronized (BaseObjectProxy.class) {
+				if(threadPool!=null){
+					LinkedBlockingDeque<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<Runnable>();
+					ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 600L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
+					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",BaseObjectProxy.getConfig().getInt("client.asyncThreadPoolSize"));
+				}
+			}
+		}
+		
+		threadPool.submit(task);
+	}
+	
+	private static BetterExecutorService threadPool;
 }

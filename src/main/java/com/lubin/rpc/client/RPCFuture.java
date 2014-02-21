@@ -7,10 +7,10 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 import com.lubin.rpc.client.proxy.AsyncRPCCallback;
+import com.lubin.rpc.client.proxy.BaseObjectProxy;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Response;
 import com.lubin.rpc.server.Constants;
-import com.lubin.rpc.thread.AsyncHandler;
 
 
 
@@ -112,7 +112,7 @@ public class RPCFuture implements Future<Object>{
 		}else if(type== Constants.RPCType.async){//summit task to excute async callback 
 			sync.release(1);
 			
-			AsyncHandler.getInstance().submit(new Runnable(){
+			BaseObjectProxy.submit(new Runnable(){
 				@Override
 				public void run() {
 					Response response = rpcCtx.getResponse();

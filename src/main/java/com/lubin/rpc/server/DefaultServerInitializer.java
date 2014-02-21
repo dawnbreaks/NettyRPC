@@ -11,10 +11,9 @@ import com.lubin.rpc.protocol.SrvrResponseEncoder;
 
 public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> {
 
-	private ServerConfig conf;
 
-	public DefaultServerInitializer(ServerConfig conf) {
-		this.conf = conf;
+	public DefaultServerInitializer() {
+
 	}
 
 	@Override
@@ -26,7 +25,7 @@ public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> 
 
 		p.addLast("encoder", new SrvrResponseEncoder());
 
-		p.addLast("handler", new DefaultHandler(conf));
+		p.addLast("handler", new DefaultHandler());
 		
 		p.addLast("httpExceptionHandler", new DefaultExceptionHandler());
 	}
