@@ -7,13 +7,13 @@ Yet another RPC framework based on Netty(https://github.com/netty/netty) and kry
 Features
 ========
 
-  * simple, small code base, easy to learn API
-  * very fast, high performance
-  * support asynchronous call, totally non-blocking call.
-  * long lived persistent connection, reconnect to server automatically
+  * Simple, small code base, easy to learn API
+  * Very fast, high performance
+  * Asynchronous call, totally non-blocking call.
+  * Long lived persistent connection, reconnect to server automatically
   * High availability, load balance and failover 
-  * multi thread server and multi thread client
-  * thread safe client, for an remote Object you only need to create a singleton client. 
+  * Multi thread server and multi thread client
+  * Thread safe client, for an remote Object you only need to create a singleton client. 
   * php client (unimplemented yet)  
   
 Simple tutorial
@@ -91,14 +91,14 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 
 ####6 High availability, You hate Single point of failure? You could deploy more than one servers to achieve HA, NettyRPC  handle load balance and failover automatically.  
 ```java
-         InetSocketAddress server1 = new InetSocketAddress("127.0.0.1",9090);
-         InetSocketAddress server2 = new InetSocketAddress("127.0.0.1",9091);
-         ArrayList<InetSocketAddress> serverList = new ArrayList<InetSocketAddress>();
-         serverList.add(server1);
-         serverList.add(server2);
+    InetSocketAddress server1 = new InetSocketAddress("127.0.0.1",9090);
+    InetSocketAddress server2 = new InetSocketAddress("127.0.0.1",9091);
+    ArrayList<InetSocketAddress> serverList = new ArrayList<InetSocketAddress>();
+    serverList.add(server1);
+    serverList.add(server2);
          
-         IHelloWordObj client = ObjectProxy.createObjectProxy(serverList, IHelloWordObj.class);
-         System.out.println("test server list:"+client.hello("test server list11"));
+    IHelloWordObj client = ObjectProxy.createObjectProxy(serverList, IHelloWordObj.class);
+    System.out.println("test server list:"+client.hello("test server list11"));
 ```
 Conclusion
 ========
