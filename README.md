@@ -102,6 +102,24 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
     IHelloWordObj client = ObjectProxy.createObjectProxy(serverList, IHelloWordObj.class);
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
-Conclusion
+
+
+For more information please refer to example in the test folder.
+
+
+Build
+========
+
+To build the JAR file of NettyRPC, you need to install Maven (http://maven.apache.org), then type the following command:
+
+    $ mvn package
+
+To generate project files (.project, .classpath) for Eclipse, do
+
+    $ mvn eclipse:eclipse
+
+then import the folder from your Eclipse.
+
+
 ========
 Oh, that's all! Easy to understand, right? Please feel free to contact me(2005dawnbreaks@gmail.com) if you have any questions.
