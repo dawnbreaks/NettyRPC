@@ -40,14 +40,16 @@ public class HelloWorldObj implements IHelloWordObj {
 }
 ```
 
-####3.Start the following server
-```java
-public class HelloServer {
-	public static void main(String[] args) throws Exception {
-		List<Object> objList = new ArrayList<Object>();
-		objList.add(new HelloWorldObj());
-		new RPCServer(new ServerConfig(objList)).run();
-	}
+####3. Edit the configuration file of "application.conf"  and Start the server "com.lubin.rpc.server.RPCServer"
+```javascript
+server {
+	port = 9090
+	backlog = 1000
+	async = false	//handling request in business logic thread pool
+	asyncThreadPoolSize = 3
+	objects = [
+		"com.lubin.rpc.example.obj.HelloWorldObj"
+	]
 }
 ```
 
