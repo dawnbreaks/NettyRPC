@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import com.lubin.rpc.client.DefaultClientHandler;
 import com.lubin.rpc.client.RPCFuture;
+import com.lubin.rpc.protocol.Constants;
 import com.lubin.rpc.protocol.RPCContext;
-import com.lubin.rpc.server.Constants;
 
 public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHandler,IAsyncObjectProxy {
 

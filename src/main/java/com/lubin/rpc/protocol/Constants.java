@@ -1,4 +1,4 @@
-package com.lubin.rpc.server;
+package com.lubin.rpc.protocol;
 
 public class Constants {
 	
@@ -12,5 +12,12 @@ public class Constants {
 		char normal = 0;
 		char oneway = 1;
 		char async = 2;
+	}
+	
+	public interface RPCSerializer {
+		char kryo = 0;
+		char json = 1;
+		char msgpack = 2;
+		char bson = 3;
 	}
 }

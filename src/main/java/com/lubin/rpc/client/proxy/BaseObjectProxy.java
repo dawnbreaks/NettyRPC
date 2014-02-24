@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 import com.lubin.rpc.client.DefaultClientHandler;
 import com.lubin.rpc.client.RPCClient;
 import com.lubin.rpc.client.RPCClientInitializer;
+import com.lubin.rpc.protocol.Constants;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
-import com.lubin.rpc.server.Constants;
 
 public class BaseObjectProxy<T> {
 
@@ -123,6 +123,7 @@ public class BaseObjectProxy<T> {
 			req.setSeqNum(seqNum);
 			req.setObjName(clazz.getSimpleName());
 			req.setFuncName(funcName);
+			req.setSerializer(Constants.RPCSerializer.json);
 			req.setArgs(args);
 			   
 			Class[] parameterTypes = new Class[args.length];

@@ -5,16 +5,20 @@ public class Request {
 	private long seqNum;
 	private int version;
 	private char type;  //0 normal, 1oneway ,2 async
+	private char serializer;//0 kryo 1 json 2 msgpack 3 bson
+	
+	
 	private String objName;
 	private String funcName;
-	
+
 	//input
 	private Object[] args;
 
 	
 	public Request(){
 		version = 1;
-		type = 0;
+		type = Constants.RPCType.normal;
+		serializer = Constants.RPCSerializer.kryo;
 	}
 	
 	public long getSeqNum() {
@@ -65,8 +69,12 @@ public class Request {
 	public void setArgs(Object[] args) {
 		this.args = args;
 	}
-	
-	
-	
-	
+
+	public void setSerializer(char serializer) {
+		this.serializer = serializer;
+	}
+
+	public char getSerializer() {
+		return serializer;
+	}
 }

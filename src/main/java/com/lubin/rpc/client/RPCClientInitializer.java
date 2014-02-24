@@ -6,8 +6,8 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 
 import com.lubin.rpc.client.proxy.BaseObjectProxy;
-import com.lubin.rpc.protocol.CliRequestEncoder;
-import com.lubin.rpc.protocol.CliResponseDecoder;
+import com.lubin.rpc.protocol.Decoder;
+import com.lubin.rpc.protocol.Encoder;
 
 public class RPCClientInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -21,9 +21,9 @@ public class RPCClientInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline p = ch.pipeline();
-        p.addLast("decoder", new CliResponseDecoder());
+        p.addLast("decoder", new Decoder(false));
 
-        p.addLast("encoder", new CliRequestEncoder());
+        p.addLast("encoder", new Encoder());
  
         p.addLast("handler", new DefaultClientHandler(objProxy));
     }

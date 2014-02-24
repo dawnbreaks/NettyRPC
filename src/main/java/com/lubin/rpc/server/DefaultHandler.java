@@ -4,8 +4,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
+import com.lubin.rpc.protocol.Constants;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.protocol.Response;
@@ -13,8 +13,6 @@ import com.lubin.rpc.protocol.Response;
 
 
 public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
-	
-//	public HashMap<String, Method> methods =new HashMap<String, Method>();
 
 	public DefaultHandler() {
 		super(false);
@@ -42,9 +40,10 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 		res.setSeqNum(req.getSeqNum());
 		res.setVersion(req.getVersion());
 		res.setType(req.getType());
+		res.setSerializer(req.getSerializer());
 		res.setObjName(req.getObjName());
 		res.setFuncName(req.getFuncName());
-		
+
 		try{
 			Object[] args = req.getArgs();
 			Class[] argTypes = new Class[args.length];
@@ -53,17 +52,8 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 				argTypes[i] = args[i].getClass();
 				methodKey+=argTypes[i].getSimpleName();
 			}
-			
-
-			
+	
 			Object obj= RPCServer.getObject(req.getObjName());
-//			Method func = methods.get(req.getObjName()+"|"+req.getFuncName()+"|"+methodKey);
-//			if(func ==null){
-//				Class clazz= obj.getClass();
-//				func = clazz.getMethod(req.getFuncName(), argTypes);
-//				methods.put(req.getObjName()+"|"+req.getFuncName()+"|"+methodKey,func);
-//			}
-			
 			Class clazz= obj.getClass();
 			Method func = clazz.getMethod(req.getFuncName(), argTypes);
 			Object result= func.invoke(obj, req.getArgs());

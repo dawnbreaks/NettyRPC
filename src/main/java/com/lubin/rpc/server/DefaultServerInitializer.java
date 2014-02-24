@@ -6,8 +6,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
 
-import com.lubin.rpc.protocol.SrvrRequestDecoder;
-import com.lubin.rpc.protocol.SrvrResponseEncoder;
+import com.lubin.rpc.protocol.Decoder;
+import com.lubin.rpc.protocol.Encoder;
 
 public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -21,9 +21,9 @@ public class DefaultServerInitializer extends ChannelInitializer<SocketChannel> 
 		// Create a default pipeline implementation
 		final ChannelPipeline p = ch.pipeline();
 
-		p.addLast("decoder", new SrvrRequestDecoder());
+		p.addLast("decoder", new Decoder(true));
 
-		p.addLast("encoder", new SrvrResponseEncoder());
+		p.addLast("encoder", new Encoder());
 
 		p.addLast("handler", new DefaultHandler());
 		

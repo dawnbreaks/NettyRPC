@@ -5,6 +5,7 @@ public class Response {
 	private long seqNum;
 	private int version;
 	private char type;  //0 normal, 1oneway, 2 async
+	private char serializer;//0 kryo 1 json 2 msgpack 3 bson
 	private String objName;
 	private String funcName;
 	
@@ -62,6 +63,12 @@ public class Response {
 	}
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+	public void setSerializer(char serializer) {
+		this.serializer = serializer;
+	}
+	public char getSerializer() {
+		return serializer;
 	}
 	
 	
