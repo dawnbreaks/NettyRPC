@@ -9,7 +9,7 @@ Features
 
   * Simple, small code base, easy to learn API
   * Very fast, high performance
-  * Asynchronous call, totally non-blocking call.
+  * Totally non-blocking asynchronous call, synchronous call, oneway call.
   * Long lived persistent connection, reconnect to server automatically
   * High availability, load balance and failover 
   * Multi thread server and multi thread client
@@ -43,7 +43,7 @@ public class HelloWorldObj implements IHelloWordObj {
 }
 ```
 
-####3. Edit the configuration file of "application.conf"  and Start the server "com.lubin.rpc.server.RPCServer"
+####3. Edit  "application.conf" to add the previous obj and Start the server com.lubin.rpc.server.RPCServer
 ```javascript
 server {
 	port = 9090
@@ -59,39 +59,39 @@ server {
 
 ####4.Make an Obj proxy and call the remote Obj.
 ```java
-    final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
-    final int port = 9090;
-    IHelloWordObj client = RPCClient.createObjectProxy(host, port, IHelloWordObj.class);
+    IHelloWordObj client = RPCClient.createObjectProxy("127.0.0.1", 9090, IHelloWordObj.class);
     
     String result = client.hello("hello world!");
     if(!result.equals("hello world!"))
            System.out.println("error="+result);
 ```
 
-####5. Synchronous call suck? You can do asynchronous call to achieve high performance.
-#####5.1. Firstly implements the AsyncRPCCallback interface
+####5. Asynchronous call
+#####5.1. And make an asynchronous Obj proxy and call the remote Obj.
 ```java
-public class AsyncHelloWorldCallback implements AsyncRPCCallback {
-	@Override
-	public void fail(Exception e) {
-		System.out.println(e.getMessage());
-	}
-	@Override
-	public void success(Object result) {
-		System.out.println(result);
-	}
-}
-```
-#####5.2. And make an asynchronous Obj proxy and call the remote Obj.
-```java
-    final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
-    final int port = 9090;
-    IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx(host, port, IHelloWordObj.class);
+    IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
     
     RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"});
     RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
     Object res1= helloFuture.get(3000, TimeUnit.MILLISECONDS);
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
+```
+#####5.2. Optionally you can provide an call back which will be called by nettyRPC after received response form server.
+```java
+	public class AsyncHelloWorldCallback implements AsyncRPCCallback {
+		@Override
+		public void fail(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		@Override
+		public void success(Object result) {
+			System.out.println(result);
+		}
+	}
+
+    IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
+    RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"},new AsyncHelloWorldCallback());
+    RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback());
 ```
 
 ####6 High availability, You hate Single point of failure? You could deploy more than one servers to achieve HA, NettyRPC  handle load balance and failover automatically.  
