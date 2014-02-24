@@ -49,9 +49,21 @@ server {
 	port = 9090
 	backlog = 1000
 	async = false	//handling request in business logic thread pool
-	asyncThreadPoolSize = 3
+	asyncThreadPoolSize = 4
+    ioThreadNum = 1   
 	objects = [
-		"com.lubin.rpc.example.obj.HelloWorldObj"
+		com.lubin.rpc.example.obj.HelloWorldObj
+	]
+}
+client {
+	reconnInterval = 1000	//time interval(million second) for reconnecting to server
+	asyncThreadPoolSize = 1   //thread pool for excuting Async callback
+    ioThreadNum = 1   
+    objects = [ 
+		{ 
+			name = com.lubin.rpc.example.obj.IHelloWordObj
+			servers ="127.0.0.1:9090 127.0.0.1:9091"
+		}
 	]
 }
 ```
