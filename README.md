@@ -43,7 +43,7 @@ public class HelloWorldObj implements IHelloWordObj {
 }
 ```
 
-####3. Edit  "application.conf" to add the previous obj and Start the server com.lubin.rpc.server.RPCServer
+####3. Edit  application.conf to add the previous obj and Start the server com.lubin.rpc.server.RPCServer
 ```javascript
 server {
 	port = 9090
@@ -67,27 +67,27 @@ server {
 ```
 
 ####5. Asynchronous call
-#####5.1. And make an asynchronous Obj proxy and call the remote Obj.
+#####5.1. Create an asynchronous Obj proxy and call the remote Obj.
 ```java
     IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
     
     RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"});
-    RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
+    RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L});
     Object res1= helloFuture.get(3000, TimeUnit.MILLISECONDS);
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
 ```
-#####5.2. Optionally you can provide an call back which will be called by nettyRPC after received response form server.
+#####5.2. Optionally you can provide a call back which will be called by NettyRPC after received response form server.
 ```java
-	public class AsyncHelloWorldCallback implements AsyncRPCCallback {
-		@Override
-		public void fail(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		@Override
-		public void success(Object result) {
-			System.out.println(result);
-		}
+public class AsyncHelloWorldCallback implements AsyncRPCCallback {
+	@Override
+	public void fail(Exception e) {
+		System.out.println(e.getMessage());
 	}
+	@Override
+	public void success(Object result) {
+		System.out.println(result);
+	}
+}
 
     IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
     RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"},new AsyncHelloWorldCallback());
