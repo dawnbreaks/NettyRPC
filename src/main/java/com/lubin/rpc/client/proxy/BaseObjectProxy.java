@@ -123,7 +123,7 @@ public class BaseObjectProxy<T> {
 			req.setSeqNum(seqNum);
 			req.setObjName(clazz.getSimpleName());
 			req.setFuncName(funcName);
-			req.setSerializer(Constants.RPCSerializer.json);
+			req.setSerializer((char) RPCClient.getConfig().getInt("client.serializer"));
 			req.setArgs(args);
 			   
 			Class[] parameterTypes = new Class[args.length];
