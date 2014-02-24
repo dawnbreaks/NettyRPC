@@ -1,7 +1,7 @@
 NettyRPC
 ========
 
-Yet another RPC framework based on Netty(https://github.com/netty/netty) and kryo-serializers(https://github.com/magro/kryo-serializers)
+Yet another RPC framework based on Netty(https://github.com/netty/netty).
 
 
 Features
