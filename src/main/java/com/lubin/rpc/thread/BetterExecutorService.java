@@ -101,7 +101,7 @@ public class BetterExecutorService extends AbstractExecutorService {
 
   @Override
   public void shutdown() {
-    throw new UnsupportedOperationException();
+	  executor.shutdown();
   }
 
   @Override

@@ -7,7 +7,6 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 import com.lubin.rpc.client.proxy.AsyncRPCCallback;
-import com.lubin.rpc.client.proxy.BaseObjectProxy;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Response;
 import com.lubin.rpc.server.Constants;
@@ -109,23 +108,26 @@ public class RPCFuture implements Future<Object>{
 		char type = rpcCtx.getRequest().getType();
 		if(type== Constants.RPCType.normal){//wake up caller thread 
 			sync.release(1);
-		}else if(type== Constants.RPCType.async){//summit task to excute async callback 
+		}else if(type== Constants.RPCType.async ){//submit task to execute async callback 
 			sync.release(1);
 			
-			BaseObjectProxy.submit(new Runnable(){
-				@Override
-				public void run() {
-					Response response = rpcCtx.getResponse();
-					char status = response.getStatus();
-					if(status == Constants.RPCStatus.ok){
-						callback.success(response.getResult());
-					}else if(status == Constants.RPCStatus.exception){
-						callback.fail(new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
-					}else if(status == Constants.RPCStatus.unknownError){
-						callback.fail(new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
+			if(callback != null){
+				RPCClient.submit(new Runnable(){
+					@Override
+					public void run() {
+						Response response = rpcCtx.getResponse();
+						char status = response.getStatus();
+						if(status == Constants.RPCStatus.ok){
+							callback.success(response.getResult());
+						}else if(status == Constants.RPCStatus.exception){
+							callback.fail(new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
+						}else if(status == Constants.RPCStatus.unknownError){
+							callback.fail(new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
+						}
 					}
-				}
-			});
+				});
+			}
+
 
 		}else if(type== Constants.RPCType.oneway){
 			//oneway call wonn't got a response from server.

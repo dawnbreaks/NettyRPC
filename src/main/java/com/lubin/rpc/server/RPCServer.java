@@ -24,7 +24,7 @@ public class RPCServer {
 	private static Config conf = ConfigFactory.load();
 	
 	private static HashMap<String,Object> objects =new HashMap<String,Object>();
-	
+
 	public static Config getConfig(){
 		return conf;
 	}
@@ -33,17 +33,15 @@ public class RPCServer {
 		return objects.get(objName);
 	}
 
-	
-	
 	private static BetterExecutorService threadPool;
 
 	public static void submit(Runnable task){
-		if(threadPool != null){
+		if(threadPool == null){
 			synchronized (BaseObjectProxy.class) {
-				if(threadPool!=null){
+				if(threadPool==null){
 					LinkedBlockingDeque<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<Runnable>();
 					ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 600L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
-					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",BaseObjectProxy.getConfig().getInt("server.asyncThreadPoolSize"));
+					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",RPCServer.getConfig().getInt("server.asyncThreadPoolSize"));
 				}
 			}
 		}
@@ -67,7 +65,7 @@ public class RPCServer {
 	public void run() throws Exception {
 
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
-		EventLoopGroup workerGroup = new NioEventLoopGroup();
+		EventLoopGroup workerGroup = new NioEventLoopGroup(RPCServer.getConfig().getInt("server.ioThreadNum"));
 		try {
 			int backlog = RPCServer.getConfig().getInt("server.backlog");
 			int port = RPCServer.getConfig().getInt("server.port");

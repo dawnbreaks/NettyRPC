@@ -96,4 +96,8 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 		channel.writeAndFlush(rpcCtx);
 		return rpcFuture;
 	}
+	
+	public void doNotify(RPCContext rpcCtx){
+		channel.writeAndFlush(rpcCtx);
+	}
 }

@@ -23,6 +23,7 @@ Simple tutorial
 public interface IHelloWordObj {
 	String hello(String msg);
 	String test(Integer i, String s, Long l);
+	void notifySomeThing(Integer i, String s, Long l);
 }
 ```
   
@@ -36,6 +37,8 @@ public class HelloWorldObj implements IHelloWordObj {
 	@Override
 	public String test(Integer i, String s, Long l) {
 		return i+s+l;
+	}
+	public String notifySomeThing(Integer i, String s, Long l) {
 	}
 }
 ```
@@ -58,7 +61,7 @@ server {
 ```java
     final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
     final int port = 9090;
-    IHelloWordObj client = ObjectProxy.createObjectProxy(host, port, IHelloWordObj.class);
+    IHelloWordObj client = RPCClient.createObjectProxy(host, port, IHelloWordObj.class);
     
     String result = client.hello("hello world!");
     if(!result.equals("hello world!"))
@@ -83,9 +86,9 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 ```java
     final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
     final int port = 9090;
-    AsyncObjectProxy<IHelloWordObj> asyncClient = new AsyncObjectProxy<IHelloWordObj>(host, port, IHelloWordObj.class);
+    IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx(host, port, IHelloWordObj.class);
     
-    RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"}, new AsyncHelloWorldCallback("hello world!"));
+    RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"});
     RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback("hello world!"));
     Object res1= helloFuture.get(3000, TimeUnit.MILLISECONDS);
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
@@ -99,7 +102,7 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
     serverList.add(server1);
     serverList.add(server2);
          
-    IHelloWordObj client = ObjectProxy.createObjectProxy(serverList, IHelloWordObj.class);
+    IHelloWordObj client = RPCClient.createObjectProxy(serverList, IHelloWordObj.class);
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
 

@@ -4,26 +4,23 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 import com.lubin.rpc.client.DefaultClientHandler;
+import com.lubin.rpc.client.RPCClient;
 import com.lubin.rpc.client.RPCClientInitializer;
-import com.lubin.rpc.thread.BetterExecutorService;
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
+import com.lubin.rpc.protocol.RPCContext;
+import com.lubin.rpc.protocol.Request;
+import com.lubin.rpc.server.Constants;
 
 public class BaseObjectProxy<T> {
 
@@ -36,16 +33,6 @@ public class BaseObjectProxy<T> {
 	
 	private AtomicInteger roundRobin = new AtomicInteger(0);
 
-	static EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
-	
-	private static Config conf = ConfigFactory.load();
-	
-	private int reconnInterval = ConfigFactory.load().getInt("client.reconnInterval");  //1 second
-	
-	public static Config getConfig(){
-		return conf;
-	}
-
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
 	}
@@ -55,43 +42,12 @@ public class BaseObjectProxy<T> {
 	}
 	
 
-	public BaseObjectProxy(final String host, final int port, Class<T> clazz) {
-		 this.clazz = clazz;
-		
-	 	 Bootstrap b = new Bootstrap();
-	 	 b.group(BaseObjectProxy.getEventLoopGroup())
-	 	  .channel(NioSocketChannel.class)
-	 	  .handler(new RPCClientInitializer(this));
-	 	 
-		 ChannelFuture channelFuture = b.connect(host, port);
-		 
-		 channelFuture.addListener(new ChannelFutureListener(){
-			@Override
-			public void operationComplete(final ChannelFuture channelFuture) throws Exception {
-				if(!channelFuture.isSuccess()){
-					final SocketAddress remotePeer = new InetSocketAddress(host,port);
-					doReconnect(channelFuture.channel(), remotePeer );
-				}else{
-					handlers.add(channelFuture.channel().pipeline().get(DefaultClientHandler.class));
-				}
-				
-				
-			}
-		 });
-		 
-		 try {
-			 channelFuture.await();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public BaseObjectProxy(ArrayList<InetSocketAddress> servers, Class<T> clazz) {
 		 this.clazz = clazz;
 		 
 		 for(final InetSocketAddress server : servers){
 		 	 Bootstrap b = new Bootstrap();
-		 	 b.group(BaseObjectProxy.getEventLoopGroup())
+		 	 b.group(RPCClient.getEventLoopGroup())
 		 	  .channel(NioSocketChannel.class)
 		 	  .handler(new RPCClientInitializer(this));
 		 	 
@@ -125,7 +81,7 @@ public class BaseObjectProxy<T> {
 			public void run() {
 				try {
 				 	 Bootstrap b = new Bootstrap();
-				 	 b.group(BaseObjectProxy.getEventLoopGroup()).channel(NioSocketChannel.class).handler(new RPCClientInitializer(BaseObjectProxy.this));
+				 	 b.group(RPCClient.getEventLoopGroup()).channel(NioSocketChannel.class).handler(new RPCClientInitializer(BaseObjectProxy.this));
 				 	 
 					 ChannelFuture channelFuture = b.connect(remotePeer);
 					 
@@ -147,7 +103,7 @@ public class BaseObjectProxy<T> {
 					doReconnect(channel, remotePeer);
 				}
 			}
-		}, reconnInterval, TimeUnit.MILLISECONDS);
+		}, RPCClient.getConfig().getInt("client.reconnInterval"), TimeUnit.MILLISECONDS);
 	}
 	
 	DefaultClientHandler chooseHandler(){
@@ -161,24 +117,36 @@ public class BaseObjectProxy<T> {
 		return handlers.get(index);
 	}
 
-	public static EventLoopGroup getEventLoopGroup(){
-		return eventLoopGroup;
-	}
-	
-
-	public static void submit(Runnable task){
-		if(threadPool == null){
-			synchronized (BaseObjectProxy.class) {
-				if(threadPool== null){
-					LinkedBlockingDeque<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<Runnable>();
-					ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 600L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
-					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",BaseObjectProxy.getConfig().getInt("client.asyncThreadPoolSize"));
-				}
+	RPCContext createRequest(String funcName, Object[] args, long seqNum, char type) {
+		try{
+			Request req = new Request();
+			req.setSeqNum(seqNum);
+			req.setObjName(clazz.getSimpleName());
+			req.setFuncName(funcName);
+			req.setArgs(args);
+			   
+			Class[] parameterTypes = new Class[args.length];
+			for(int i=0; i<args.length;i++){
+				parameterTypes[i] = args[i].getClass();
 			}
+		   
+		    Method method = clazz.getMethod(funcName, parameterTypes);
+		    if( method.getReturnType().equals(Void.TYPE) && Constants.RPCType.oneway == type){
+			   req.setType(Constants.RPCType.oneway);
+		    }else if( method.getReturnType().equals(Void.TYPE) && Constants.RPCType.normal == type){
+		    	req.setType(Constants.RPCType.oneway);
+		    }else if( method.getReturnType().equals(Void.TYPE) && Constants.RPCType.async == type){
+		    	new RuntimeException("this method will not return, please use notify() to call this method.");
+		    }else{
+		    	req.setType(type);
+		    }
+		    
+		    RPCContext rpcCtx = new RPCContext();
+			rpcCtx.setRequest(req);
+		    return rpcCtx ;
+		}catch (Exception e) {
+			throw new RuntimeException("BaseObjectProxy.createRequest got exception|",e);
 		}
-		
-		threadPool.submit(task);
 	}
-	
-	private static BetterExecutorService threadPool;
+
 }

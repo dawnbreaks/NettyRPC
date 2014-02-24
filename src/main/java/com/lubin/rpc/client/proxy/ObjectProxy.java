@@ -2,7 +2,6 @@ package com.lubin.rpc.client.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -10,14 +9,9 @@ import java.util.concurrent.TimeUnit;
 import com.lubin.rpc.client.DefaultClientHandler;
 import com.lubin.rpc.client.RPCFuture;
 import com.lubin.rpc.protocol.RPCContext;
-import com.lubin.rpc.protocol.Request;
 import com.lubin.rpc.server.Constants;
 
-public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHandler {
-
-	public ObjectProxy(String host, int port, Class<T> clazz) {
-		super(host, port, clazz);
-	}
+public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHandler,IAsyncObjectProxy {
 
 	public ObjectProxy(ArrayList<InetSocketAddress> servers, Class<T> clazz){
 		super(servers, clazz);
@@ -41,31 +35,45 @@ public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHand
 		       }
 		   }
 
-		   DefaultClientHandler handler = chooseHandler();
-		   
-		   Request req = new Request();
-		   req.setSeqNum(handler.getNextSequentNumber());
-		   req.setObjName(clazz.getSimpleName());
-		   req.setFuncName(method.getName());
-		   req.setArgs(args);
-		   
-		   req.setType(Constants.RPCType.normal);
+		   DefaultClientHandler handler = chooseHandler();		
+		   long seqNum = handler.getNextSequentNumber();
+		   RPCContext rpcCtx = createRequest(method.getName(), args, seqNum, Constants.RPCType.normal);
 
-		   RPCContext rpcCtx = new RPCContext();
-		   rpcCtx.setRequest(req);
-		   
 		   RPCFuture rpcFuture = handler.doRPC(rpcCtx);
 		   return rpcFuture.get(3000, TimeUnit.MILLISECONDS);
 	}
-	
-	
-	public static <T> T createObjectProxy(String host, int port, Class<T> clazz){
-		T t = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[] {clazz},new ObjectProxy<T>(host, port, clazz));
-		return t;
-	}
 
-	public static  <T> T  createObjectProxy(ArrayList<InetSocketAddress> serverList, Class<T> clazz) {
-		T t = (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[] {clazz},new ObjectProxy<T>(serverList, clazz));
-		return t;
+
+	@Override
+	public RPCFuture call(String funcName, Object[] args, AsyncRPCCallback callback){
+		
+		DefaultClientHandler handler = chooseHandler();
+		long seqNum = handler.getNextSequentNumber();
+		RPCContext rpcCtx = createRequest(funcName, args, seqNum, Constants.RPCType.async);
+		
+		RPCFuture rpcFuture = handler.doRPC(rpcCtx,callback);
+		return rpcFuture;
 	}
+	
+	@Override
+	public RPCFuture call(String funcName, Object[] args){
+		
+		DefaultClientHandler handler = chooseHandler();
+		long seqNum = handler.getNextSequentNumber();
+		RPCContext rpcCtx = createRequest(funcName, args, seqNum, Constants.RPCType.async);
+
+		RPCFuture rpcFuture = handler.doRPC(rpcCtx);
+		return rpcFuture;
+	}
+	
+	@Override
+	public void notify(String funcName, Object[] args) {
+		
+		DefaultClientHandler handler = chooseHandler();
+		long seqNum = handler.getNextSequentNumber();
+		RPCContext rpcCtx = createRequest(funcName, args, seqNum, Constants.RPCType.oneway);
+
+		handler.doNotify(rpcCtx);
+	}
+	
 }
