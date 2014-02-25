@@ -106,20 +106,18 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
     RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L}, new AsyncHelloWorldCallback());
 ```
 
-####6 High availability, You hate Single point of failure? You could deploy more than one servers to achieve HA, NettyRPC  handle load balance and failover automatically.  
+####6 High availability, you can deploy more than one servers to achieve HA, NettyRPC  handle load balance and failover automatically.  
 ```java
-    InetSocketAddress server1 = new InetSocketAddress("127.0.0.1",9090);
-    InetSocketAddress server2 = new InetSocketAddress("127.0.0.1",9091);
     ArrayList<InetSocketAddress> serverList = new ArrayList<InetSocketAddress>();
-    serverList.add(server1);
-    serverList.add(server2);
+    serverList.add(new InetSocketAddress("127.0.0.1",9090));
+    serverList.add(new InetSocketAddress("127.0.0.1",9091));
          
     IHelloWordObj client = RPCClient.createObjectProxy(serverList, IHelloWordObj.class);
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
 
 
-For more information please refer to example in the test folder.
+For more information please refer to example in the src/test folder.
 
 
 Build
