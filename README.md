@@ -1,7 +1,7 @@
 NettyRPC
 ========
 
-Yet another RPC framework based on Netty(https://github.com/netty/netty).
+Yet another RPC framework based on [Netty](https://github.com/netty/netty).
 
 
 Features
