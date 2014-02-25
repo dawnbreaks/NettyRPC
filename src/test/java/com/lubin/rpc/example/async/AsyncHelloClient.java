@@ -1,4 +1,4 @@
-package com.lubin.rpc.example;
+package com.lubin.rpc.example.async;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;

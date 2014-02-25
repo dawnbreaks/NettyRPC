@@ -7,8 +7,10 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import java.net.SocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import com.lubin.rpc.client.proxy.AsyncRPCCallback;
 import com.lubin.rpc.client.proxy.BaseObjectProxy;
@@ -17,7 +19,7 @@ import com.lubin.rpc.protocol.RPCContext;
 
 public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext>{
 	
-    private static final Logger logger = Logger.getLogger(DefaultClientHandler.class.getName());
+	private final Logger logger = LoggerFactory.getLogger(BaseObjectProxy.class);
     
     private ConcurrentHashMap<Long, RPCFuture> pendingRPC = new ConcurrentHashMap<Long, RPCFuture>();
 
@@ -71,7 +73,7 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
 		super.exceptionCaught(ctx, cause);
-        logger.log( Level.WARNING, "Unexpected exception from downstream.", cause);
+        logger.warn("Unexpected exception from downstream.", cause);
         ctx.close();
         objProxy.doReconnect(ctx.channel(), remotePeer);
 	}

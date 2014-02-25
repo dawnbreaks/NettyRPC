@@ -13,8 +13,7 @@ import com.lubin.rpc.server.exception.BadRequestException;
 
 public class DefaultExceptionHandler extends ChannelInboundHandlerAdapter {
 
-	private final Logger logger = LoggerFactory
-			.getLogger(DefaultExceptionHandler.class);
+	private final Logger logger = LoggerFactory.getLogger(DefaultExceptionHandler.class);
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)

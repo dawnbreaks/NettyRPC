@@ -5,6 +5,9 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.lang.reflect.Method;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lubin.rpc.protocol.Constants;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Request;
@@ -14,6 +17,8 @@ import com.lubin.rpc.protocol.Response;
 
 public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 
+	private final Logger logger = LoggerFactory.getLogger(DefaultHandler.class);
+	
 	public DefaultHandler() {
 		super(false);
 	}
@@ -77,6 +82,8 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 				rpcContext.setResponse(res);
 				ctx.writeAndFlush(rpcContext);
 			}
+			
+			logger.error("DefaultHandler|processRequest got error",e);
 		}
 		
 	}

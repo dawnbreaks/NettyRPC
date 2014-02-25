@@ -1,4 +1,4 @@
-package com.lubin.rpc.example;
+package com.lubin.rpc.example.async;
 
 import com.lubin.rpc.client.proxy.AsyncRPCCallback;
 

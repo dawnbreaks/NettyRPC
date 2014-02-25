@@ -1,5 +1,7 @@
 package com.lubin.rpc.example;
 
+import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -20,7 +22,10 @@ public class Benchmark {
 		final int requestNum = 400000;
 		Thread[] threads = new Thread[threadNum];
 		
-		final IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(host, port, IHelloWordObj.class);
+		ArrayList<InetSocketAddress> serverList =new ArrayList<InetSocketAddress>();
+		serverList.add(new InetSocketAddress(host, port));
+		serverList.add(new InetSocketAddress(host, port));
+		final IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(serverList, IHelloWordObj.class);
 		final AsyncHelloWorldCallback callback = new AsyncHelloWorldCallback(requestNum*threadNum);
 		for (int i = 0; i < threadNum; i++) {
 			threads[i] = new Thread(new Runnable() {

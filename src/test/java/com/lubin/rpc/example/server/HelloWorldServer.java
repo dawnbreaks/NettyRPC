@@ -1,4 +1,4 @@
-package com.lubin.rpc.example;
+package com.lubin.rpc.example.server;
 
 import com.lubin.rpc.server.RPCServer;
 

@@ -6,6 +6,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.lubin.rpc.client.RPCClient;
 import com.lubin.rpc.example.obj.IHelloWordObj;
+import com.lubin.rpc.example.obj.IHelloWordObj.HellMsg;
+import com.lubin.rpc.example.obj.IHelloWordObj.Msg;
 
 public class HelloClient {
 	
@@ -43,17 +45,30 @@ public class HelloClient {
 
 		System.out.println("total time costed:" + totalTimeCosted.get()	+ "|req/s=" + requestNum * threadNum / (double) (totalTimeCosted.get() / 1000));
 
-		InetSocketAddress server1 = new InetSocketAddress("127.0.0.1", 9090);
-		InetSocketAddress server2 = new InetSocketAddress("127.0.0.1", 9091);
 
 		ArrayList<InetSocketAddress> serverList = new ArrayList<InetSocketAddress>();
-		serverList.add(server1);
-		serverList.add(server2);
+		serverList.add(new InetSocketAddress("127.0.0.1", 9090));
+		serverList.add(new InetSocketAddress("127.0.0.1", 9091));
 
-		IHelloWordObj client = RPCClient.createObjectProxy(serverList,
-				IHelloWordObj.class);
+		IHelloWordObj client = RPCClient.createObjectProxy(serverList, IHelloWordObj.class);
 
-		System.out.println("test server list:" + client.hello("test server list11"));
+		HellMsg msg =new HellMsg();
+		msg.setI(1);
+		msg.setL(2L);
+		msg.setS("hello1");
+		msg.setMsg(new Msg());
+		msg.getMsg().setI(2);
+		msg.getMsg().setL(3L);
+		msg.getMsg().setS("hello2");
+		
+		System.out.println("test server list:" + client.testMst(msg));
+		Msg res = client.testMst(msg);
+		if(!(res.getI() == msg.getI() + msg.getMsg().getI()) 
+			|| !(res.getL() == msg.getL() + msg.getMsg().getL())
+			||!(res.getS() .equals(msg.getS() + msg.getMsg().getS())))
+		{
+			System.out.println("tesg Msg got error!");
+		}
 
 		RPCClient.getEventLoopGroup().shutdownGracefully();
     }

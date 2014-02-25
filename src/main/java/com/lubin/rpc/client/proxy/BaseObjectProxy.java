@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.lubin.rpc.client.DefaultClientHandler;
 import com.lubin.rpc.client.RPCClient;
@@ -25,7 +27,7 @@ import com.lubin.rpc.protocol.Request;
 public class BaseObjectProxy<T> {
 
 
-	protected static final Logger logger = Logger.getLogger(BaseObjectProxy.class.getName());
+	private final Logger logger = LoggerFactory.getLogger(BaseObjectProxy.class);
 	 
 	protected Class<T> clazz;
 	
@@ -67,8 +69,7 @@ public class BaseObjectProxy<T> {
 			 try {
 				 channelFuture.await();
 			} catch (InterruptedException e) {
-				System.out.println("unable to connect to server|host="+server.getHostString()+"|port="+server.getPort());
-				e.printStackTrace();
+				logger.warn("unable to connect to server|host="+server.getHostString()+"|port="+server.getPort(),e);
 			}
 		 }
 	}
@@ -99,7 +100,7 @@ public class BaseObjectProxy<T> {
 					 });
 	
 				} catch (Exception e) {
-					System.out.println("doReconnect got exception"+e.getMessage());
+					logger.warn("doReconnect got exception"+e.getMessage(),e);
 					doReconnect(channel, remotePeer);
 				}
 			}
