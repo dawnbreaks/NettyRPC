@@ -50,7 +50,7 @@ public class BetterExecutorService extends AbstractExecutorService {
     drainerList = new ArrayBlockingQueue<Drainer>(maxDrainers);
     
     for (int i = 0; i < maxDrainers; i++) {
-      drainerList.add(new Drainer(String.format("%s-%03d", poolName, i)));
+      drainerList.add(new Drainer(String.format("%s-%03d", this.poolName, i)));
     }
   }
 
