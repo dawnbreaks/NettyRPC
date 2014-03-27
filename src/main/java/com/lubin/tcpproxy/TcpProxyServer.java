@@ -71,14 +71,14 @@ public class TcpProxyServer {
 		try {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup)
-					.channel(NioServerSocketChannel.class)
-					.childHandler(new FrontendInitializer())
-					.option(ChannelOption.SO_BACKLOG, TcpProxyServer.getConfig().getInt("tcpProxyServer.SO_BACKLOG"))
-					.option(ChannelOption.SO_REUSEADDR, true)
-					.option(ChannelOption.SO_TIMEOUT, TcpProxyServer.getConfig().getInt("tcpProxyServer.SO_TIMEOUT"))
-					.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TcpProxyServer.getConfig().getInt("tcpProxyServer.CONNECT_TIMEOUT_MILLIS"))
+				.channel(NioServerSocketChannel.class)
+				.childHandler(new FrontendInitializer())
+				.option(ChannelOption.SO_BACKLOG, TcpProxyServer.getConfig().getInt("tcpProxyServer.SO_BACKLOG"))
+				.option(ChannelOption.SO_REUSEADDR, true)
+				.option(ChannelOption.SO_TIMEOUT, TcpProxyServer.getConfig().getInt("tcpProxyServer.SO_TIMEOUT"))
+				.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TcpProxyServer.getConfig().getInt("tcpProxyServer.CONNECT_TIMEOUT_MILLIS"))
 //					.option(ChannelOption.AUTO_READ, false)
-					.option(ChannelOption.SO_KEEPALIVE, true);
+				.option(ChannelOption.SO_KEEPALIVE, true);
 
 			ArrayList<Channel> allchannels =new ArrayList<Channel>();
 			ArrayList<ProxyHost> hostList = getProxyHostList();

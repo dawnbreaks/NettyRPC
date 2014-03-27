@@ -31,8 +31,7 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         InetSocketAddress localAddress = (InetSocketAddress) inboundChannel.localAddress();
         int port = localAddress.getPort();
         ProxyHost outboundRemoteHost = TcpProxyServer.getProxyHosts().get(port);
-        
-        
+  
         // Start the connection attempt.
         Bootstrap b = new Bootstrap();
         b.group(inboundChannel.eventLoop())
@@ -48,29 +47,10 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 //         .option(ChannelOption.AUTO_READ, false);
         ChannelFuture f = b.connect(outboundRemoteHost.getRemoteHost(), outboundRemoteHost.getRemotePort());
         outboundChannel = f.channel();
-        f.addListener(new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) throws Exception {
-                if (future.isSuccess()) {
-                    // connection complete start to read first data
-                    inboundChannel.read();
-                    System.out.println("ProxyFrontendHandler.connect.operationComplete");
-                } else {
-                    // Close the connection if the connection attempt has failed.
-                    inboundChannel.close();
-                    System.out.println("ProxyFrontendHandler.connect.operationComplete failed");
-                }
-            }
-        });
-        System.out.println("ProxyFrontendHandler.channelActive");
     }
 
     public Channel getInboundChannel() {
 		return inboundChannel;
-	}
-
-	public void setInboundChannel(Channel inboundChannel) {
-		this.inboundChannel = inboundChannel;
 	}
 
 	@Override
@@ -94,7 +74,6 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         if (outboundChannel != null) {
             closeOnFlush(outboundChannel);
         }
-        System.out.println("ProxyFrontendHandler.channelInactive");
     }
 
     @Override
@@ -112,7 +91,7 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-	public void outBoundReady() {
+	public void outBoundChannelReady() {
 		synchronized (buffer) {
 			if(outboundChannel.isActive()){
         		for(Object ojb : buffer){
