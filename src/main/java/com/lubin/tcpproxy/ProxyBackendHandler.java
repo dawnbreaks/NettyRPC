@@ -24,12 +24,12 @@ public class ProxyBackendHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        ProxyFrontendHandler.closeOnFlush(proxyFrondtendHandle.getInboundChannel());
+    	proxyFrondtendHandle.close();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
-        ProxyFrontendHandler.closeOnFlush(ctx.channel());
+        proxyFrondtendHandle.close();
     }
 }

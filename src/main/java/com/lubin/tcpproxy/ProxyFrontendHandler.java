@@ -20,9 +20,16 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
   
 	private LinkedList<Object> buffer = new LinkedList<Object> ();
 
-    private volatile Channel outboundChannel;
+    private Channel outboundChannel;
     
-    private volatile Channel inboundChannel;
+    private Channel inboundChannel;
+    
+    
+    /*
+     * add this property to avoid unnecessary lock to improve performance.
+     * ( volatile keyword is unnecessary here) 
+     */
+    private boolean outBoundChnnlReady =false;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -32,7 +39,6 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         int port = localAddress.getPort();
         ProxyHost outboundRemoteHost = TcpProxyServer.getProxyHosts().get(port);
   
-        // Start the connection attempt.
         Bootstrap b = new Bootstrap();
         b.group(inboundChannel.eventLoop())
         	.channel(ctx.channel().getClass())
@@ -41,10 +47,8 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         	.option(ChannelOption.SO_REUSEADDR, true)
         	.option(ChannelOption.SO_TIMEOUT, TcpProxyServer.getConfig().getInt("tcpProxyServer.SO_TIMEOUT"))
         	.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TcpProxyServer.getConfig().getInt("tcpProxyServer.CONNECT_TIMEOUT_MILLIS"))
-//        	.option(ChannelOption.AUTO_READ, false)
         	.option(ChannelOption.SO_KEEPALIVE, true);
         
-//         .option(ChannelOption.AUTO_READ, false);
         ChannelFuture f = b.connect(outboundRemoteHost.getRemoteHost(), outboundRemoteHost.getRemotePort());
         outboundChannel = f.channel();
     }
@@ -56,7 +60,18 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 	@Override
     public void channelRead(final ChannelHandlerContext ctx, Object msg) throws Exception {
 		
+		if(outBoundChnnlReady){			 
+			outboundChannel.writeAndFlush(msg);
+			return;
+		}
+		
     	synchronized (buffer) {
+    		
+    		if(outBoundChnnlReady){
+    			outboundChannel.writeAndFlush(msg);
+    			return;
+    		}
+    		
     		if(outboundChannel.isActive()){
         		for(Object ojb : buffer){
         			outboundChannel.writeAndFlush(ojb);
@@ -79,18 +94,21 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
-        closeOnFlush(ctx.channel());
+        close();
     }
 
-    /**
-     * Closes the specified channel after all queued write requests are flushed.
-     */
-    static void closeOnFlush(Channel ch) {
+
+    public void closeOnFlush(Channel ch) {
         if (ch.isActive()) {
             ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
         }
     }
 
+    public void close() {
+    	closeOnFlush(inboundChannel);
+    	closeOnFlush(outboundChannel);
+    }
+    
 	public void outBoundChannelReady() {
 		synchronized (buffer) {
 			if(outboundChannel.isActive()){
@@ -99,6 +117,8 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         		}
         		buffer.clear();
         	}
+			
+			outBoundChnnlReady = true;
 		}
 	}
 }

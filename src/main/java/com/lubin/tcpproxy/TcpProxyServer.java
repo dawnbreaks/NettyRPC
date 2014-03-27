@@ -10,13 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
-import com.lubin.rpc.client.proxy.BaseObjectProxy;
-import com.lubin.rpc.thread.BetterExecutorService;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigObject;
@@ -31,39 +25,12 @@ public class TcpProxyServer {
 	public static HashMap<Integer, ProxyHost> getProxyHosts() {
 		return proxyHosts;
 	}
-
-
-	public static void setProxyHosts(HashMap<Integer, ProxyHost> proxyHosts) {
-		TcpProxyServer.proxyHosts = proxyHosts;
-	}
-
-
+	
 	public static Config getConfig(){
 		return conf;
 	}
 	
-	private static BetterExecutorService threadPool;
-
-	public static void submit(Runnable task){
-		if(threadPool == null){
-			synchronized (BaseObjectProxy.class) {
-				if(threadPool==null){
-					LinkedBlockingDeque<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<Runnable>();
-					ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 600L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
-					threadPool = new BetterExecutorService(linkedBlockingDeque, executor,"Client async thread pool",TcpProxyServer.getConfig().getInt("server.asyncThreadPoolSize"));
-				}
-			}
-		}
-		
-		threadPool.submit(task);
-	}
-
-	
-	public TcpProxyServer() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-
-	}
-
-	public void run() throws Exception {
+	private void run() throws Exception {
 
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		
@@ -77,8 +44,8 @@ public class TcpProxyServer {
 				.option(ChannelOption.SO_REUSEADDR, true)
 				.option(ChannelOption.SO_TIMEOUT, TcpProxyServer.getConfig().getInt("tcpProxyServer.SO_TIMEOUT"))
 				.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TcpProxyServer.getConfig().getInt("tcpProxyServer.CONNECT_TIMEOUT_MILLIS"))
-//					.option(ChannelOption.AUTO_READ, false)
 				.option(ChannelOption.SO_KEEPALIVE, true);
+//				.option(ChannelOption.AUTO_READ, false)
 
 			ArrayList<Channel> allchannels =new ArrayList<Channel>();
 			ArrayList<ProxyHost> hostList = getProxyHostList();
@@ -140,7 +107,6 @@ public class TcpProxyServer {
 		public void setRemoteHost(String remoteHost) {
 			this.remoteHost = remoteHost;
 		}
-	
 	}
 
 	public static void main(String[] args) throws Exception {
