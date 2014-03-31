@@ -1,1 +1,1 @@
-java -cp ./dependency/*;./*  com.lubin.rpc.example.server.HelloWorldServer 
+java -cp ./dependency/*;./*  com.lubin.rpc.server.RPCServer
