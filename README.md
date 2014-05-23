@@ -14,6 +14,7 @@ Features
   * High availability, load balance and failover 
   * Multi thread server and multi thread client
   * Thread safe client, for an remote Object you only need to create a singleton client. 
+  * Service Discovery, use zookeeper as a service registry. (unimplemented yet)
   * PHP client (unimplemented yet)  
   
 Simple tutorial
