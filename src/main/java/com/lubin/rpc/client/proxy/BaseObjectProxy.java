@@ -69,7 +69,7 @@ public class BaseObjectProxy<T> {
 			 try {
 				 channelFuture.await();
 			} catch (InterruptedException e) {
-				logger.warn("unable to connect to server|host="+server.getHostString()+"|port="+server.getPort(),e);
+				logger.warn("unable to connect to server|server="+server.toString(),e);
 			}
 		 }
 	}

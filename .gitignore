@@ -9,3 +9,6 @@
 .classpath
 .settings
 .project
+default/000016.sst
+*.sst
+default/MANIFEST-000017

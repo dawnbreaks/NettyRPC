@@ -38,5 +38,12 @@
 			<artifactId>config</artifactId>
 			<version>1.2.0</version>
 		</dependency>
+	    <dependency>
+			<groupId>org.fusesource.leveldbjni</groupId>
+			<artifactId>leveldbjni-all</artifactId>
+			<version>1.7</version>
+	   </dependency>
+	   
+	   
 	</dependencies>
 </project>
