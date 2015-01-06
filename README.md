@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/dawnbreaks/NettyRPC.png?branch=master)](https://travis-ci.org/dawnbreaks/NettyRPC)
 NettyRPC
 ========
 
