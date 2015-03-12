@@ -149,7 +149,7 @@ public class RPCFuture implements Future<Object>{
         });
 	}
 	
-	public void addCallback(AsyncRPCCallback callback){
+	public RPCFuture addCallback(AsyncRPCCallback callback){
 	    lock.lock();
 	    try{
 	        if(isDone()){
@@ -160,6 +160,7 @@ public class RPCFuture implements Future<Object>{
 	    }finally{
 	        lock.unlock();
 	    }
+	    return this;
 	}
 	
 
