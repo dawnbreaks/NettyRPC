@@ -18,6 +18,7 @@ public class Benchmark {
 		final String host = "127.0.0.1";// 192.168.0.51 127.0.0.1
 		final int port = 9090;
 
+		
 		int threadNum = 1;
 		final int requestNum = 400000;
 		Thread[] threads = new Thread[threadNum];
@@ -26,6 +27,13 @@ public class Benchmark {
 		serverList.add(new InetSocketAddress(host, port));
 		serverList.add(new InetSocketAddress(host, port));
 		final IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(serverList, IHelloWordObj.class);
+		AsyncHelloWorldCallback callback1 = new AsyncHelloWorldCallback(10000);
+		for (int i = 0; i < 10000; i++) {
+            client.call("hello",  "hello world!" + i ).addCallback(callback1);
+        }
+		
+		Thread.sleep(10*1000);
+		
 		final AsyncHelloWorldCallback callback = new AsyncHelloWorldCallback(requestNum*threadNum);
 		for (int i = 0; i < threadNum; i++) {
 			threads[i] = new Thread(new Runnable() {
