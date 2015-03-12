@@ -73,11 +73,11 @@ public class BaseObjectProxy<T> {
 				}
 			 });
 			 
-			 try {
-				 channelFuture.await();
-			} catch (InterruptedException e) {
-				logger.warn("unable to connect to server|server="+server.toString(),e);
-			}
+//			 try {
+//				 channelFuture.await();
+//			} catch (InterruptedException e) {
+//				logger.warn("unable to connect to server|server="+server.toString(),e);
+//			}
 		 }
 	}
 	
@@ -132,7 +132,7 @@ public class BaseObjectProxy<T> {
 	private void signalAvailableHandler() {
         lock.lock();
         try{
-            connected.signal();
+            connected.signalAll();
         }finally{
             lock.unlock();
         }

@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-import com.lubin.rpc.client.proxy.AsyncRPCCallback;
 import com.lubin.rpc.client.proxy.BaseObjectProxy;
 import com.lubin.rpc.protocol.RPCContext;
 
