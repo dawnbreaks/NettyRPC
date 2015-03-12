@@ -29,7 +29,8 @@ public class AsyncHelloClient {
 				 	 IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(host, port, IHelloWordObj.class);
 					 long start = System.currentTimeMillis();
 					 for(int i=0;i<requestNum;i++){
-					 	RPCFuture result = client.call("hello", new Object[]{"hello world!"+i}, new AsyncHelloWorldCallback("hello world!"+i));
+					 	RPCFuture result = client.call("hello", "hello world!"+i);
+					 	result.addCallback(new AsyncHelloWorldCallback("hello world!"+i));
 					  }
 					 totalTimeCosted.addAndGet(System.currentTimeMillis() - start);
 				}
@@ -45,8 +46,8 @@ public class AsyncHelloClient {
 		 IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(host, port, IHelloWordObj.class);
 	
 		 
-		 RPCFuture helloFuture = client.call("hello", new Object[]{"hello world!"});
-		 RPCFuture testFuture = client.call("test", new Object[]{1,"hello world!",2L});
+		 RPCFuture helloFuture = client.call("hello", "hello world!");
+		 RPCFuture testFuture = client.call("test", 1,"hello world!",2L);
 		 
 		 System.out.println(helloFuture.get(3000, TimeUnit.MILLISECONDS));
 		 System.out.println(testFuture.get(3000, TimeUnit.MILLISECONDS));

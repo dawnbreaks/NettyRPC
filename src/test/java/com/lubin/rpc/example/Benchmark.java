@@ -32,7 +32,7 @@ public class Benchmark {
 				@Override
 				public void run() {
 					for (int i = 0; i < requestNum; i++) {
-						client.call("hello", new Object[] { "hello world!" + i }, callback);
+						client.call("hello",  "hello world!" + i ).addCallback(callback);
 					}
 				}
 			});
