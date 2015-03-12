@@ -86,10 +86,12 @@ client {
 ```java
     IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
     
-    RPCFuture helloFuture = client.call("hello", "hello world!");
-    RPCFuture testFuture = client.call("test", 1,"hello world!",2L);
+    RPCFuture helloFuture = asyncClient.call("hello", "hello world!");
+    RPCFuture testFuture = asyncClient.call("test", 1,"hello world!",2L);
     Object res1= helloFuture.get(3000, TimeUnit.MILLISECONDS);
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
+    
+    asyncClient.notify("notifySomeThing", 1, "hello world!", 2L);
 ```
 #####5.2. Optionally you can provide a callback which will be called by NettyRPC after received response from server.
 ```java
@@ -105,8 +107,8 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 }
 
     IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
-    RPCFuture helloFuture = client.call("hello", "hello world!").addCallback(new AsyncHelloWorldCallback());
-    RPCFuture testFuture = client.call("test", 1,"hello world!",2L).addCallback(new AsyncHelloWorldCallback());
+    RPCFuture helloFuture = asyncClient.call("hello", "hello world!").addCallback(new AsyncHelloWorldCallback());
+    RPCFuture testFuture = asyncClient.call("test", 1,"hello world!",2L).addCallback(new AsyncHelloWorldCallback());
 ```
 
 ####6 High availability, you can deploy more than one servers to achieve HA, NettyRPC  handle load balance and failover automatically.  
