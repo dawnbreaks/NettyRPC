@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +33,14 @@ public class BaseObjectProxy<T> {
 	 
 	protected Class<T> clazz;
 	
+	private ReentrantLock lock = new ReentrantLock();
+	private Condition connected  = lock.newCondition(); 
+	
 	protected CopyOnWriteArrayList<DefaultClientHandler> handlers = new CopyOnWriteArrayList<DefaultClientHandler>();
 	
 	private AtomicInteger roundRobin = new AtomicInteger(0);
+
+    private int reconnInterval;
 
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
@@ -46,7 +53,7 @@ public class BaseObjectProxy<T> {
 
 	public BaseObjectProxy(ArrayList<InetSocketAddress> servers, Class<T> clazz) {
 		 this.clazz = clazz;
-		 
+		 this.reconnInterval = RPCClient.getConfig().getInt("client.reconnInterval");
 		 for(final InetSocketAddress server : servers){
 		 	 Bootstrap b = new Bootstrap();
 		 	 b.group(RPCClient.getEventLoopGroup())
@@ -61,7 +68,7 @@ public class BaseObjectProxy<T> {
 					if(!channelFuture.isSuccess()){
 						doReconnect(channelFuture.channel(), server );
 					}else{
-						handlers.add(channelFuture.channel().pipeline().get(DefaultClientHandler.class));
+					    addHandler(channelFuture.channel().pipeline().get(DefaultClientHandler.class));
 					}
 				}
 			 });
@@ -72,6 +79,11 @@ public class BaseObjectProxy<T> {
 				logger.warn("unable to connect to server|server="+server.toString(),e);
 			}
 		 }
+	}
+	
+	private void addHandler(DefaultClientHandler handler){
+	    handlers.add(handler);
+	    signalAvailableHandler();
 	}
 
 	public void doReconnect(final Channel channel,final SocketAddress remotePeer) {
@@ -94,7 +106,7 @@ public class BaseObjectProxy<T> {
 								doReconnect(channelFuture.channel(), remotePeer );
 							}else{
 								DefaultClientHandler handler = channelFuture.channel().pipeline().get(DefaultClientHandler.class);
-								handlers.add(handler);
+								addHandler(handler);
 							}
 						}
 					 });
@@ -104,27 +116,60 @@ public class BaseObjectProxy<T> {
 					doReconnect(channel, remotePeer);
 				}
 			}
-		}, RPCClient.getConfig().getInt("client.reconnInterval"), TimeUnit.MILLISECONDS);
+		}, reconnInterval, TimeUnit.MILLISECONDS);
 	}
+	
+	
+	private boolean waitingForHandler() throws InterruptedException{
+	    lock.lock();
+	    try{
+	        return connected.await(reconnInterval, TimeUnit.MILLISECONDS);
+	    }finally{
+	        lock.unlock();
+	    }
+	}
+	
+	private void signalAvailableHandler() {
+        lock.lock();
+        try{
+            connected.signal();
+        }finally{
+            lock.unlock();
+        }
+    }
 	
 	DefaultClientHandler chooseHandler(){
 		
 		CopyOnWriteArrayList<DefaultClientHandler> handlers = (CopyOnWriteArrayList<DefaultClientHandler>) this.handlers.clone();
 		int size = handlers.size();
 		if(size <= 0){
-			throw new RuntimeException("Cann't connect any servers!");
+		    try {
+		        boolean available = waitingForHandler();
+		        if(available){
+		            handlers = (CopyOnWriteArrayList<DefaultClientHandler>) this.handlers.clone();
+		            size = handlers.size();
+		        }
+		       
+                if(size <= 0){
+                    throw new RuntimeException("Cann't connect any servers!");
+                }
+                
+            } catch (InterruptedException e) {
+                logger.error("chooseHandler|msg=" + e.getMessage(), e);
+                throw new RuntimeException("Cann't connect any servers!", e);
+            }
 		}
 		int index = (roundRobin.getAndAdd(1) + size)%size;
 		return handlers.get(index);
 	}
 
-	RPCContext createRequest(String funcName, Object[] args, long seqNum, char type) {
+	RPCContext createRequest(String funcName, Object[] args, long seqNum, byte type) {
 		try{
 			Request req = new Request();
 			req.setSeqNum(seqNum);
 			req.setObjName(clazz.getSimpleName());
 			req.setFuncName(funcName);
-			req.setSerializer((char) RPCClient.getConfig().getInt("client.serializer"));
+			req.setSerializer((byte) RPCClient.getConfig().getInt("client.serializer"));
 			req.setArgs(args);
 			   
 			Class[] parameterTypes = new Class[args.length];

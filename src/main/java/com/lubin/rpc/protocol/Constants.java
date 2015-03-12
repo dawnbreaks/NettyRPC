@@ -2,6 +2,8 @@ package com.lubin.rpc.protocol;
 
 public class Constants {
 	
+    public static int headerLen = 5;
+    
 	public interface RPCStatus {
 		char ok = 0;
 		char exception = 1;
@@ -9,15 +11,20 @@ public class Constants {
 	}
 	
 	public interface RPCType {
-		char normal = 0;
-		char oneway = 1;
-		char async = 2;
+	    byte normal = 0;
+	    byte oneway = 1;
+	    byte async = 2;
 	}
 	
+	public interface MessageType {
+        byte request = 0;
+        byte response = 1;
+    }
+	
 	public interface RPCSerializer {
-		char kryo = 0;
-		char json = 1;
-		char msgpack = 2;
-		char bson = 3;
+		byte kryo = 0;
+		byte json = 1;
+		byte msgpack = 2;
+		byte bson = 3;
 	}
 }

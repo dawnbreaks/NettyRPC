@@ -37,25 +37,25 @@ public class Decoder extends ByteToMessageDecoder  {
     	int bodyLength = 0;
     	int readerIndex=in.readerIndex();
     	
-    	int headerLenth = 6;
-    	char serializer = Constants.RPCSerializer.kryo;
-    	if( in.readableBytes() < headerLenth)	{
+    	int headerLength = Constants.headerLen;
+    	byte serializer = Constants.RPCSerializer.kryo;
+    	if( in.readableBytes() < headerLength)	{
     		return; 
-    	}else if( in.readableBytes() >= headerLenth){
+    	}else if( in.readableBytes() >= headerLength){
     		bodyLength =  in.getInt(readerIndex);
-    		serializer = in.getChar(readerIndex+4);
-    		packetLength = headerLenth + bodyLength ;
+    		serializer = in.getByte(readerIndex+4);
+    		packetLength = headerLength + bodyLength ;
     	}
  
         //  we have got the length of the package
-        if (packetLength > headerLenth) {
+        if (packetLength > headerLength) {
             if (in.readableBytes() < packetLength) {
                 return;
             } else {
 
             	if(serializer == Constants.RPCSerializer.kryo){
     		        byte[] body = new byte[bodyLength];								
-    		        in.getBytes(readerIndex + headerLenth, body);			 //todo  : avoid memory copy
+    		        in.getBytes(readerIndex + headerLength, body);			 //todo  : avoid memory copy
     		        Object bodyObj =  KryoSerializer.read(body);  
     		        
     		        RPCContext context = new RPCContext();
@@ -72,7 +72,7 @@ public class Decoder extends ByteToMessageDecoder  {
     		        return;
             	}else if(serializer == Constants.RPCSerializer.json){
     		        byte[] body = new byte[bodyLength];								
-    		        in.getBytes(readerIndex + headerLenth, body);			 //todo  : avoid memory copy
+    		        in.getBytes(readerIndex + headerLength, body);			 //todo  : avoid memory copy
     		        RPCContext context = new RPCContext();
     		        try{
     		        	if(decodeRequst){

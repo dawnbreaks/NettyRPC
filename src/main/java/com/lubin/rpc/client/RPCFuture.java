@@ -1,10 +1,14 @@
 package com.lubin.rpc.client;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.ReentrantLock;
 
 import com.lubin.rpc.client.proxy.AsyncRPCCallback;
 import com.lubin.rpc.protocol.Constants;
@@ -17,8 +21,9 @@ public class RPCFuture implements Future<Object>{
 
     private Sync sync;
 	private RPCContext rpcCtx;
-
-	private AsyncRPCCallback callback;
+	
+	private ReentrantLock lock = new ReentrantLock();
+	private List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
 
 	private DefaultClientHandler handler;
     
@@ -50,21 +55,19 @@ public class RPCFuture implements Future<Object>{
     }
 
 
-
-	//Constructor
-	public RPCFuture (RPCContext rpcCtx,DefaultClientHandler handler, AsyncRPCCallback callback){
-		this.sync = new Sync();
-		this.rpcCtx = rpcCtx;
-		this.handler = handler;
-		this.callback = callback;
-	}
+//	//Constructor
+//	public RPCFuture (RPCContext rpcCtx,DefaultClientHandler handler, AsyncRPCCallback callback){
+//		this.sync = new Sync();
+//		this.rpcCtx = rpcCtx;
+//		this.handler = handler;
+//		this.callback = callback;
+//	}
 	
 	//Constructor
 	public RPCFuture (RPCContext rpcCtx,DefaultClientHandler handler){
 		this.sync = new Sync();
 		this.rpcCtx = rpcCtx;
 		this.handler = handler;
-		this.callback = null;
 	}
 	
 	@Override
@@ -105,52 +108,77 @@ public class RPCFuture implements Future<Object>{
 	//wake up caller thread or summit task to excute async callback , will be called by event loop thread when received response from Server.
 	public void done(Response reponse){
 		this.rpcCtx.setResponse(reponse);
-		char type = rpcCtx.getRequest().getType();
+		byte type = rpcCtx.getRequest().getType();
 		if(type== Constants.RPCType.normal){//wake up caller thread 
 			sync.release(1);
 		}else if(type== Constants.RPCType.async ){//submit task to execute async callback 
 			sync.release(1);
-			
-			if(callback != null){
-				RPCClient.submit(new Runnable(){
-					@Override
-					public void run() {
-						Response response = rpcCtx.getResponse();
-						char status = response.getStatus();
-						if(status == Constants.RPCStatus.ok){
-							callback.success(response.getResult());
-						}else if(status == Constants.RPCStatus.exception){
-							callback.fail(new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
-						}else if(status == Constants.RPCStatus.unknownError){
-							callback.fail(new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
-						}
-					}
-				});
-			}
-
+			invokeCallbacks();
 
 		}else if(type== Constants.RPCType.oneway){
 			//oneway call wonn't got a response from server.
 			
 		}
 	}
+	
+	private void invokeCallbacks(){
+	    lock.lock();
+        try{
+            for(final AsyncRPCCallback callback : pendingCallbacks){
+                runCallback(callback);
+            }
+        }finally{
+            lock.unlock();
+        }
+	}
+	
+	private void runCallback(final AsyncRPCCallback callback){
+        RPCClient.submit(new Runnable(){
+            @Override
+            public void run() {
+                Response response = rpcCtx.getResponse();
+                char status = response.getStatus();
+                if(status == Constants.RPCStatus.ok){
+                    callback.success(response.getResult());
+                }else if(status == Constants.RPCStatus.exception){
+                    callback.fail(new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
+                }else if(status == Constants.RPCStatus.unknownError){
+                    callback.fail(new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg()));
+                }
+            }
+        });
+	}
+	
+	public void addCallback(AsyncRPCCallback callback){
+	    lock.lock();
+	    try{
+	        if(isDone()){
+	            runCallback(callback);
+	        }else{
+	            this.pendingCallbacks.add(callback);
+	        }
+	    }finally{
+	        lock.unlock();
+	    }
+	}
+	
 
     //call by caller thread to get result
-	private Object processResponse() {
+    private Object processResponse() {
 
-		char type = rpcCtx.getRequest().getType();
-		
-		if(type == Constants.RPCType.normal||type == Constants.RPCType.async){//process response to return result or throw error/exception.
-			
-			Response response = rpcCtx.getResponse();
-			char status = response.getStatus();
-			
-			if(status == Constants.RPCStatus.exception){
-				throw new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
-			}else if(status == Constants.RPCStatus.unknownError){
-				throw new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
-			}
-		}
-		return rpcCtx.getResponse().getResult();
-	}
+        byte type = rpcCtx.getRequest().getType();
+        
+        if(type == Constants.RPCType.normal||type == Constants.RPCType.async){//process response to return result or throw error/exception.
+            
+            Response response = rpcCtx.getResponse();
+            char status = response.getStatus();
+            
+            if(status == Constants.RPCStatus.exception){
+                throw new RuntimeException("Got exception in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
+            }else if(status == Constants.RPCStatus.unknownError){
+                throw new RuntimeException("Got unknown error in server|objName="+rpcCtx.getRequest().getObjName()+"|funcName="+rpcCtx.getRequest().getFuncName()+"|server msg="+response.getMsg());
+            }
+        }
+        return rpcCtx.getResponse().getResult();
+    }
 }

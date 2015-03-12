@@ -4,8 +4,8 @@ package com.lubin.rpc.protocol;
 public class Response {
 	private long seqNum;
 	private int version;
-	private char type;  //0 normal, 1oneway, 2 async
-	private char serializer;//0 kryo 1 json 2 msgpack 3 bson
+	private byte type;  //0 normal, 1oneway, 2 async
+	private byte serializer;//0 kryo 1 json 2 msgpack 3 bson
 	private String objName;
 	private String funcName;
 	
@@ -28,10 +28,10 @@ public class Response {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	public char getType() {
+	public byte getType() {
 		return type;
 	}
-	public void setType(char type) {
+	public void setType(byte type) {
 		this.type = type;
 	}
 	public String getObjName() {
@@ -64,15 +64,10 @@ public class Response {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public void setSerializer(char serializer) {
+	public void setSerializer(byte serializer) {
 		this.serializer = serializer;
 	}
-	public char getSerializer() {
+	public byte getSerializer() {
 		return serializer;
 	}
-	
-	
-	
-	
-	
 }

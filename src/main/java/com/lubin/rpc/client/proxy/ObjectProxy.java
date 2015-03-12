@@ -44,19 +44,19 @@ public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHand
 	}
 
 
-	@Override
-	public RPCFuture call(String funcName, Object[] args, AsyncRPCCallback callback){
-		
-		DefaultClientHandler handler = chooseHandler();
-		long seqNum = handler.getNextSequentNumber();
-		RPCContext rpcCtx = createRequest(funcName, args, seqNum, Constants.RPCType.async);
-		
-		RPCFuture rpcFuture = handler.doRPC(rpcCtx,callback);
-		return rpcFuture;
-	}
+//	@Override
+//	public RPCFuture call(AsyncRPCCallback callback, String funcName, Object... args){
+//		
+//		DefaultClientHandler handler = chooseHandler();
+//		long seqNum = handler.getNextSequentNumber();
+//		RPCContext rpcCtx = createRequest(funcName, args, seqNum, Constants.RPCType.async);
+//		
+//		RPCFuture rpcFuture = handler.doRPC(rpcCtx,callback);
+//		return rpcFuture;
+//	}
 	
 	@Override
-	public RPCFuture call(String funcName, Object[] args){
+	public RPCFuture call(String funcName, Object... args){
 		
 		DefaultClientHandler handler = chooseHandler();
 		long seqNum = handler.getNextSequentNumber();

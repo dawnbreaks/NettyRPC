@@ -22,7 +22,7 @@ public class Encoder extends ChannelOutboundHandlerAdapter {
     	if(msg instanceof RPCContext){
     		RPCContext rpcContext = (RPCContext)msg;
     		Object objToEncode;
-    		char serializer;
+    		byte serializer;
     		if(rpcContext.getResponse() !=null){
     			objToEncode = rpcContext.getResponse();
     			serializer = rpcContext.getResponse().getSerializer();
@@ -40,10 +40,10 @@ public class Encoder extends ChannelOutboundHandlerAdapter {
     			bytes = KryoSerializer.write(objToEncode);
     		}
     		
-    		ByteBuf byteBuf = ctx.alloc().buffer(6+bytes.length);
+    		ByteBuf byteBuf = ctx.alloc().buffer(Constants.headerLen + bytes.length);
     		//header
     		byteBuf.writeInt(bytes.length);
-    		byteBuf.writeChar(serializer);
+    		byteBuf.writeByte(serializer);
     		//body
     		byteBuf.writeBytes(bytes);
     		ctx.writeAndFlush(byteBuf, promise); 

@@ -85,15 +85,9 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 		objProxy.doReconnect(ctx.channel(), remotePeer);
 	}
 	
-
 	
 	public RPCFuture doRPC(RPCContext rpcCtx){
-		return doRPC(rpcCtx,null);
-	}
-	
-	
-	public RPCFuture doRPC(RPCContext rpcCtx, AsyncRPCCallback callback){
-		RPCFuture rpcFuture = new RPCFuture(rpcCtx, this, callback);
+		RPCFuture rpcFuture = new RPCFuture(rpcCtx, this);
 		pendingRPC.put(rpcCtx.getRequest().getSeqNum(), rpcFuture);
 		channel.writeAndFlush(rpcCtx);
 		return rpcFuture;
