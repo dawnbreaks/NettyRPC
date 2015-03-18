@@ -52,7 +52,7 @@
 	
 	<build>
 		<plugins>
-			plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.2</version>
@@ -61,7 +61,7 @@
 					<target>1.7</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
-			/plugin>
-		/plugins>
+			</plugin>
+		</plugins>
 	</build>
 </project>
