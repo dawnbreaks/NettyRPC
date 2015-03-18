@@ -26,7 +26,7 @@ public class Benchmark {
 		ArrayList<InetSocketAddress> serverList =new ArrayList<InetSocketAddress>();
 		serverList.add(new InetSocketAddress(host, port));
 		serverList.add(new InetSocketAddress(host, port));
-		final IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(serverList, IHelloWordObj.class);
+		final IAsyncObjectProxy client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNodes(serverList).buildAsyncObjPrx();
 		AsyncHelloWorldCallback callback1 = new AsyncHelloWorldCallback(10000);
 		for (int i = 0; i < 10000; i++) {
             client.call("hello",  "hello world!" + i ).addCallback(callback1);
@@ -55,7 +55,7 @@ public class Benchmark {
 		}
 
 		System.out.print("shutdownGracefully");
-		RPCClient.shutdown();
+		RPCClient.getInstance().shutdown();
 	}
 	
 	

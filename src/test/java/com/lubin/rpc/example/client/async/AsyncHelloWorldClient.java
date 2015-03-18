@@ -1,4 +1,4 @@
-package com.lubin.rpc.example.async;
+package com.lubin.rpc.example.client.async;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -8,7 +8,7 @@ import com.lubin.rpc.client.RPCFuture;
 import com.lubin.rpc.client.proxy.IAsyncObjectProxy;
 import com.lubin.rpc.example.obj.IHelloWordObj;
 
-public class AsyncHelloClient {
+public class AsyncHelloWorldClient {
 	
 
     public static void main(String[] args) throws Exception {
@@ -26,7 +26,7 @@ public class AsyncHelloClient {
 			 @Override
 			 public void run() {
 
-				 	 IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(host, port, IHelloWordObj.class);
+				 	 IAsyncObjectProxy client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNode(host, port).buildAsyncObjPrx();;
 					 long start = System.currentTimeMillis();
 					 for(int i=0;i<requestNum;i++){
 					 	RPCFuture result = client.call("hello", "hello world!"+i);
@@ -43,7 +43,7 @@ public class AsyncHelloClient {
 
          System.out.println("total time costed:"+totalTimeCosted.get()+"|req/s="+requestNum*threadNum/(double)(totalTimeCosted.get()/1000));
 
-		 IAsyncObjectProxy client = RPCClient.createAsyncObjPrx(host, port, IHelloWordObj.class);
+		 IAsyncObjectProxy client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNode(host, port).buildAsyncObjPrx();
 	
 		 
 		 RPCFuture helloFuture = client.call("hello", "hello world!");

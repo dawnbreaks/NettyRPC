@@ -1,4 +1,4 @@
-package com.lubin.rpc.myTable.test;
+package com.lubin.rpc.myTable;
 
 import com.lubin.rpc.server.RPCServer;
 

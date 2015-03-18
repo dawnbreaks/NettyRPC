@@ -6,6 +6,8 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.internal.logging.InternalLoggerFactory;
+import io.netty.util.internal.logging.Slf4JLoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,17 +16,30 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lubin.rpc.client.proxy.BaseObjectProxy;
+import com.lubin.rpc.registry.ZooRegistry;
 import com.lubin.rpc.thread.BetterExecutorService;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
 public class RPCServer {
-
+    static {
+        // initiate SLF4J Logger Factory setting
+        InternalLoggerFactory.setDefaultFactory(new Slf4JLoggerFactory());
+    }
+    
+    private final Logger logger = LoggerFactory.getLogger(RPCServer.class);
 	private static Config conf = ConfigFactory.load();
 	
 	private static HashMap<String,Object> objects =new HashMap<String,Object>();
 
+    private int port;
+    private int backlog;
+    private int ioThreadNum;
+    
 	public static Config getConfig(){
 		return conf;
 	}
@@ -49,38 +64,61 @@ public class RPCServer {
 		threadPool.submit(task);
 	}
 
-	
-	public RPCServer() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
+	
+	public RPCServer() throws Exception {
+
+	    this.port = RPCServer.getConfig().getInt("server.port");
+	    this.backlog = RPCServer.getConfig().getInt("server.backlog");
+	    this.ioThreadNum = getConfig().getInt("server.ioThreadNum");
+	    
 		List<String> objClassList = RPCServer.getConfig().getStringList("server.objects");
-		for( String objClass :objClassList){
+		boolean enableServiceDiscovery = RPCServer.getConfig().getBoolean("server.enableServiceDiscovery");
+		logger.info("Object list:");
+		for( String objClass : objClassList){
 			Object obj = RPCServer.class.forName(objClass).newInstance();
 			Class[] interfaces= obj.getClass().getInterfaces();
+			
 			for(int i =0;i<interfaces.length;i++){
-				objects.put(interfaces[i].getSimpleName(), obj);
-				System.out.println("objName="+interfaces[i].getSimpleName());
+				objects.put(interfaces[i].getName(), obj);
+				if(enableServiceDiscovery){
+				    ZooRegistry.getInstance().registerService(interfaces[i].getName(), port);
+				}
+				logger.info("   " + interfaces[i].getName());
 			}
 		}
 	}
 
 	public void run() throws Exception {
-
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
-		EventLoopGroup workerGroup = new NioEventLoopGroup(RPCServer.getConfig().getInt("server.ioThreadNum"));
+		EventLoopGroup workerGroup = new NioEventLoopGroup(this.ioThreadNum);
 		try {
-			int backlog = RPCServer.getConfig().getInt("server.backlog");
-			int port = RPCServer.getConfig().getInt("server.port");
 
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup)
 					.channel(NioServerSocketChannel.class)
 					.childHandler(new DefaultServerInitializer())
-					.option(ChannelOption.SO_BACKLOG, backlog)
+					.option(ChannelOption.SO_BACKLOG, this.backlog)
 					.option(ChannelOption.SO_REUSEADDR, true)
 					.option(ChannelOption.SO_KEEPALIVE, true);
 
 			Channel ch = b.bind(port).sync().channel();
+			
+			logger.info("NettyRPC server listening on port "+ port + " and ready for connections...");
+	         Runtime.getRuntime().addShutdownHook(new Thread(){
+	                @Override
+	                public void run(){
+	                    for( String objName : objects.keySet()){
+	                        try {
+                                ZooRegistry.getInstance().unregisterService(objName, port);
+                            } catch (Exception e) {
+                                logger.info("fail to unregister server node. objName=" + objName, e);
+                            }
+	                    }
+	                }
+	            });
 			ch.closeFuture().sync();
+
 		} finally {
 			bossGroup.shutdownGracefully();
 			workerGroup.shutdownGracefully();

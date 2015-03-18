@@ -1,0 +1,46 @@
+<configuration>
+  <!-- ConsoleAppender -->
+  <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{yyy-MM-dd HH:mm:ss,GMT+8} %p [%t, %logger{0}] - %m%n</pattern>
+	  <charset class="java.nio.charset.Charset">UTF-8</charset>
+    </encoder>
+  </appender>
+
+	<appender name="RollingFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>service.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>service.%i.log
+			</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>5</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>100MB</maxFileSize>
+		</triggeringPolicy>
+		<encoder>
+			<pattern>%d{yyy-MM-dd HH:mm:ss,GMT+8} %p %t - %m%n</pattern>
+			<charset class="java.nio.charset.Charset">UTF-8</charset>
+		</encoder>
+	</appender>
+
+  <!-- Define an aysnc appender  -->
+  <appender name="AsyncAppender" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="ConsoleAppender" />
+  </appender>
+<!--
+  <category name="org.apache.zookeeper" additivity="false">
+    <priority value="info" />
+    <appender-ref ref="ConsoleAppender" />
+  </category>
+
+  <logger  name="org.apache.zookeeper" level="info"/>
+  <logger  name="io.netty" level="info"/>
+ -->
+  <root level="INFO">
+      <appender-ref ref="AsyncAppender"/>
+  </root>
+</configuration>

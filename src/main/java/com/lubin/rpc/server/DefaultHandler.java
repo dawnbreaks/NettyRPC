@@ -50,6 +50,7 @@ public class DefaultHandler extends SimpleChannelInboundHandler<RPCContext> {
 		res.setFuncName(req.getFuncName());
 
 		try{
+		    
 			Object[] args = req.getArgs();
 			Class[] argTypes = new Class[args.length];
 			String methodKey ="";

@@ -13,7 +13,7 @@ public class MyTableClient {
 				if (instance == null){
 //					 final String host ="127.0.0.1";//192.168.0.51  127.0.0.1
 //			    	 final int port = 9090;
-			    	 instance = RPCClient.createObjectProxy(IMyTable.class);
+			    	 instance = RPCClient.proxyBuilder(IMyTable.class).build();
 				}
 			}
 		}

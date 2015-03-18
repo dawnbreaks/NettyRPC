@@ -1,5 +1,6 @@
 package com.lubin.rpc.example.obj;
 
+
 public class HelloWorldObj implements IHelloWordObj {
 
 	@Override

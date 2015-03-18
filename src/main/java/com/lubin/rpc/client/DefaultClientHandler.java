@@ -1,6 +1,8 @@
 package com.lubin.rpc.client;
 
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -37,9 +39,11 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 	public SocketAddress getRemotePeer(){
 		return remotePeer;
 	}
-    
-    
  
+	public Channel getChannel(){
+        return channel;
+    }
+	
 	public DefaultClientHandler(BaseObjectProxy objProxy) {
 		this.objProxy = objProxy;
 	}
@@ -68,22 +72,28 @@ public class DefaultClientHandler extends SimpleChannelInboundHandler<RPCContext
 		super.channelActive(ctx);
 		this.remotePeer = channel.remoteAddress();
 	}
+	
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
 		super.exceptionCaught(ctx, cause);
         logger.warn("Unexpected exception from downstream.", cause);
         ctx.close();
-        objProxy.doReconnect(ctx.channel(), remotePeer);
+        //will result in duplicated connections
+//        objProxy.doReconnect(ctx.channel(), remotePeer);
 	}
 	
 	
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		super.channelInactive(ctx);
-		objProxy.doReconnect(ctx.channel(), remotePeer);
+		objProxy.reconnect(ctx.channel(), remotePeer);
 	}
 	
+	
+	public void close(){
+	    channel.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+    }
 	
 	public RPCFuture doRPC(RPCContext rpcCtx){
 		RPCFuture rpcFuture = new RPCFuture(rpcCtx, this);

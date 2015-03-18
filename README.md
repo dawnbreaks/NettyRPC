@@ -15,7 +15,7 @@ Features
   * High availability, load balance and failover 
   * Multi thread server and multi thread client
   * Thread safe client, for an remote Object you only need to create a singleton client. 
-  * Service Discovery, use zookeeper as a service registry. (Unimplemented yet)
+  * Service Discovery support, use zookeeper as a service registry. 
   * PHP client (Unimplemented yet)  
   
 Simple tutorial
@@ -46,7 +46,7 @@ public class HelloWorldObj implements IHelloWordObj {
 }
 ```
 
-####3. Edit  application.conf to add the previous obj and Start the server com.lubin.rpc.server.RPCServer
+####3. Update configuration file and start the server "com.lubin.rpc.server.RPCServer"
 ```javascript
 server {
 	port = 9090
@@ -72,28 +72,24 @@ client {
 ```
 
 
-####4.Make an Obj proxy and call the remote Obj.
+####4.Synchronous call. Create an Obj proxy and call the remote Obj.
 ```java
-    IHelloWordObj client = RPCClient.createObjectProxy("127.0.0.1", 9090, IHelloWordObj.class);
-    
+    IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNode("127.0.0.1", 9090).build();
     String result = client.hello("hello world!");
-    if(!result.equals("hello world!"))
-           System.out.println("error="+result);
 ```
 
 ####5. Asynchronous call
-#####5.1. Create an asynchronous Obj proxy and call the remote Obj.
+#####5.1.
 ```java
-    IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
+    IAsyncObjectProxy asyncClient = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNode("127.0.0.1", 9090).buildAsyncObjPrx();
     
     RPCFuture helloFuture = asyncClient.call("hello", "hello world!");
     RPCFuture testFuture = asyncClient.call("test", 1,"hello world!",2L);
     Object res1= helloFuture.get(3000, TimeUnit.MILLISECONDS);
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
-    
-    asyncClient.notify("notifySomeThing", 1, "hello world!", 2L);
+
 ```
-#####5.2. Optionally you can provide a callback which will be called by NettyRPC after received response from server.
+#####5.3. Optionally you can provide a callback which will be automatically called by NettyRPC after received response from server.
 ```java
 public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 	@Override
@@ -106,21 +102,39 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 	}
 }
 
-    IAsyncObjectProxy asyncClient = RPCClient.createAsyncObjPrx("127.0.0.1", 9090, IHelloWordObj.class);
+    IAsyncObjectProxy asyncClient = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNode("127.0.0.1", 9090).buildAsyncObjPrx();
     RPCFuture helloFuture = asyncClient.call("hello", "hello world!").addCallback(new AsyncHelloWorldCallback());
     RPCFuture testFuture = asyncClient.call("test", 1,"hello world!",2L).addCallback(new AsyncHelloWorldCallback());
 ```
 
-####6 High availability, you can deploy more than one servers to achieve HA, NettyRPC  handle load balance and failover automatically.  
+####6.Oneway call
 ```java
-    ArrayList<InetSocketAddress> serverList = new ArrayList<InetSocketAddress>();
-    serverList.add(new InetSocketAddress("127.0.0.1",9090));
-    serverList.add(new InetSocketAddress("127.0.0.1",9091));
+    IAsyncObjectProxy asyncClient = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNode("127.0.0.1", 9090).buildAsyncObjPrx();
+    asyncClient.notify("notifySomeThing", 1, "hello world!", 2L);
+```
+
+####7 High availability, you can deploy more than one servers to achieve HA, NettyRPC handle load balance and failover automatically.  
+```java
+    ArrayList<InetSocketAddress> serverNodeList = new ArrayList<InetSocketAddress>();
+    serverNodeList.add(new InetSocketAddress("127.0.0.1",9090));
+    serverNodeList.add(new InetSocketAddress("127.0.0.1",9091));
          
-    IHelloWordObj client = RPCClient.createObjectProxy(serverList, IHelloWordObj.class);
+    IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNodes(serverNodeList).build();
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
 
+####8 Service Discovery support.  
+Instead of hard coding the server address in config file( or java source code), NettyRPC support service discovery. 
+All Services will automatically register themself to registry(zookeeper) when service startup,  and client will automatically query server addresses from registry.
+If you want to add more server, you just simply start it, NettyRPC will automatically got notified and dispatch requests to that new server.
 
+```java
+    ArrayList<InetSocketAddress> serverNodeList = new ArrayList<InetSocketAddress>();
+    serverNodeList.add(new InetSocketAddress("127.0.0.1",9090));
+    serverNodeList.add(new InetSocketAddress("127.0.0.1",9091));
+         
+    IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNodes(serverNodeList).build();
+    System.out.println("test server list:"+client.hello("test server list11"));
+```
 ========
 Please feel free to contact me(2005dawnbreaks@gmail.com) if you have any questions.

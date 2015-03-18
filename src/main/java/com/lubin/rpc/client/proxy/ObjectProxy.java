@@ -3,7 +3,7 @@ package com.lubin.rpc.client.proxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.lubin.rpc.client.DefaultClientHandler;
@@ -13,9 +13,14 @@ import com.lubin.rpc.protocol.RPCContext;
 
 public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHandler,IAsyncObjectProxy {
 
-	public ObjectProxy(ArrayList<InetSocketAddress> servers, Class<T> clazz){
+    public ObjectProxy(Class<T> clazz){
+        super(clazz);
+    }
+    
+	public ObjectProxy(List<InetSocketAddress> servers, Class<T> clazz){
 		super(servers, clazz);
 	}
+
 	
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args)

@@ -8,7 +8,7 @@ public interface IHelloWordObj {
 	
 	Msg testMst(HellMsg msg);
 	
-	class HellMsg{
+	public class HellMsg{
 		private int i;
 		private long l;
 		private String s;
@@ -37,10 +37,14 @@ public interface IHelloWordObj {
 		public void setMsg(Msg msg) {
 			this.msg = msg;
 		}
-		
+        @Override
+        public String toString() {
+            return "HellMsg [i=" + i + ", l=" + l + ", s=" + s + ", msg=" + msg
+                    + "]";
+        }
 	}
 	
-	class Msg{
+	public class Msg{
 		private int i;
 		private long l;
 		private String s;
@@ -62,5 +66,9 @@ public interface IHelloWordObj {
 		public void setS(String s) {
 			this.s = s;
 		}
+        @Override
+        public String toString() {
+            return "Msg [i=" + i + ", l=" + l + ", s=" + s + "]";
+        }
 	}
 }

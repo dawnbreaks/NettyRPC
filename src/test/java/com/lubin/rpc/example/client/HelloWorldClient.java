@@ -1,18 +1,15 @@
-package com.lubin.rpc.myTable.test;
-
-import static org.fusesource.leveldbjni.JniDBFactory.bytes;
+package com.lubin.rpc.example.client;
 
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.lubin.myTable.obj.IMyTable;
 import com.lubin.rpc.client.RPCClient;
 import com.lubin.rpc.example.obj.IHelloWordObj;
 import com.lubin.rpc.example.obj.IHelloWordObj.HellMsg;
 import com.lubin.rpc.example.obj.IHelloWordObj.Msg;
 
-public class MyTableClient {
+public class HelloWorldClient {
 	
 
     public static void main(String[] args) throws Exception {
@@ -22,7 +19,7 @@ public class MyTableClient {
 
          final AtomicLong totalTimeCosted = new AtomicLong(0);
          int threadNum = 1;
-         final int requestNum = 50000;
+         final int requestNum = 100000;
          Thread[] threads = new Thread[threadNum];
          
          for(int i =0;i< threadNum;i++){	
@@ -30,10 +27,12 @@ public class MyTableClient {
 			 @Override
 			 public void run() {
 				 
-				 IMyTable client = RPCClient.createObjectProxy(host, port, IMyTable.class);
+					IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNode(host, port).build();
 					long start = System.currentTimeMillis();
 					for (int i = 0; i < requestNum; i++) {
-						client.put(bytes("hello world!" +i), bytes("hello world!" + i));
+						String result = client.hello("hello world!" + i);
+						if (!result.equals("hello world!" + i))
+							System.out.print("error=" + result);
 					}
 					totalTimeCosted.addAndGet(System.currentTimeMillis() - start);
 				}
@@ -51,8 +50,26 @@ public class MyTableClient {
 		serverList.add(new InetSocketAddress("127.0.0.1", 9090));
 		serverList.add(new InetSocketAddress("127.0.0.1", 9091));
 
-		IMyTable client = RPCClient.createObjectProxy(serverList, IMyTable.class);
+		IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNodes(serverList).build();
 
-		RPCClient.getEventLoopGroup().shutdownGracefully();
+		HellMsg msg =new HellMsg();
+		msg.setI(1);
+		msg.setL(2L);
+		msg.setS("hello1");
+		msg.setMsg(new Msg());
+		msg.getMsg().setI(2);
+		msg.getMsg().setL(3L);
+		msg.getMsg().setS("hello2");
+		
+		System.out.println("test server list:" + client.testMst(msg));
+		Msg res = client.testMst(msg);
+		if(!(res.getI() == msg.getI() + msg.getMsg().getI()) 
+			|| !(res.getL() == msg.getL() + msg.getMsg().getL())
+			||!(res.getS() .equals(msg.getS() + msg.getMsg().getS())))
+		{
+			System.out.println("tesg Msg got error!");
+		}
+
+		RPCClient.getInstance().getEventLoopGroup().shutdownGracefully();
     }
 }

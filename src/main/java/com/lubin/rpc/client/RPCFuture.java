@@ -133,7 +133,7 @@ public class RPCFuture implements Future<Object>{
 	}
 	
 	private void runCallback(final AsyncRPCCallback callback){
-        RPCClient.submit(new Runnable(){
+        RPCClient.getInstance().submit(new Runnable(){
             @Override
             public void run() {
                 Response response = rpcCtx.getResponse();
