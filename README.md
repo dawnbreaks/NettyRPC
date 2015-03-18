@@ -41,7 +41,8 @@ public class HelloWorldObj implements IHelloWordObj {
 		return i+s+l;
 	}
 	@Override
-	public String notifySomeThing(Integer i, String s, Long l) {
+	void notifySomeThing(Integer i, String s, Long l) {
+		System.out.println("notifySomeThing|i="+i+"|s="+s+"l="+l);
 	}
 }
 ```
@@ -75,8 +76,8 @@ client {
 ####4.Synchronous call. Create an Obj proxy and call the remote Obj.
 ```java
     IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class)
-    					.withServerNode("127.0.0.1", 9090)
-    					.build();
+    					            .withServerNode("127.0.0.1", 9090)
+    					            .build();
     String result = client.hello("hello world!");
 ```
 
@@ -84,8 +85,8 @@ client {
 #####5.1.
 ```java
     IAsyncObjectProxy asyncClient = RPCClient.proxyBuilder(IHelloWordObj.class)
-    						.withServerNode
-    						.buildAsyncObjPrx();
+    					                     .withServerNode
+    						                 .buildAsyncObjPrx();
     
     RPCFuture helloFuture = asyncClient.call("hello", "hello world!");
     RPCFuture testFuture = asyncClient.call("test", 1,"hello world!",2L);
@@ -107,19 +108,19 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 }
 
     IAsyncObjectProxy asyncClient = RPCClient.proxyBuilder(IHelloWordObj.class)
-    						.withServerNode("127.0.0.1", 9090)
-    						.buildAsyncObjPrx();
+    						                 .withServerNode("127.0.0.1", 9090)
+    					   	                 .buildAsyncObjPrx();
     RPCFuture helloFuture = asyncClient.call("hello", "hello world!")
-    						.addCallback(new AsyncHelloWorldCallback());
+    						           .addCallback(new AsyncHelloWorldCallback());
     RPCFuture testFuture = asyncClient.call("test", 1,"hello world!",2L)
-    						.addCallback(new AsyncHelloWorldCallback());
+    						           .addCallback(new AsyncHelloWorldCallback());
 ```
 
 ####6.Oneway call
 ```java
     IAsyncObjectProxy asyncClient = RPCClient.proxyBuilder(IHelloWordObj.class)
-    						.withServerNode("127.0.0.1", 9090)
-    						.buildAsyncObjPrx();
+    						                 .withServerNode("127.0.0.1", 9090)
+    						                 .buildAsyncObjPrx();
     asyncClient.notify("notifySomeThing", 1, "hello world!", 2L);
 ```
 
@@ -130,8 +131,8 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
     serverNodeList.add(new InetSocketAddress("127.0.0.1",9091));
          
     IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class)
-    					.withServerNodes(serverNodeList)
-    					.build();
+    					            .withServerNodes(serverNodeList)
+    					            .build();
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
 
@@ -146,8 +147,8 @@ If you want to add more server, you just simply start it, NettyRPC will automati
     serverNodeList.add(new InetSocketAddress("127.0.0.1",9091));
          
     IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class)
-    					.withServerNodes(serverNodeList)
-    					.build();
+    					            .withServerNodes(serverNodeList)
+    					            .build();
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
 ========
