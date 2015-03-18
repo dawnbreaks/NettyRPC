@@ -89,7 +89,7 @@ client {
     Object res2= testFuture.get(3000, TimeUnit.MILLISECONDS);
 
 ```
-#####5.3. Optionally you can provide a callback which will be automatically called by NettyRPC after received response from server.
+#####5.2. Optionally you can provide a callback which will be automatically called by NettyRPC after received response from server.
 ```java
 public class AsyncHelloWorldCallback implements AsyncRPCCallback {
 	@Override
