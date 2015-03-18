@@ -136,10 +136,10 @@ public class AsyncHelloWorldCallback implements AsyncRPCCallback {
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
 
-####8 Service Discovery support.  
+####8 Service Discovery support
 Instead of hard coding the server address in config file( or java source code), NettyRPC support service discovery. 
-All Services will automatically register themself to registry(zookeeper) when service startup,  and client will automatically query server addresses from registry.
-If you want to add more server, you just simply start it, NettyRPC will automatically got notified and dispatch requests to that new server.
+All Services will automatically register themself to registry(Zookeeper) after services started,  and NettyRPC client will automatically query addresses from the registry.
+If you want to scale out and deploy more server, you just simply start the new services, NettyRPC client will automatically got notified and dispatch requests to that new services.
 
 ```java
     ArrayList<InetSocketAddress> serverNodeList = new ArrayList<InetSocketAddress>();
@@ -147,7 +147,7 @@ If you want to add more server, you just simply start it, NettyRPC will automati
     serverNodeList.add(new InetSocketAddress("127.0.0.1",9091));
          
     IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class)
-    					            .withServerNodes(serverNodeList)
+    					            .enableRegistry()
     					            .build();
     System.out.println("test server list:"+client.hello("test server list11"));
 ```
