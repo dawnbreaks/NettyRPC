@@ -19,7 +19,7 @@ public class HelloWorldClient {
 
          final AtomicLong totalTimeCosted = new AtomicLong(0);
          int threadNum = 1;
-         final int requestNum = 100000;
+         final int requestNum = 10*10000;
          Thread[] threads = new Thread[threadNum];
          
          for(int i =0;i< threadNum;i++){	

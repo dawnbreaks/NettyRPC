@@ -20,11 +20,9 @@ public class RPCContext {
 		this.response = response;
 	}
 	
-	
 	public void setAttribute(String key,Object value){
 		attributes.put(key, value);
 	}
-	
 	public Object getAttribute(String key){
 		return attributes.get(key);
 	}

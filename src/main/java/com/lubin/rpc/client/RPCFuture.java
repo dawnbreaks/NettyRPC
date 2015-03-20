@@ -10,7 +10,11 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lubin.rpc.client.proxy.AsyncRPCCallback;
+import com.lubin.rpc.client.proxy.BaseObjectProxy;
 import com.lubin.rpc.protocol.Constants;
 import com.lubin.rpc.protocol.RPCContext;
 import com.lubin.rpc.protocol.Response;
@@ -18,7 +22,8 @@ import com.lubin.rpc.protocol.Response;
 
 
 public class RPCFuture implements Future<Object>{
-
+    private final Logger logger = LoggerFactory.getLogger(RPCFuture.class);
+    
     private Sync sync;
 	private RPCContext rpcCtx;
 	
@@ -26,6 +31,8 @@ public class RPCFuture implements Future<Object>{
 	private List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
 
 	private DefaultClientHandler handler;
+    private long startTime;
+    private long responseTimeThreshold = 30;
     
     static class Sync extends AbstractQueuedSynchronizer {
   
@@ -68,6 +75,7 @@ public class RPCFuture implements Future<Object>{
 		this.sync = new Sync();
 		this.rpcCtx = rpcCtx;
 		this.handler = handler;
+		this.startTime = System.currentTimeMillis();
 	}
 	
 	@Override
@@ -118,6 +126,11 @@ public class RPCFuture implements Future<Object>{
 		}else if(type== Constants.RPCType.oneway){
 			//oneway call wonn't got a response from server.
 			
+		}
+		//Threshold
+		long responseTime = System.currentTimeMillis() - startTime;
+		if(responseTime > this.responseTimeThreshold){
+		    logger.warn("Service response time is too slow|serviceName="+reponse.getObjName()+"|funcName="+reponse.getFuncName()+"|responseTime=" + responseTime);
 		}
 	}
 	

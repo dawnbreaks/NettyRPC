@@ -1,12 +1,14 @@
 package com.lubin.rpc.protocol;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufInputStream;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.io.IOException;
 import java.util.List;
 
+import com.esotericsoftware.kryo.io.Input;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,7 +37,7 @@ public class Decoder extends ByteToMessageDecoder  {
     	
     	int packetLength = 0;
     	int bodyLength = 0;
-    	int readerIndex=in.readerIndex();
+    	int readerIndex = in.readerIndex();
     	
     	int headerLength = Constants.headerLen;
     	byte serializer = Constants.RPCSerializer.kryo;
@@ -54,9 +56,12 @@ public class Decoder extends ByteToMessageDecoder  {
             } else {
 
             	if(serializer == Constants.RPCSerializer.kryo){
-    		        byte[] body = new byte[bodyLength];								
-    		        in.getBytes(readerIndex + headerLength, body);			 //todo  : avoid memory copy
-    		        Object bodyObj =  KryoSerializer.read(body);  
+//            	    byte[] body = new byte[bodyLength];                 //todo  : avoid memory copy
+//                    in.getBytes(readerIndex + headerLength, body);          
+//                    Object bodyObj =  KryoSerializer.read(body);  
+                    
+            	    ByteBuf bodyByteBuf = in.slice(readerIndex + headerLength, bodyLength);
+    		        Object bodyObj =  KryoSerializer.read(bodyByteBuf);  
     		        
     		        RPCContext context = new RPCContext();
     		        if(bodyObj instanceof Request){
@@ -71,7 +76,7 @@ public class Decoder extends ByteToMessageDecoder  {
     		        in.skipBytes(packetLength);
     		        return;
             	}else if(serializer == Constants.RPCSerializer.json){
-    		        byte[] body = new byte[bodyLength];								
+    		        byte[] body = new byte[bodyLength];			
     		        in.getBytes(readerIndex + headerLength, body);			 //todo  : avoid memory copy
     		        RPCContext context = new RPCContext();
     		        try{
@@ -91,6 +96,10 @@ public class Decoder extends ByteToMessageDecoder  {
     		        return;
             	}else {
             		//todo....
+            	}
+            	
+            	if(in.readableBytes() > headerLength){//decode next request package
+            	    decode(ctx, in, out);
             	}
             }
         }
