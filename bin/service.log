@@ -1,0 +1,1385 @@
+错误: 找不到或无法加载主类 com.lubin.rpc.server.RPCServer
+错误: 找不到或无法加载主类 com.lubin.rpc.server.RPCServer
+2015-03-20 15:10:26 INFO [main, RPCServer] - Object list:
+2015-03-20 15:10:26 INFO [main, CuratorFrameworkImpl] - Starting
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:host.name=localhost
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:java.version=1.7.0_67
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:java.vendor=Oracle Corporation
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:java.home=/usr/java/jdk1.7.0_67/jre
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:java.class.path=/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/curator-client-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/guava-16.0.1.jar:/usr/local/nettyrpc/release/../target/dependency/junit-3.8.1.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-2.22.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-serializers-0.26.jar:/usr/local/nettyrpc/release/../target/dependency/log4j-1.2.16.jar:/usr/local/nettyrpc/release/../target/dependency/logback-core-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-all-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-3.7.0.Final.jar:/usr/local/nettyrpc/release/../target/dependency/curator-recipes-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-mapper-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/logback-classic-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/config-1.2.0.jar:/usr/local/nettyrpc/release/../target/dependency/curator-x-discovery-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldb-api-0.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/jline-0.9.94.jar:/usr/local/nettyrpc/release/../target/dependency/slf4j-api-1.7.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-all-4.0.10.Final.jar:/usr/local/nettyrpc/release/../target/dependency/zookeeper-3.4.6.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-databind-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/hawtjni-runtime-1.8.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-osx-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-annotations-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/curator-framework-2.7.1.jar:/usr/local/nettyrpc/release/../target/classes:/usr/local/nettyrpc/release/../target/test-classes
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:java.io.tmpdir=/tmp
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:java.compiler=<NA>
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:os.name=Linux
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:os.arch=amd64
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:os.version=2.6.32-431.20.3.el6.x86_64
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:user.name=root
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:user.home=/root
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Client environment:user.dir=/usr/local/nettyrpc/release
+2015-03-20 15:10:26 INFO [main, ZooKeeper] - Initiating client connection, connectString=192.168.0.8:2181 sessionTimeout=60000 watcher=org.apache.curator.ConnectionState@744cdfbb
+2015-03-20 15:10:26 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Opening socket connection to server 192.168.0.8/192.168.0.8:2181. Will not attempt to authenticate using SASL (unknown error)
+2015-03-20 15:10:27 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Socket connection established to 192.168.0.8/192.168.0.8:2181, initiating session
+2015-03-20 15:10:27 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Session establishment complete on server 192.168.0.8/192.168.0.8:2181, sessionid = 0x14c20b3aefe006e, negotiated timeout = 40000
+2015-03-20 15:10:27 INFO [main-EventThread, ConnectionStateManager] - State change: CONNECTED
+2015-03-20 15:10:27 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.rpc.example.obj.IHelloWordObj|port=9090
+2015-03-20 15:10:27 INFO [main, RPCServer] -    com.lubin.rpc.example.obj.IHelloWordObj
+2015-03-20 15:10:27 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.myTable.obj.IMyTable|port=9090
+2015-03-20 15:10:27 INFO [main, RPCServer] -    com.lubin.myTable.obj.IMyTable
+2015-03-20 15:10:27 INFO [main, RPCServer] - NettyRPC server listening on port 9090 and ready for connections...
+Exception in thread "main" java.lang.NoClassDefFoundError: io/netty/util/internal/logging/InternalLoggerFactory
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2570)
+	at java.lang.Class.getMethod0(Class.java:2813)
+	at java.lang.Class.getMethod(Class.java:1663)
+	at sun.launcher.LauncherHelper.getMainMethod(LauncherHelper.java:494)
+	at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:486)
+Caused by: java.lang.ClassNotFoundException: io.netty.util.internal.logging.InternalLoggerFactory
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	... 6 more
+Exception in thread "main" java.lang.NoClassDefFoundError: io/netty/util/internal/logging/InternalLoggerFactory
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2570)
+	at java.lang.Class.getMethod0(Class.java:2813)
+	at java.lang.Class.getMethod(Class.java:1663)
+	at sun.launcher.LauncherHelper.getMainMethod(LauncherHelper.java:494)
+	at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:486)
+Caused by: java.lang.ClassNotFoundException: io.netty.util.internal.logging.InternalLoggerFactory
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	... 6 more
+Exception in thread "main" java.lang.NoClassDefFoundError: io/netty/util/internal/logging/InternalLoggerFactory
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2570)
+	at java.lang.Class.getMethod0(Class.java:2813)
+	at java.lang.Class.getMethod(Class.java:1663)
+	at sun.launcher.LauncherHelper.getMainMethod(LauncherHelper.java:494)
+	at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:486)
+Caused by: java.lang.ClassNotFoundException: io.netty.util.internal.logging.InternalLoggerFactory
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	... 6 more
+Exception in thread "main" java.lang.NoClassDefFoundError: io/netty/util/internal/logging/InternalLoggerFactory
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2570)
+	at java.lang.Class.getMethod0(Class.java:2813)
+	at java.lang.Class.getMethod(Class.java:1663)
+	at sun.launcher.LauncherHelper.getMainMethod(LauncherHelper.java:494)
+	at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:486)
+Caused by: java.lang.ClassNotFoundException: io.netty.util.internal.logging.InternalLoggerFactory
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	... 6 more
+2015-03-20 15:12:56 INFO [main, RPCServer] - Object list:
+2015-03-20 15:12:56 INFO [main, CuratorFrameworkImpl] - Starting
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:host.name=localhost
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:java.version=1.7.0_67
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:java.vendor=Oracle Corporation
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:java.home=/usr/java/jdk1.7.0_67/jre
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:java.class.path=/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/curator-client-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/guava-16.0.1.jar:/usr/local/nettyrpc/release/../target/dependency/junit-3.8.1.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-2.22.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-serializers-0.26.jar:/usr/local/nettyrpc/release/../target/dependency/log4j-1.2.16.jar:/usr/local/nettyrpc/release/../target/dependency/logback-core-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-all-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-3.7.0.Final.jar:/usr/local/nettyrpc/release/../target/dependency/curator-recipes-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-mapper-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/logback-classic-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/config-1.2.0.jar:/usr/local/nettyrpc/release/../target/dependency/curator-x-discovery-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldb-api-0.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/jline-0.9.94.jar:/usr/local/nettyrpc/release/../target/dependency/slf4j-api-1.7.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-all-4.0.10.Final.jar:/usr/local/nettyrpc/release/../target/dependency/zookeeper-3.4.6.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-databind-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/hawtjni-runtime-1.8.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-osx-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-annotations-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/curator-framework-2.7.1.jar:/usr/local/nettyrpc/release/../target/classes:/usr/local/nettyrpc/release/../target/test-classes
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:java.io.tmpdir=/tmp
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:java.compiler=<NA>
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:os.name=Linux
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:os.arch=amd64
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:os.version=2.6.32-431.20.3.el6.x86_64
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:user.name=root
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:user.home=/root
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Client environment:user.dir=/usr/local/nettyrpc/release
+2015-03-20 15:12:56 INFO [main, ZooKeeper] - Initiating client connection, connectString=192.168.0.8:2181 sessionTimeout=60000 watcher=org.apache.curator.ConnectionState@744cdfbb
+2015-03-20 15:12:56 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Opening socket connection to server 192.168.0.8/192.168.0.8:2181. Will not attempt to authenticate using SASL (unknown error)
+2015-03-20 15:12:56 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Socket connection established to 192.168.0.8/192.168.0.8:2181, initiating session
+2015-03-20 15:12:56 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Session establishment complete on server 192.168.0.8/192.168.0.8:2181, sessionid = 0x14c20b3aefe006f, negotiated timeout = 40000
+2015-03-20 15:12:56 INFO [main-EventThread, ConnectionStateManager] - State change: CONNECTED
+2015-03-20 15:12:56 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.rpc.example.obj.IHelloWordObj|port=9090
+2015-03-20 15:12:56 INFO [main, RPCServer] -    com.lubin.rpc.example.obj.IHelloWordObj
+2015-03-20 15:12:56 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.myTable.obj.IMyTable|port=9090
+2015-03-20 15:12:56 INFO [main, RPCServer] -    com.lubin.myTable.obj.IMyTable
+2015-03-20 15:12:56 INFO [main, RPCServer] - NettyRPC server listening on port 9090 and ready for connections...
+2015-03-20 15:13:48 INFO [main, RPCServer] - Object list:
+2015-03-20 15:13:48 INFO [main, CuratorFrameworkImpl] - Starting
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:host.name=localhost
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:java.version=1.7.0_67
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:java.vendor=Oracle Corporation
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:java.home=/usr/java/jdk1.7.0_67/jre
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:java.class.path=/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/curator-client-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/guava-16.0.1.jar:/usr/local/nettyrpc/release/../target/dependency/junit-3.8.1.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-2.22.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-serializers-0.26.jar:/usr/local/nettyrpc/release/../target/dependency/log4j-1.2.16.jar:/usr/local/nettyrpc/release/../target/dependency/logback-core-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-all-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-3.7.0.Final.jar:/usr/local/nettyrpc/release/../target/dependency/curator-recipes-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-mapper-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/logback-classic-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/config-1.2.0.jar:/usr/local/nettyrpc/release/../target/dependency/curator-x-discovery-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldb-api-0.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/jline-0.9.94.jar:/usr/local/nettyrpc/release/../target/dependency/slf4j-api-1.7.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-all-4.0.10.Final.jar:/usr/local/nettyrpc/release/../target/dependency/zookeeper-3.4.6.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-databind-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/hawtjni-runtime-1.8.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-osx-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-annotations-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/curator-framework-2.7.1.jar:/usr/local/nettyrpc/release/../target/classes:/usr/local/nettyrpc/release/../target/test-classes
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:java.io.tmpdir=/tmp
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:java.compiler=<NA>
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:os.name=Linux
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:os.arch=amd64
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:os.version=2.6.32-431.20.3.el6.x86_64
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:user.name=root
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:user.home=/root
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Client environment:user.dir=/usr/local/nettyrpc/release
+2015-03-20 15:13:48 INFO [main, ZooKeeper] - Initiating client connection, connectString=192.168.0.8:2181 sessionTimeout=60000 watcher=org.apache.curator.ConnectionState@744cdfbb
+2015-03-20 15:13:48 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Opening socket connection to server 192.168.0.8/192.168.0.8:2181. Will not attempt to authenticate using SASL (unknown error)
+2015-03-20 15:13:48 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Socket connection established to 192.168.0.8/192.168.0.8:2181, initiating session
+2015-03-20 15:13:48 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Session establishment complete on server 192.168.0.8/192.168.0.8:2181, sessionid = 0x14c20b3aefe0070, negotiated timeout = 40000
+2015-03-20 15:13:48 INFO [main-EventThread, ConnectionStateManager] - State change: CONNECTED
+2015-03-20 15:13:48 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.rpc.example.obj.IHelloWordObj|port=9090
+2015-03-20 15:13:48 INFO [main, RPCServer] -    com.lubin.rpc.example.obj.IHelloWordObj
+2015-03-20 15:13:48 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.myTable.obj.IMyTable|port=9090
+2015-03-20 15:13:48 INFO [main, RPCServer] -    com.lubin.myTable.obj.IMyTable
+2015-03-20 15:13:48 INFO [main, RPCServer] - NettyRPC server listening on port 9090 and ready for connections...
+2015-03-20 15:15:56 INFO [main, RPCServer] - Object list:
+2015-03-20 15:15:56 INFO [main, CuratorFrameworkImpl] - Starting
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:host.name=localhost
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:java.version=1.7.0_67
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:java.vendor=Oracle Corporation
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:java.home=/usr/java/jdk1.7.0_67/jre
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:java.class.path=/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/curator-client-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/guava-16.0.1.jar:/usr/local/nettyrpc/release/../target/dependency/junit-3.8.1.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-2.22.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-serializers-0.26.jar:/usr/local/nettyrpc/release/../target/dependency/log4j-1.2.16.jar:/usr/local/nettyrpc/release/../target/dependency/logback-core-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-all-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-3.7.0.Final.jar:/usr/local/nettyrpc/release/../target/dependency/curator-recipes-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-mapper-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/logback-classic-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/config-1.2.0.jar:/usr/local/nettyrpc/release/../target/dependency/curator-x-discovery-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldb-api-0.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/jline-0.9.94.jar:/usr/local/nettyrpc/release/../target/dependency/slf4j-api-1.7.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-all-4.0.10.Final.jar:/usr/local/nettyrpc/release/../target/dependency/zookeeper-3.4.6.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-databind-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/hawtjni-runtime-1.8.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-osx-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-annotations-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/curator-framework-2.7.1.jar:/usr/local/nettyrpc/release/../target/classes:/usr/local/nettyrpc/release/../target/test-classes
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:java.io.tmpdir=/tmp
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:java.compiler=<NA>
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:os.name=Linux
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:os.arch=amd64
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:os.version=2.6.32-431.20.3.el6.x86_64
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:user.name=root
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:user.home=/root
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Client environment:user.dir=/usr/local/nettyrpc/release
+2015-03-20 15:15:56 INFO [main, ZooKeeper] - Initiating client connection, connectString=192.168.0.8:2181 sessionTimeout=60000 watcher=org.apache.curator.ConnectionState@744cdfbb
+2015-03-20 15:15:56 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Opening socket connection to server 192.168.0.8/192.168.0.8:2181. Will not attempt to authenticate using SASL (unknown error)
+2015-03-20 15:15:56 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Socket connection established to 192.168.0.8/192.168.0.8:2181, initiating session
+2015-03-20 15:15:56 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Session establishment complete on server 192.168.0.8/192.168.0.8:2181, sessionid = 0x14c20b3aefe0071, negotiated timeout = 40000
+2015-03-20 15:15:57 INFO [main-EventThread, ConnectionStateManager] - State change: CONNECTED
+2015-03-20 15:15:57 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.rpc.example.obj.IHelloWordObj|port=9090
+2015-03-20 15:15:57 INFO [main, RPCServer] -    com.lubin.rpc.example.obj.IHelloWordObj
+2015-03-20 15:15:57 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.myTable.obj.IMyTable|port=9090
+2015-03-20 15:15:57 INFO [main, RPCServer] -    com.lubin.myTable.obj.IMyTable
+2015-03-20 15:15:57 INFO [main, RPCServer] - NettyRPC server listening on port 9090 and ready for connections...
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:21:29 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:27:31 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:27:31 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:30:36 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:35:55 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:36:45 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:39:22 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:39:22 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:39:22 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:39:22 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:39:22 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:41:19 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:43:14 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-3, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-4, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-1, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:46:25 ERROR [nioEventLoopGroup-3-2, DefaultExceptionHandler] - Exception caught
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.7.0_67]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.7.0_67]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[na:1.7.0_67]
+	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.setBytes(UnpooledUnsafeDirectByteBuf.java:436) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:870) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:208) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:87) ~[netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:480) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:447) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:341) [netty-all-4.0.10.Final.jar:na]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:101) [netty-all-4.0.10.Final.jar:na]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_67]
+2015-03-20 15:50:47 INFO [main, RPCServer] - Object list:
+2015-03-20 15:50:47 INFO [main, CuratorFrameworkImpl] - Starting
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:host.name=localhost
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:java.version=1.7.0_67
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:java.vendor=Oracle Corporation
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:java.home=/usr/java/jdk1.7.0_67/jre
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:java.class.path=/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/curator-client-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/guava-16.0.1.jar:/usr/local/nettyrpc/release/../target/dependency/junit-3.8.1.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux32-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-2.22.jar:/usr/local/nettyrpc/release/../target/dependency/kryo-serializers-0.26.jar:/usr/local/nettyrpc/release/../target/dependency/log4j-1.2.16.jar:/usr/local/nettyrpc/release/../target/dependency/logback-core-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-all-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-3.7.0.Final.jar:/usr/local/nettyrpc/release/../target/dependency/curator-recipes-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-win64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-mapper-asl-1.9.13.jar:/usr/local/nettyrpc/release/../target/dependency/logback-classic-1.0.13.jar:/usr/local/nettyrpc/release/../target/dependency/config-1.2.0.jar:/usr/local/nettyrpc/release/../target/dependency/curator-x-discovery-2.7.1.jar:/usr/local/nettyrpc/release/../target/dependency/leveldb-api-0.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-core-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/jline-0.9.94.jar:/usr/local/nettyrpc/release/../target/dependency/slf4j-api-1.7.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-linux64-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-1.7.jar:/usr/local/nettyrpc/release/../target/dependency/netty-all-4.0.10.Final.jar:/usr/local/nettyrpc/release/../target/dependency/zookeeper-3.4.6.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-databind-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/hawtjni-runtime-1.8.jar:/usr/local/nettyrpc/release/../target/dependency/leveldbjni-osx-1.5.jar:/usr/local/nettyrpc/release/../target/dependency/jackson-annotations-2.2.3.jar:/usr/local/nettyrpc/release/../target/dependency/curator-framework-2.7.1.jar:/usr/local/nettyrpc/release/../target/classes:/usr/local/nettyrpc/release/../target/test-classes
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:java.io.tmpdir=/tmp
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:java.compiler=<NA>
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:os.name=Linux
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:os.arch=amd64
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:os.version=2.6.32-431.20.3.el6.x86_64
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:user.name=root
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:user.home=/root
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Client environment:user.dir=/usr/local/nettyrpc/release
+2015-03-20 15:50:47 INFO [main, ZooKeeper] - Initiating client connection, connectString=192.168.0.8:2181 sessionTimeout=60000 watcher=org.apache.curator.ConnectionState@744cdfbb
+2015-03-20 15:50:47 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Opening socket connection to server 192.168.0.8/192.168.0.8:2181. Will not attempt to authenticate using SASL (unknown error)
+2015-03-20 15:50:47 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Socket connection established to 192.168.0.8/192.168.0.8:2181, initiating session
+2015-03-20 15:50:47 INFO [main-SendThread(192.168.0.8:2181), ClientCnxn] - Session establishment complete on server 192.168.0.8/192.168.0.8:2181, sessionid = 0x14c20b3aefe0080, negotiated timeout = 40000
+2015-03-20 15:50:47 INFO [main-EventThread, ConnectionStateManager] - State change: CONNECTED
+2015-03-20 15:50:47 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.rpc.example.obj.IHelloWordObj|port=9090
+2015-03-20 15:50:47 INFO [main, RPCServer] -    com.lubin.rpc.example.obj.IHelloWordObj
+2015-03-20 15:50:47 INFO [main, ZooRegistry] - registerService|serviceName=com.lubin.myTable.obj.IMyTable|port=9090
+2015-03-20 15:50:47 INFO [main, RPCServer] -    com.lubin.myTable.obj.IMyTable
+2015-03-20 15:50:47 INFO [main, RPCServer] - NettyRPC server listening on port 9090 and ready for connections...
