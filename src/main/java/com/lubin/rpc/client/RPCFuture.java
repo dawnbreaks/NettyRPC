@@ -32,7 +32,7 @@ public class RPCFuture implements Future<Object>{
 
 	private DefaultClientHandler handler;
     private long startTime;
-    private long responseTimeThreshold = 30;
+    private long responseTimeThreshold = 300;
     
     static class Sync extends AbstractQueuedSynchronizer {
   
