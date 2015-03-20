@@ -26,13 +26,14 @@ public class Benchmark {
 		ArrayList<InetSocketAddress> serverList =new ArrayList<InetSocketAddress>();
 		serverList.add(new InetSocketAddress(host, port));
 		serverList.add(new InetSocketAddress(host, port));
-		final IAsyncObjectProxy client = RPCClient.proxyBuilder(IHelloWordObj.class).withServerNodes(serverList).buildAsyncObjPrx();
+		//.withServerNodes(serverList)
+		final IAsyncObjectProxy client = RPCClient.proxyBuilder(IHelloWordObj.class).enableRegistry().buildAsyncObjPrx();
 		AsyncHelloWorldCallback callback1 = new AsyncHelloWorldCallback(10000);
 		for (int i = 0; i < 10000; i++) {
             client.call("hello",  "hello world!" + i ).addCallback(callback1);
         }
 		
-		Thread.sleep(10*1000);
+		Thread.sleep(1*1000);
 		
 		final AsyncHelloWorldCallback callback = new AsyncHelloWorldCallback(requestNum*threadNum);
 		for (int i = 0; i < threadNum; i++) {

@@ -42,7 +42,6 @@ public class BaseObjectProxy<T> {
 	private final Logger logger = LoggerFactory.getLogger(BaseObjectProxy.class);
 	 
 	protected Class<T> clazz;
-	
 	private String objName;
 	
 	private ReentrantLock lock = new ReentrantLock();
@@ -55,11 +54,13 @@ public class BaseObjectProxy<T> {
 	
 	private AtomicInteger roundRobin = new AtomicInteger(0);
 
-    private int reconnInterval;
+	protected long syncCallTimeOutMillis;
+    protected long connectTimeoutMillis;
+    protected long reconnIntervalMillis;
     
     private String basePath;
-
     private ServerNodesWatcher zkWather;
+
 
 	public void setClazz(Class<T> clazz) {
 		this.clazz = clazz;
@@ -79,9 +80,12 @@ public class BaseObjectProxy<T> {
 	
 	public BaseObjectProxy(List<InetSocketAddress> servers, boolean useRegistry, Class<T> clazz) {
 	    this.clazz = clazz;
-	    this.reconnInterval = RPCClient.getInstance().getConfig().getInt("client.reconnInterval");
-	    this.basePath = RPCClient.getInstance().getConfig().getString("zookeeper.basePath");
 	    this.objName = clazz.getName();
+	    this.connectTimeoutMillis = RPCClient.getInstance().getConfig().getLong("client.connectTimeoutMillis");
+	    this.reconnIntervalMillis = RPCClient.getInstance().getConfig().getLong("client.reconnIntervalMillis");
+	    this.syncCallTimeOutMillis = RPCClient.getInstance().getConfig().getLong("client.syncCallTimeOutMillis");
+	    this.basePath = RPCClient.getInstance().getConfig().getString("zookeeper.basePath");
+	   
 
 	    if(useRegistry){
 	        servers = queryServerNodesFromZK(clazz);
@@ -188,7 +192,7 @@ public class BaseObjectProxy<T> {
 	}
 	
 	public void  reconnect(final Channel channel, final SocketAddress remotePeer){
-	    doConnect(channel, remotePeer , reconnInterval);
+	    doConnect(channel, remotePeer , reconnIntervalMillis);
 	}
 
 	private void doConnect(final Channel channel, final SocketAddress remotePeer, long delay) {
@@ -239,7 +243,7 @@ public class BaseObjectProxy<T> {
 	private boolean waitingForHandler() throws InterruptedException{
 	    lock.lock();
 	    try{
-	        return connected.await(reconnInterval, TimeUnit.MILLISECONDS);
+	        return connected.await(this.connectTimeoutMillis, TimeUnit.MILLISECONDS);
 	    }finally{
 	        lock.unlock();
 	    }

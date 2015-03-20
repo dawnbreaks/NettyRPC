@@ -45,7 +45,7 @@ public class ObjectProxy<T> extends BaseObjectProxy<T> implements InvocationHand
 		   RPCContext rpcCtx = createRequest(method.getName(), args, seqNum, Constants.RPCType.normal);
 
 		   RPCFuture rpcFuture = handler.doRPC(rpcCtx);
-		   return rpcFuture.get(3000, TimeUnit.MILLISECONDS);
+		   return rpcFuture.get(this.syncCallTimeOutMillis, TimeUnit.MILLISECONDS);
 	}
 
 	@Override

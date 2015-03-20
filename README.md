@@ -54,13 +54,16 @@ server {
 	backlog = 1000
 	async = false	//handling request in business logic thread pool
 	asyncThreadPoolSize = 4
-    ioThreadNum = 1   
+    ioThreadNum = 4
+    enableServiceDiscovery = true   
 	objects = [
 		com.lubin.rpc.example.obj.HelloWorldObj
 	]
 }
 client {
-	reconnInterval = 1000	//time interval(million second) for reconnecting to server
+	syncCallTimeOutMillis = 300
+	connectTimeoutMillis = 300
+	reconnIntervalMillis = 1000	//time interval for reconnecting to server
 	asyncThreadPoolSize = 1   //thread pool for excuting Async callback
     ioThreadNum = 1   
     objects = [ 
