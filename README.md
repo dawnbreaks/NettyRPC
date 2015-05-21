@@ -145,10 +145,6 @@ All Services will automatically register themself to registry(Zookeeper) after s
 If you want to scale out and deploy more server, you just simply start the new services, NettyRPC client will automatically got notified and dispatch requests to that new services.
 
 ```java
-    ArrayList<InetSocketAddress> serverNodeList = new ArrayList<InetSocketAddress>();
-    serverNodeList.add(new InetSocketAddress("127.0.0.1",9090));
-    serverNodeList.add(new InetSocketAddress("127.0.0.1",9091));
-         
     IHelloWordObj client = RPCClient.proxyBuilder(IHelloWordObj.class)
     					            .enableRegistry()
     					            .build();
