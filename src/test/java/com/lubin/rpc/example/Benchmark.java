@@ -15,7 +15,7 @@ public class Benchmark {
 
 
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
-        final String host = "192.168.0.8";
+        final String host = "localhost";
         final int port = 9090;
 
         ArrayList<InetSocketAddress> serverNodeList =new ArrayList<InetSocketAddress>();

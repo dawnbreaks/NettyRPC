@@ -90,8 +90,8 @@ public class RPCServer {
 	}
 
 	public void run() throws Exception {
-		EventLoopGroup bossGroup = new NioEventLoopGroup();
-		EventLoopGroup workerGroup = new NioEventLoopGroup(this.ioThreadNum);
+		final EventLoopGroup bossGroup = new NioEventLoopGroup();
+		final EventLoopGroup workerGroup = new NioEventLoopGroup(this.ioThreadNum);
 		try {
 
 			ServerBootstrap b = new ServerBootstrap();
@@ -105,15 +105,23 @@ public class RPCServer {
 			Channel ch = b.bind(port).sync().channel();
 			
 			logger.info("NettyRPC server listening on port "+ port + " and ready for connections...");
+			
 	         Runtime.getRuntime().addShutdownHook(new Thread(){
 	                @Override
 	                public void run(){
-	                    for( String objName : objects.keySet()){
-	                        try {
-                                ZooRegistry.getInstance().unregisterService(objName, port);
-                            } catch (Exception e) {
-                                logger.info("fail to unregister server node. objName=" + objName, e);
-                            }
+	                    
+	                    bossGroup.shutdownGracefully();
+	                    workerGroup.shutdownGracefully();
+	                    
+	                    boolean enableServiceDiscovery = RPCServer.getConfig().getBoolean("server.enableServiceDiscovery");
+	                    if(enableServiceDiscovery){
+	                        for( String objName : objects.keySet()){
+	                            try {
+	                                ZooRegistry.getInstance().unregisterService(objName, port);
+	                            } catch (Exception e) {
+	                                logger.info("fail to unregister server node. objName=" + objName, e);
+	                            }
+	                        }
 	                    }
 	                }
 	            });

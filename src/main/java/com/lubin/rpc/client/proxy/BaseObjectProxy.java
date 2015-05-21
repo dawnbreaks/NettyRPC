@@ -89,11 +89,10 @@ public class BaseObjectProxy<T> {
 
 	    if(useRegistry){
 	        servers = queryServerNodesFromZK(clazz);
+	        this.zkWather = new ServerNodesWatcher();
+	        //todo zookeeper data change
+	        ZooRegistry.getInstance().addWatcher(getServiceZKPath(), zkWather);
 	    }
-
-	    this.zkWather = new ServerNodesWatcher();
-	    //todo zookeeper data change
-	    ZooRegistry.getInstance().addWatcher(getServiceZKPath(), zkWather);
 
 	    //Firstly populate all data to allServerNodes, because hash set is not thread safe,you need to avoid concurrent access to it.  
 	    for(final InetSocketAddress server : servers){
